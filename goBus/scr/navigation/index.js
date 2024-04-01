@@ -61,13 +61,11 @@ const Navigation = () => {
 const DrawerContent = (props) => {
     return(
         <DrawerContentScrollView {...props}>
-            <VStack>
-                <HStack>
-                    <MaterialCommunityIcons name="bus-stop" color={color} size={26} />
-                    <Text style={styles.drawerAppName}>GoBus</Text>
-                </HStack>
-                <Divider my="$0.5" />
-            </VStack>
+            <HStack space="none" reversed={false}>
+                <MaterialCommunityIcons name="bus-stop" color={"#000"} size={26} />
+                <Text style={styles.drawerAppName}>GoBus</Text>
+            </HStack>
+            <Divider my="$0.5" />
             <DrawerItemList {...props} />
         </DrawerContentScrollView>
     );
@@ -96,7 +94,7 @@ const MyDrawer = () => {
                 component={MyTab}
                 options={{
                     headerShown: false,
-                    drawerLabel: 'Home',
+                    drawerLabel: '主畫面',
                     drawerLabelStyle:{
                         fontSize:14,
                         fontWeight:'400',
@@ -111,7 +109,7 @@ const MyDrawer = () => {
                 component={LostFoundStack}
                 options={{
                     headerShown: false,
-                    drawerLabel: 'Lost and Found',
+                    drawerLabel: '失物招領',
                     drawerLabelStyle:{
                         fontSize:14,
                         fontWeight:'400',
@@ -126,7 +124,7 @@ const MyDrawer = () => {
                 component={LoveBusStack}
                 options={{
                     headerShown: false,
-                    drawerLabel: 'Set favorite bus routes',
+                    drawerLabel: '設定最愛公車路線',
                     drawerLabelStyle:{
                         fontSize:14,
                         fontWeight:'400',
@@ -170,27 +168,30 @@ const LostFoundStack = ({navigation}) => {
 
 //drawer 【設定最愛公車路線】
 const LoveBusStack = ({navigation}) => {
-    <Stack.Navigator>
-        <Stack.Screen 
-            name="LoveBus"
-            component={LoveBusScreen}
-            options={{
-                title: "",
-                headerTitleStyle: {
-                    fontWeight:'400',
-                    fontSize:20
-                },
-                headerLeft: () => (
-                    <MaterialCommunityIcons
-                    name={'menu'}
-                    size={20}
-                    onPress={() => navigation.openDrawer()}
-                    style={{ marginRight: 20 }}
-                    />
-                ),
-            }}
-        />
-    </Stack.Navigator>
+    return(
+        <Stack.Navigator>
+            <Stack.Screen 
+                name="LoveBus"
+                component={LoveBusScreen}
+                options={{
+                    title: "",
+                    headerTitleStyle: {
+                        fontWeight:'400',
+                        fontSize:20
+                    },
+                    headerLeft: () => (
+                        <MaterialCommunityIcons
+                        name={'menu'}
+                        size={20}
+                        onPress={() => navigation.openDrawer()}
+                        style={{ marginRight: 20 }}
+                        />
+                    ),
+                }}
+            />
+        </Stack.Navigator>
+    );
+
 }
 
 
@@ -266,13 +267,13 @@ const HomeStack = ({navigation}) => {
                         fontWeight:'400',
                         fontSize:20
                     },
-                    headerShadowVisible: false,
+                    //headerShadowVisible: false,
                     headerLeft: () => (
                         <MaterialCommunityIcons
                           name={'menu'}
-                          size={28}
+                          size={20}
                           onPress={() => navigation.openDrawer()}
-                          style={{ marginLeft:10 , marginRight: 20 }}
+                          style={{ marginRight: 20 }}
                         />
                     ),
                 }}

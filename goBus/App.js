@@ -1,7 +1,8 @@
-import { SafeAreaView } from 'react-native';
-import Navigation from './scr/components';
+import { SafeAreaView, AppRegistry} from 'react-native';
+import Navigation from './scr/navigation';
 import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
+
 
 export default function App() {
   return (
@@ -10,5 +11,6 @@ export default function App() {
         <Navigation />  
       </GluestackUIProvider>
     </SafeAreaView>
+
   );
 }
