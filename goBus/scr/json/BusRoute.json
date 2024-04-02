@@ -12,102 +12,38 @@
             {
                 "busRoute": "往萬華",
                 "data": [
-                    {
-                        "station": "黎忠市場"
-                    },
-                    {
-                        "station": "富陽街口"
-                    },
-                    {
-                        "station": "捷運六張犁站(和平)"
-                    },
-                    {
-                        "station": "和平安和路口"
-                    },
-                    {
-                        "station": "臥龍街"
-                    },
-                    {
-                        "station": "國立臺北教育大學"
-                    },
-                    {
-                        "station": "復興南路口"
-                    },
-                    {
-                        "station": "國北教大實小"
-                    },
-                    {
-                        "station": "龍門國中(和平)"
-                    },
-                    {
-                        "station": "大安森林公園"
-                    },
-                    {
-                        "station": "溫州街口"
-                    },
-                    {
-                        "station": "師大綜合大樓"
-                    },
-                    {
-                        "station": "師大"
-                    },
-                    {
-                        "station": "捷運古亭站(和平)"
-                    },
-                    {
-                        "station": "羅斯福潮州街口"
-                    },
-                    {
-                        "station": "捷運中正紀念堂站(羅斯福)"
-                    },
-                    {
-                        "station": "一女中(公園)"
-                    },
-                    {
-                        "station": "捷運台大醫院站"
-                    },
-                    {
-                        "station": "博物館(館前)"
-                    },
-                    {
-                        "station": "臺北車站(開封)"
-                    },
-                    {
-                        "station": "重慶南路一段"
-                    },
-                    {
-                        "station": "二二八和平公園"
-                    },
-                    {
-                        "station": "衡陽路"
-                    },
-                    {
-                        "station": "西門市場(成都)"
-                    },
-                    {
-                        "station": "西寧南路"
-                    },
-                    {
-                        "station": "桂林昆明街口"
-                    },
-                    {
-                        "station": "桂林路"
-                    },
-                    {
-                        "station": "萬華分局"
-                    },
-                    {
-                        "station": "龍山國小"
-                    },
-                    {
-                        "station": "華江派出所"
-                    },
-                    {
-                        "station": "力霸社區"
-                    },
-                    {
-                        "station": "華江站"
-                    }
+                    {"station": "黎忠市場"},
+                    {"station": "富陽街口"},
+                    {"station": "捷運六張犁站(和平)"},
+                    {"station": "和平安和路口"},
+                    {"station": "臥龍街"},
+                    {"station": "國立臺北教育大學"},
+                    {"station": "復興南路口"},
+                    {"station": "國北教大實小"},
+                    {"station": "龍門國中(和平)"},
+                    {"station": "大安森林公園"},
+                    {"station": "溫州街口"},
+                    {"station": "師大綜合大樓"},
+                    {"station": "師大"},
+                    {"station": "捷運古亭站(和平)"},
+                    {"station": "羅斯福潮州街口"},
+                    {"station": "捷運中正紀念堂站(羅斯福)"},
+                    {"station": "一女中(公園)"},
+                    {"station": "捷運台大醫院站"},
+                    {"station": "博物館(館前)"},
+                    {"station": "臺北車站(開封)"},
+                    {"station": "重慶南路一段"},
+                    {"station": "二二八和平公園"},
+                    {"station": "衡陽路"},
+                    {"station": "西門市場(成都)"},
+                    {"station": "西寧南路"},
+                    {"station": "桂林昆明街口"},
+                    {"station": "桂林路"},
+                    {"station": "萬華分局"},
+                    {"station": "龍山國小"},
+                    {"station": "華江派出所"},
+                    {"station": "力霸社區"},
+                    {"station": "華江站"}
                 ]
             },
             {
