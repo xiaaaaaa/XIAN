@@ -1,8 +1,9 @@
 import React from "react";
 import { StyleSheet } from 'react-native';
 import { Text } from '@gluestack-ui/themed';
+import { useNavigation } from '@react-navigation/native';
 
-const SetDestinationScreen = () => {
+const SetDestinationScreen = ({}) => {
     return(
         <Text style={styles.text}>The Set Destination Screen</Text>
     );

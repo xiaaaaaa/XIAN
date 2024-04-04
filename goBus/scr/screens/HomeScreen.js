@@ -1,10 +1,19 @@
 import React from "react";
-import { StyleSheet } from 'react-native';
-import { Text } from '@gluestack-ui/themed';
+import { StyleSheet, Button, Pressable } from 'react-native';
+import { Text, VStack } from '@gluestack-ui/themed';
+import { useNavigation} from '@react-navigation/native';
+import SetDestinationScreen from "./SetDestinationScreen";
 
 const HomeScreen = () => {
+    const navigation = useNavigation();
+
     return(
-        <Text style={styles.text}>The Home Screen</Text>
+        <VStack>
+            <Text style={styles.text}>The Home Screen</Text>
+            <Pressable  onPress={() => navigation.navigate('SetDestinationScreen', SetDestinationScreen)}>
+                <Button title="Learn More"/>
+            </Pressable>
+        </VStack>
     );
 }
 
