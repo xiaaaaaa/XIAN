@@ -10,7 +10,8 @@
         "detail": [
             {
                 "startEndStation": "萬華-捷運麟光站",
-                "startEndTime":"平日:0525~2300/假日:0525~2300"
+                "startEndTime":"平日:0525~2300/假日:0525~2300",
+                "stationNum":32
             }
         ],
         "routes": [
