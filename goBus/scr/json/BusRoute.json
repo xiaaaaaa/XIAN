@@ -1,7 +1,12 @@
 [
     {
+    "title": "Bus route",
+    "data":[    
+    {
+        
         "busNum": "18",
         "favoriteSotp": 0,
+        "arrivalBusNum": "KKA-0395",
         "detail": [
             {
                 "startEndStation": "萬華-捷運麟光站",
@@ -17,7 +22,7 @@
                     {"station": "捷運六張犁站(和平)"},
                     {"station": "和平安和路口"},
                     {"station": "臥龍街"},
-                    {"station": "國立臺北教育大學"},
+                    {"station": "國立臺北教育大學", "arrivalTime":28},
                     {"station": "復興南路口"},
                     {"station": "國北教大實小"},
                     {"station": "龍門國中(和平)"},
@@ -499,4 +504,7 @@
             }
         ]
     }
+    ]
+}
+
 ]

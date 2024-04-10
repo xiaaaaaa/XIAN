@@ -1,19 +1,19 @@
 import React from "react";
-import { StyleSheet, Button, Pressable } from 'react-native';
+import { StyleSheet, Button, Pressable, View } from 'react-native';
 import { Text, VStack } from '@gluestack-ui/themed';
 import { useNavigation} from '@react-navigation/native';
-import SetDestinationScreen from "./SetDestinationScreen";
+//import SetDestinationScreen from "./SetDestinationScreen";
+import HomeBusRouteCard from "../components/HomeBusRouteCard";
+import BusRouteData from "../json/BusRoute.json";
 
 const HomeScreen = () => {
-    const navigation = useNavigation();
 
     return(
-        <VStack>
-            <Text style={styles.text}>The Home Screen</Text>
-            <Pressable  onPress={() => navigation.navigate('SetDestinationScreen', SetDestinationScreen)}>
-                <Button title="Learn More"/>
-            </Pressable>
-        </VStack>
+        <View style={{flex: 1, backgroundColor:'#fff'}}>
+            <HomeBusRouteCard 
+                list = {BusRouteData.busRoute}
+            />
+        </View>
     );
 }
 
