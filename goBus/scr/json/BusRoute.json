@@ -5,7 +5,7 @@
     {
         
         "busNum": "18",
-        "favoriteSotp": 0,
+        "favoriteSotp": 1,
         "arrivalBusNum": "KKA-0395",
         "detail": [
             {
@@ -101,7 +101,8 @@
         "detail": [
             {
                 "startEndStation": "景明街口-聯合醫院中興院區(塔城)",
-                "startEndTime":"平日:0525~2300/假日:0525~2300"
+                "startEndTime":"平日:0525~2300/假日:0525~2300",
+                "stationNum":32
             }
         ],
         "routes": [
@@ -189,7 +190,8 @@
         "detail": [
             {
                 "startEndStation": "汐止社后 - 景美",
-                "startEndTime":"平日:0500~2230/假日:0530~2230"
+                "startEndTime":"平日:0500~2230/假日:0530~2230",
+                "stationNum":71
             }
         ],
         "routes": [
@@ -347,12 +349,13 @@
     },
     {
         "busNum": "和平幹線",
-        "favoriteSotp": 0,
+        "favoriteSotp": 1,
         "arrivalBusNum": "EAL-0018",
         "detail": [
             {
                 "startEndStation": "萬芳社區 - 衡陽路",
-                "startEndTime":"平日:0520~2300/假日:0520~2300"
+                "startEndTime":"平日:0520~2300/假日:0520~2300",
+                "stationNum":34
             }
         ],
         "routes": [
@@ -443,7 +446,8 @@
         "detail": [
             {
                 "startEndStation": "麟光-大直",
-                "startEndTime":"平日:0600~2200/假日:0600~2200"
+                "startEndTime":"平日:0600~2200/假日:0600~2200",
+                "stationNum":32
             }
         ],
         "routes": [

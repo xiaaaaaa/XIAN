@@ -4,8 +4,12 @@ import { useNavigation } from '@react-navigation/native';
 import { HStack, Box } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const HomeBusRouteCard = props => {
+//import NowStationNum from "../components/NowStationNum.js";
+//busRoute.routes[0].data[NowStationNum].arrivalTime
+
+const HomeLoveBusRouteCardDetail = props => {
     let {busRoute} = props;
+
 
     const findStopNum = () => {
         let num = 0;
@@ -17,7 +21,7 @@ const HomeBusRouteCard = props => {
         return(busRoute.routes[0].data[num].arrivalTime);
     }
 
-    if(busRoute.favoriteSotp === 0){
+    if(busRoute.favoriteSotp === 1){
         return(
             <View style={styles.loveRoute}>
                 
@@ -25,10 +29,10 @@ const HomeBusRouteCard = props => {
                     <View style={styles.busNumCard}>
                         <Text style={styles.busNum}>{busRoute.busNum}</Text>
                     </View>
-                    <HStack style={styles.arrivalTimeCard}>                        
+                    <HStack style={styles.arrivalTimeCard}>
                         <Text style={styles.timeNum}>{findStopNum()}</Text>
                         <Text style={styles.unit}>分</Text>
-                        <MaterialCommunityIcons name="chevron-right" color={'#000'} size={15} style={styles.icon}/>                      
+                        <MaterialCommunityIcons name="chevron-right" color={'#000'} size={15} style={styles.icon}/>
                     </HStack>
                 </HStack>
             
@@ -37,7 +41,7 @@ const HomeBusRouteCard = props => {
         )
     }else null;
 
-}
+};
 
 const styles = StyleSheet.create({
     loveRoute:{
@@ -81,7 +85,7 @@ const styles = StyleSheet.create({
         
     },
     timeNum:{
-        width:30,
+        width:27,
         fontSize:18,
         paddingRight:0,
         paddingLeft:0,
@@ -96,4 +100,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default HomeBusRouteCard;
+export default HomeLoveBusRouteCardDetail;

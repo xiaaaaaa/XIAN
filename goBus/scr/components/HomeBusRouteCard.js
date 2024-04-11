@@ -1,18 +1,39 @@
 import React from "react";
 import { SectionList, FlatList, StyleSheet, Text } from "react-native";
+import { Divider } from "@gluestack-ui/themed";
+
 import BusRouteData from "../json/BusRoute.json";
-import HomeBusRouteCardDetail from "./HomeBusRouteCardDetail";
+import HomeLoveBusRouteCardDetail from "./HomeLoveBusRouteCardDetail";
+import HomeBusRouteCardDetail from "./HomeBusRouteCardDetail"
 
 const HomeBusRouteCard = () => {
     const renderSectionHeader = ({ section , navigation}) => (
         <>
-          {/* <Text style={styles.sectionHeader}>{section.title}</Text> */}
+          <Text style={styles.sectionHeader}>最愛路線</Text>
+          <FlatList
+              
+              horizontal={true}
+              data={section.data}
+              renderItem={({ item }) => <HomeLoveBusRouteCardDetail busRoute={item} navigation={navigation}/>}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={ item => item.title }
+              contentContainerStyle={{
+                flexDirection : "row", flexWrap : "wrap", maxWidth:390,paddingLeft:4, paddingRight:4, 
+
+              }} 
+          />
+          <Divider my="$0.5" style={styles.divider}/>
+          <Text style={styles.sectionHeader}>路線</Text>
           <FlatList
               horizontal={true}
               data={section.data}
               renderItem={({ item }) => <HomeBusRouteCardDetail busRoute={item} navigation={navigation}/>}
               showsHorizontalScrollIndicator={false}
               keyExtractor={ item => item.title }
+              contentContainerStyle={{
+                flexDirection : "row", flexWrap : "wrap", maxWidth:390,paddingLeft:4, paddingRight:4, 
+
+              }} 
           />
         </>
     );
@@ -35,13 +56,16 @@ const HomeBusRouteCard = () => {
 const styles = StyleSheet.create({
     sectionHeader: {
       fontWeight: '500',
-      fontSize: 24,
-      paddingTop: 20,
-      paddingBottom: 5,
-      paddingLeft: 0,
-      lineHeight:28,
-      marginBottom:16,
-      marginLeft:20,
+      fontSize: 18,
+
+      lineHeight:22,
+      marginTop:20,
+      marginBottom:0,
+      marginLeft:4,
+    },
+    divider:{
+      marginTop:25,
+      backgroundColor:'#C4D7F3',
     }
   })
 
