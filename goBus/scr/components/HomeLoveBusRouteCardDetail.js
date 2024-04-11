@@ -4,8 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import { HStack, Box } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-//import NowStationNum from "../components/NowStationNum.js";
-//busRoute.routes[0].data[NowStationNum].arrivalTime
 
 const HomeLoveBusRouteCardDetail = props => {
     let {busRoute} = props;

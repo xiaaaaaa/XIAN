@@ -19,7 +19,7 @@ const HomeBusRouteCard = () => {
               keyExtractor={ item => item.title }
               contentContainerStyle={{
                 flexDirection : "row", flexWrap : "wrap", maxWidth:390,paddingLeft:4, paddingRight:4, 
-
+                //flexDirection : "row", flexWrap : "wrap", 
               }} 
           />
           <Divider my="$0.5" style={styles.divider}/>
@@ -32,9 +32,10 @@ const HomeBusRouteCard = () => {
               keyExtractor={ item => item.title }
               contentContainerStyle={{
                 flexDirection : "row", flexWrap : "wrap", maxWidth:390,paddingLeft:4, paddingRight:4, 
-
+                //flexDirection : "row", flexWrap : "wrap", maxWidth:390 
               }} 
           />
+          
         </>
     );
     const renderItem = ({ item, section , navigation}) => {
@@ -42,7 +43,7 @@ const HomeBusRouteCard = () => {
     };
 
     return (
-      <SectionList 
+      <SectionList style={styles.sectionList}
         sections={BusRouteData}
         contentContainerStyle={{ paddingHorizontal: 10 }}
         renderSectionHeader={renderSectionHeader}
@@ -54,6 +55,11 @@ const HomeBusRouteCard = () => {
 };
 
 const styles = StyleSheet.create({
+    sectionList:{
+      height:169,
+      borderColor:'#000',
+      borderWidth:1,
+    },
     sectionHeader: {
       fontWeight: '500',
       fontSize: 18,
@@ -65,6 +71,8 @@ const styles = StyleSheet.create({
     },
     divider:{
       marginTop:25,
+      marginLeft:4,
+      marginRight:4,
       backgroundColor:'#C4D7F3',
     }
   })

@@ -41,11 +41,13 @@ import UsageScreen from "../screens/setting/UsageScreen";
 
 //Theme ===========================//
 import MyTheme from "../Theme";
+// import { background } from "native-base/lib/typescript/theme/styled-system";
 
 
 //Navigation 主程式 ===========================//
 const Navigation = () => {
     return(
+
         <NativeBaseProvider>
             <NavigationContainer theme={MyTheme}>
                 <MyDrawer  />
@@ -60,7 +62,7 @@ const Navigation = () => {
 //Drawer自訂項目
 const DrawerContent = (props) => {
     return(
-        <DrawerContentScrollView {...props}>
+        <DrawerContentScrollView {...props} >
             <HStack space="none" reversed={false}>
                 <MaterialCommunityIcons name="bus-stop" color={"#000"} size={26} />
                 <Text style={styles.drawerAppName}>GoBus</Text>
@@ -76,14 +78,14 @@ const MyDrawer = () => {
     const {colors} = useTheme();
 
     return(
-        <Drawer.Navigator
+        <Drawer.Navigator 
             initialRouteName="HomeStack"
             screenOptions={{
                 drawerActiveBackgroundColor: "#fff",
                 drawerActiveTintColor: "#666666",
                 drawerInactiveTintColor: "#666666",
                 
-                drawerStyle:{width:300},
+                drawerStyle:{width:300, backgroundColor:'#fff'},
                 drawerLabelStyle:{ fontSize:16, fontWeight:'400'},
             }}
             drawerContent={ props => <DrawerContent {...props}/> } 
@@ -129,6 +131,7 @@ const MyDrawer = () => {
                         fontSize:14,
                         fontWeight:'400',
                     },
+                    
                     drawerIcon:({color})=>(
                         <MaterialCommunityIcons name="bus-multiple" color={color} size={26} />
                     ),
@@ -214,17 +217,19 @@ const MyTab = () => {
                     headerTitleStyle:{
                         fontSize:20,
                         fontWeight:'400',
+                        
                     },
                     tabBarIcon:({color})=>(
                         <MaterialCommunityIcons name="home" color={color} size={24} />
                     ),
-                    
+                   
                 }}
             />
             <Tab.Screen 
                 name="SearchStack"
                 component={SearchStack}
                 options={{
+                    
                     headerShown: false,
                     title: 'Search',
                     headerTitleStyle:{
@@ -262,6 +267,7 @@ const HomeStack = ({navigation}) => {
             <Stack.Screen 
                 name="Home"
                 component={HomeScreen}
+                
                 options={{
                     title: "",
                     headerTitleStyle: {
@@ -277,6 +283,7 @@ const HomeStack = ({navigation}) => {
                           style={{ marginRight: 20 }}
                         />
                     ),
+                    
                 }}
             />
             <Stack.Screen 
@@ -284,6 +291,7 @@ const HomeStack = ({navigation}) => {
                 component={SetDestinationScreen}
                 options={{
                     title: "",
+                    headerShown:false,
                     headerTitleStyle: {
                         fontWeight:'400',
                         fontSize:20
@@ -301,6 +309,14 @@ const HomeStack = ({navigation}) => {
                         fontSize:20
                     },
                     headerShadowVisible: false,
+                    headerLeft: () => (
+                        <MaterialCommunityIcons
+                          name={'menu'}
+                          size={20}
+                          onPress={() => navigation.openDrawer()}
+                          style={{ marginRight: 20 }}
+                        />
+                    ),
                 }}
             />
             <Stack.Screen 
@@ -361,7 +377,7 @@ const SearchStack = ({navigation}) => {
 //Tab 【設定頁面】
 const SettingStack = ({navigation}) => {
     return(
-        <Stack.Navigator>
+        <Stack.Navigator >
             <Stack.Screen 
                 name="Setting"
                 component={SettingScreen}
