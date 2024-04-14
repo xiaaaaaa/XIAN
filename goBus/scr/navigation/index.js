@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Keyboard } from "react-native";
 import { NavigationContainer, useTheme } from "@react-navigation/native";
 import { NativeBaseProvider } from 'native-base';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -349,6 +349,10 @@ const HomeStack = ({navigation}) => {
 
 //Tab 【搜尋頁面】
 const SearchStack = ({navigation}) => {
+    const hideKeyboardAndOpenDrawer = () => {
+        Keyboard.dismiss(); 
+        navigation.openDrawer(); 
+    };
     return(
         <Stack.Navigator>
             <Stack.Screen 
@@ -364,7 +368,7 @@ const SearchStack = ({navigation}) => {
                         <MaterialCommunityIcons
                             name={'menu'}
                             size={20}
-                            onPress={() => navigation.openDrawer()}
+                            onPress={hideKeyboardAndOpenDrawer}
                             style={{ marginRight: 20 }}
                         />
                     ),
