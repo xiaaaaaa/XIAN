@@ -41,43 +41,7 @@ const DetailRouteCard = props => {
 
             </VStack>
         )
-    } else {
-        return (
-        <VStack>
-            {busRoute.routes[1].data.map((item, index) => (
-                <View key={index} style={styles.context}>
-                    {item.arrivalTime === "進站中" || item.arrivalTime === "將進站" ? (
-                        <View style={[styles.arrivalTime, { backgroundColor: '#F3DB56' }]}>
-                            <Text style={[styles.arrivalTimeText, { backgroundColor: '#F3DB56' }]}>{item.arrivalTime}</Text>
-                        </View>
-                    ) : (
-                        <View style={styles.arrivalTime}>
-                            <Text style={styles.arrivalTimeText}>{item.arrivalTime} 分</Text>
-
-                        </View>
-                    )}
-
-                    <View style={styles.station}>
-                        <Text style={styles.stationText}>{item.station}</Text>
-                    </View>
-                    {item.arrivalTime === "進站中" ? (
-                        <View>
-                            <View style={[styles.spot, { backgroundColor: '#F3DB56' }]}>
-                                <Text style={[styles.spotText, { backgroundColor: '#F3DB56' }]}></Text>
-                            </View>
-                        </View>
-
-                    ) : (
-                        <View style={styles.spot}>
-                            <Text style={styles.spotText}></Text>
-                        </View>
-                    )}
-
-                </View>
-            ))}
-
-        </VStack>
-    )}
+    } else (null)
 };
 
 const styles = StyleSheet.create({
