@@ -288,12 +288,15 @@ const HomeStack = ({navigation}) => {
                 component={HomeScreen}
                 
                 options={{
-                    title: "",
+                    title: "國立台北教育大學",
                     headerTitleStyle: {
-                        fontWeight:'400',
-                        fontSize:20
+                        fontSize:18
                     },
-                    //headerShadowVisible: false,
+                    headerTitleAlign:'center',
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3'
+                    },
+                    headerShadowVisible: false,
                     headerLeft: () => (
                         <MaterialCommunityIcons
                           name={'menu'}
@@ -322,10 +325,14 @@ const HomeStack = ({navigation}) => {
                 name="WattingBus"
                 component={WattingBusScreen}
                 options={{
-                    title: "",
+                    title: "國立台北教育大學",
                     headerTitleStyle: {
                         fontWeight:'400',
                         fontSize:20
+                    },
+                    headerTitleAlign:'center',
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3'
                     },
                     headerShadowVisible: false,
                     headerLeft: () => (
@@ -342,10 +349,14 @@ const HomeStack = ({navigation}) => {
                 name="TakingBus"
                 component={TakingBusScreen}
                 options={{
-                    title: "",
+                    title: "國立台北教育大學",
                     headerTitleStyle: {
                         fontWeight:'400',
                         fontSize:20
+                    },
+                    headerTitleAlign:'center',
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3'
                     },
                     headerShadowVisible: false,
                 }}
