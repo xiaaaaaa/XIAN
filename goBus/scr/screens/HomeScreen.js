@@ -40,18 +40,6 @@ const styles = StyleSheet.create({
         // marginLeft:'auto',
         // marginRight:'auto',
     },
-    busDetailCard:{
-        width:350,
-        height:190,
-        backgroundColor:'#DEEBFF',
-        display:'flex',
-        marginTop:30,
-        marginLeft:'auto',
-        marginRight:'auto',
-    },
-    route:{
-
-    },
     getUpBTN:{
         width:200,
         height:65,

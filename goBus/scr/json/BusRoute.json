@@ -6,7 +6,7 @@
         
         "busNum": "18",
         "favoriteSotp": 1,
-        "arrivalBusNum": "KKA-0395",
+        
         "detail": [
             {
                 "startEndStation": "萬華-捷運麟光站",
@@ -17,6 +17,7 @@
         "routes": [
             {
                 "busRoute": "萬華",
+                "arrivalBusNum": "KKA-0395",
                 "data": [
                     {"station": "黎忠市場", "arrivalTime":"進站中"},
                     {"station": "富陽街口", "arrivalTime":4},
@@ -54,6 +55,7 @@
             },
             {
                 "busRoute": "捷運麟光站",
+                "arrivalBusNum": "786-U3",
                 "data": [
                     {"station": "華江站", "arrivalTime":24},
                     {"station": "人壽一村", "arrivalTime":25},

@@ -9,9 +9,7 @@ import HomeBusDetailCardDetail from "./HomeBusDetailCardDetail";
 
 const HomeBusDetailCard = () => {
     return (
-        <ScrollView>
-            <HomeBusDetailCardDetail busDetail = {BusRouteData[0]} />
-        </ScrollView>
+        <HomeBusDetailCardDetail busDetail = {BusRouteData[0]} />
     );
 }
 

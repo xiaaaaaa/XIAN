@@ -18,7 +18,7 @@ const HomeBusRouteCard = () => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={ item => item.title }
               contentContainerStyle={{
-                flexDirection : "row", flexWrap : "wrap", maxWidth:390,paddingLeft:4, paddingRight:4, 
+                flexDirection : "row", flexWrap : "wrap", maxWidth:390,paddingLeft:10, paddingRight:4, 
                 //flexDirection : "row", flexWrap : "wrap", 
               }} 
           />
@@ -31,7 +31,7 @@ const HomeBusRouteCard = () => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={ item => item.title }
               contentContainerStyle={{
-                flexDirection : "row", flexWrap : "wrap", maxWidth:390,paddingLeft:4, paddingRight:4, 
+                flexDirection : "row", flexWrap : "wrap", maxWidth:390, paddingLeft:10, paddingRight:4, 
                 //flexDirection : "row", flexWrap : "wrap", maxWidth:390 
               }} 
           />
@@ -57,7 +57,8 @@ const HomeBusRouteCard = () => {
 const styles = StyleSheet.create({
     sectionList:{
       height:169,
-      borderColor:'#000',
+      borderColor:'#fff',
+      marginTop:0,
       borderWidth:1,
     },
     sectionHeader: {
@@ -67,11 +68,11 @@ const styles = StyleSheet.create({
       lineHeight:22,
       marginTop:20,
       marginBottom:0,
-      marginLeft:4,
+      marginLeft:10,
     },
     divider:{
       marginTop:25,
-      marginLeft:4,
+      marginLeft: 10,
       marginRight:4,
       backgroundColor:'#C4D7F3',
     }
