@@ -1,52 +1,41 @@
 import React, { useState } from "react";
 import { StyleSheet } from 'react-native';
 import { Text, View, Box } from '@gluestack-ui/themed';
-import SegmentedControlTab from "react-native-segmented-control-tab";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import DetailRoute from '../components/DetailRoute'
-import data from "../json/BusRoute.json"
-
+import BusRouteData from "../json/BusRoute.json";
+import DetialRouteSegmented from "../components/DetialRouteSegmented";
 
 const DetailRouteScreen = () => {
-    const [selectedIndex, setSelectedIndex] = useState(0);
-    const SegmentedContent = () => {
-        if (selectedIndex == 1) {
-            
-            
-        }else {
-            
-        }
-    };
     return (
         <View style={styles.container}>
             <Text style={styles.BusNumText}>18</Text>
-
-                
             <View style={styles.BusRouteContainer}>
-                <DetailRoute />
+                <DetialRouteSegmented busDetail={BusRouteData[0]} />
             </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container:{
-        height:'auto',
-        width:'auto',
-        marginTop: 25,
-        marginBottom: 90,
-        justifyContent:'center',
-        alignItems:'center'
+    container: {
+        height: 'auto',
+        width: 'auto',
+        paddingTop: 25,
+        paddingBottom: 90,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor:"white"
     },
-    BusNumText:{
-        color:'#000000',
-        fontSize:48,
-        marginTop:10,
-        marginLeft:'auto',
-        marginRight:'auto',
+    BusNumText: {
+        color: '#000000',
+        fontSize: 48,
+        marginTop: 10,
+        marginLeft: 'auto',
+        marginRight: 'auto',
     },
-    BusRouteContainer:{
-
+    BusRouteContainer: {
+        justifyContent: 'center',
     }
 });
 
