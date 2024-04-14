@@ -55,27 +55,26 @@ const HomeBusRouteCard = () => {
 };
 
 const styles = StyleSheet.create({
-    sectionList:{
-      height:169,
-      borderColor:'#fff',
-      marginTop:0,
-      borderWidth:1,
-    },
-    sectionHeader: {
-      fontWeight: '500',
-      fontSize: 18,
-
-      lineHeight:22,
-      marginTop:20,
-      marginBottom:0,
-      marginLeft:10,
-    },
-    divider:{
-      marginTop:25,
-      marginLeft: 10,
-      marginRight:4,
-      backgroundColor:'#C4D7F3',
-    }
-  })
+  sectionList:{
+    height:169,
+    borderColor:'#fff',
+    marginTop:0,
+    borderWidth:1,
+  },
+  sectionHeader: {
+    fontWeight: '500',
+    fontSize: 18,
+    lineHeight:22,
+    marginTop:20,
+    marginBottom:0,
+    marginLeft:10,
+  },
+  divider:{
+    marginTop:25,
+    marginLeft: 10,
+    marginRight:4,
+    backgroundColor:'#C4D7F3',
+  }
+})
 
 export default HomeBusRouteCard;
