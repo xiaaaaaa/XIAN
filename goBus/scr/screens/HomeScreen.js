@@ -6,15 +6,14 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 //import SetDestinationScreen from "./SetDestinationScreen";
 import HomeBusRouteCard from "../components/HomeBusRouteCard";
 import BusRouteData from "../json/BusRoute.json";
+import HomeBusDetailCard from "../components/HomeBusDetailCard";
 
 const HomeScreen = () => {
     const navigation = useNavigation();
 
     return(
         <View style={styles.screen}>
-            <View style={styles.busDetailCard}>
-                
-            </View>
+            <HomeBusDetailCard />
             <HomeBusRouteCard
                 list = {BusRouteData.busRoute}
             />
@@ -46,8 +45,12 @@ const styles = StyleSheet.create({
         height:190,
         backgroundColor:'#DEEBFF',
         display:'flex',
+        marginTop:30,
         marginLeft:'auto',
         marginRight:'auto',
+    },
+    route:{
+
     },
     getUpBTN:{
         width:200,
