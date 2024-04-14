@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { VStack } from "@gluestack-ui/themed";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const DetailRouteCard = props => {
     let { busRoute } = props;
@@ -24,15 +25,17 @@ const DetailRouteCard = props => {
                             <Text style={styles.stationText}>{item.station}</Text>
                         </View>
                         {item.arrivalTime === "進站中" ? (
-                            <View>
-                                <View style={[styles.spot, { backgroundColor: '#F3DB56' }]}>
-                                    <Text style={[styles.spotText, { backgroundColor: '#F3DB56' }]}></Text>
+                            <View style={styles.spot}>
+                                <View >
+                                <MaterialCommunityIcons name="checkbox-blank-circle" color={'#F3DB56'} size={20}/>
                                 </View>
                             </View>
 
                         ) : (
                             <View style={styles.spot}>
-                                <Text style={styles.spotText}></Text>
+                                <View >
+                                <MaterialCommunityIcons name="checkbox-blank-circle-outline" color={'#8FAFDE'} size={20}/>
+                                </View>
                             </View>
                         )}
 
@@ -97,22 +100,6 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         textAlign: 'center',
         alignItems: 'center',
-        width: 10,
-        margin: 3,
-        marginTop: 13,
-        marginBottom: 14,
-        backgroundColor: '#C4D7F3',
-        borderRadius: 18
-    },
-    spotText: {
-        justifyContent: 'center',
-        alignContent: 'center',
-        textAlign: 'center',
-        alignItems: 'center',
-        width: 10,
-        margin: 3,
-        backgroundColor: '#C4D7F3',
-        borderRadius: 18
     }
 });
 export default DetailRouteCard;
