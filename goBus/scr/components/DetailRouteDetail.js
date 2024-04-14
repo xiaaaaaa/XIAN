@@ -22,9 +22,18 @@ const DetailRouteCard = props => {
                         <View style={styles.station}>
                             <Text style={styles.stationText}>{item.station}</Text>
                         </View>
-                        <View style={styles.spot}>
-                            <Text style={styles.spotText}></Text>
-                        </View>
+                        {item.arrivalTime === "進站中" ? (
+                            <View>
+                                <View style={[styles.spot, { backgroundColor: '#F3DB56' }]}>
+                                    <Text style={[styles.spotText, { backgroundColor: '#F3DB56' }]}></Text>
+                                </View>
+                            </View>
+
+                        ) : (
+                            <View style={styles.spot}>
+                                <Text style={styles.spotText}></Text>
+                            </View>
+                        )}
 
                     </View>
                 ))}
@@ -38,7 +47,9 @@ const styles = StyleSheet.create({
     context: {
         flexDirection: 'row',
         height: 39,
-        marginLeft: 30
+        marginLeft: 10,
+        marginBottom: 6,
+        marginTop: 6
     },
     station: {
         fontSize: 16,
