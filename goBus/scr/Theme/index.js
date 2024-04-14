@@ -4,8 +4,10 @@ const MyTheme = {
     ...DefaultTheme,
     colors:{
         ...DefaultTheme.colors,
-        light400:'#65d6d6',
-        primary700:'#a8a29e',
+        light400:'#C4D7F3',
+        light500:'#8FAFDE',
+        light600:'#5E86C1',
+        primary700:'#999999',
     }
 };
 

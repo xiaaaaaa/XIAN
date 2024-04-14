@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { HStack, VStack, Box, Center } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SegmentedControlTab from "react-native-segmented-control-tab";
+import SetDestinationSetRoute from "./SetDestinationSetRoute";
 
 const SetDestinationBasicInfo = (props) => {
     const {data} = props.busDetail;
@@ -12,11 +13,22 @@ const SetDestinationBasicInfo = (props) => {
     const SegmentedContent = () => {
         if (selectedIndex == 1) {
             return (
-                <Text>1</Text>
+                <View style={styles.SetDestinationCard}>
+                    <Center>
+                        <Text style={styles.destinationText}>抵達目的地：臥龍街</Text>
+                    </Center>
+                    <SetDestinationSetRoute route={1}/>
+                </View> 
             )
         } else {
             return (
-                <Text>2</Text>
+                <View style={styles.SetDestinationCard}>
+                    <Center>
+                        <Text style={styles.destinationText}>抵達目的地：復興南路口</Text>
+                    </Center>
+                    <SetDestinationSetRoute route={0}/>
+                </View> 
+                // <Text>2</Text>
             )
         }
     }
@@ -45,11 +57,11 @@ const SetDestinationBasicInfo = (props) => {
                             height:53,
                             backgroundColor: "#C4D7F3",
                             borderColor: "#C4D7F3",
-                            borderWidth:3,
+                            borderWidth:2,
                         }}
                         firstTabStyle={{ marginLeft: 8,  borderTopLeftRadius:9,borderBottomLeftRadius:9,}}
                         lastTabStyle={{ marginRight: 0, borderTopRightRadius:9, borderBottomRightRadius:9 }}
-                        tabTextStyle={{ fontSize: 12, color: "#000"}}
+                        tabTextStyle={{ fontSize: 12, color: "#354967"}}
                         activeTabTextStyle={{ fontSize: 12, color: "#000"}}
                         selectedIndex={selectedIndex}
                         onTabPress={(index) => setSelectedIndex(index)}
@@ -75,6 +87,10 @@ const styles = StyleSheet.create({
         borderWidth:0,
         borderRadius:20,
     },
+    destinationText:{
+        fontSize:16,
+        marginBottom:10,
+    },
     sectionHeader:{
         fontSize:16,
         marginBottom:15,
@@ -90,6 +106,10 @@ const styles = StyleSheet.create({
     },
     toText:{
         fontSize:16,
+    },
+    SetDestinationCard:{
+        height:388,
+        paddingBottom:0,
     },
 });
 

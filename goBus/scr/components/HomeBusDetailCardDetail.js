@@ -81,11 +81,11 @@ const HomeBusDetailCardDetail = (props) => {
                             height:53,
                             backgroundColor: "#C4D7F3",
                             borderColor: "#C4D7F3",
-                            borderWidth:3,
+                            borderWidth:2,
                         }}
                         firstTabStyle={{ marginLeft: 10,  borderTopLeftRadius:9,borderBottomLeftRadius:9,}}
                         lastTabStyle={{ marginRight: 30, borderTopRightRadius:9, borderBottomRightRadius:9 }}
-                        tabTextStyle={{ fontSize: 12, color: "#000"}}
+                        tabTextStyle={{ fontSize: 12, color: "#354967"}}
                         activeTabTextStyle={{ fontSize: 12, color: "#000"}}
                         selectedIndex={selectedIndex}
                         onTabPress={(index) => setSelectedIndex(index)}

@@ -3,9 +3,8 @@ import { StyleSheet, Button, Pressable, View, SafeAreaView, StatusBar} from 'rea
 import { Text, VStack, HStack, Center, Divider } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import SetDestinationSetRoute from '../components/SetDestinationSetRoute'
 import BusRouteData from "../json/BusRoute.json";
-import SetDestinationSetRoute from "../components/SetDestinationSetRoute";
 import SetDestinationBasicInfo from "../components/SetDestinationBasicInfo";
 
 const SetDestinationScreen = ({}) => {
@@ -19,9 +18,9 @@ const SetDestinationScreen = ({}) => {
                     <Divider my="$0.5" style={styles.divider}/>
                 </Center>
                 <SetDestinationBasicInfo busDetail = {BusRouteData[0]}/>
-                <SetDestinationSetRoute 
-                    list = {BusRouteData.busRoute}
-                />
+                {/* <View style={styles.SetDestinationCard}>
+                    <SetDestinationSetRoute />
+                </View> */}
                 <HStack style={styles.getUpBTN}>
                     <Pressable onPress={() => navigation.navigate('Home')}>
                         <View style={styles.getUpBTNCancel}>
@@ -80,6 +79,10 @@ const styles = StyleSheet.create({
         borderColor:'#8FAFDE',
         marginBottom:20,
     },
+    SetDestinationCard:{
+        height:388,
+        paddingBottom:0,
+    },
     text:{
         margin:20,
     },
@@ -88,6 +91,7 @@ const styles = StyleSheet.create({
         height:60,
         marginLeft:'auto',
         marginRight:'auto',
+        marginTop:60,
         marginBottom:20,
         borderWidth:0,
         borderRadius:14,

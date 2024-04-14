@@ -31,7 +31,7 @@ import TakingBusScreen from "../screens/TakingBusScreen";
 import ArriveDestinationScreen from "../screens/ArriveDestinationScreen";
 
 import SearchScreen from "../screens/SearchScreen";
-import DetailRouteScreen from "../screens/DetailRouteScreen";
+//import DetailRouteScreen from "../screens/DetailRouteScreen";
 import SettingScreen from "../screens/SettingScreen";
 
 //Setting Screen
@@ -64,11 +64,11 @@ const Navigation = () => {
 const DrawerContent = (props) => {
     return(
         <DrawerContentScrollView {...props} >
-            <HStack space="none" reversed={false}>
-                <MaterialCommunityIcons name="bus-stop" color={"#000"} size={26} />
-                <Text style={styles.drawerAppName}>GoBus</Text>
+            <HStack space="none" reversed={false} style={styles.drawerTitle}>
+                <MaterialCommunityIcons name="bus-stop" color={"#5E86C1"} size={40} />
+                <Text style={styles.drawerAppName}>上巴 GoBus</Text>
             </HStack>
-            <Divider my="$0.5" />
+            <Divider my="$0.5" style={styles.drawerDivider}/>
             <DrawerItemList {...props} />
         </DrawerContentScrollView>
     );
@@ -82,12 +82,12 @@ const MyDrawer = () => {
         <Drawer.Navigator 
             initialRouteName="HomeStack"
             screenOptions={{
-                drawerActiveBackgroundColor: "#fff",
-                drawerActiveTintColor: "#666666",
-                drawerInactiveTintColor: "#666666",
-                
+                drawerActiveBackgroundColor: colors.light400,
+                drawerActiveTintColor: "#354967",
+                drawerInactiveTintColor: colors.primary700,
+                drawerItemStyle:{borderWidth:0, borderRadius:12, marginHorizontal:23, paddingLeft:10},
                 drawerStyle:{width:300, backgroundColor:'#fff'},
-                drawerLabelStyle:{ fontSize:16, fontWeight:'400'},
+                drawerLabelStyle:{ fontSize:18, fontWeight:'400'},
             }}
             drawerContent={ props => <DrawerContent {...props}/> } 
         >
@@ -99,8 +99,9 @@ const MyDrawer = () => {
                     headerShown: false,
                     drawerLabel: '主畫面',
                     drawerLabelStyle:{
-                        fontSize:14,
+                        fontSize:16,
                         fontWeight:'400',
+                        marginLeft:-20,
                     },
                     drawerIcon:({color})=>(
                         <MaterialCommunityIcons name="home" color={color} size={26} />
@@ -114,8 +115,9 @@ const MyDrawer = () => {
                     headerShown: false,
                     drawerLabel: '失物招領',
                     drawerLabelStyle:{
-                        fontSize:14,
+                        fontSize:16,
                         fontWeight:'400',
+                        marginLeft:-20,
                     },
                     drawerIcon:({color})=>(
                         <MaterialCommunityIcons name="briefcase-search" color={color} size={26} />
@@ -129,8 +131,9 @@ const MyDrawer = () => {
                     headerShown: false,
                     drawerLabel: '設定最愛公車路線',
                     drawerLabelStyle:{
-                        fontSize:14,
+                        fontSize:16,
                         fontWeight:'400',
+                        marginLeft:-20,
                     },
                     
                     drawerIcon:({color})=>(
@@ -208,20 +211,35 @@ const MyTab = () => {
 
     return(
         
-        <Tab.Navigator>
+        <Tab.Navigator
+            initialRouteName="HomeStack"
+            screenOptions={{
+                tabBarInactiveTintColor: colors.primary700,
+                tabBarActiveTintColor: colors.light600,
+
+                tabBarLabelStyle:{
+                    fontSize:14,
+                    marginBottom:20,
+                },
+                tabBarStyle:{
+                    height:80,
+                    padding:8,
+                }
+            }}
+        >
             <Tab.Screen 
                 name="HomeStack"
                 component={HomeStack}
                 options={{
                     headerShown: false,
-                    title:'Home',
+                    title:'主頁',
                     headerTitleStyle:{
                         fontSize:20,
                         fontWeight:'400',
                         
                     },
                     tabBarIcon:({color})=>(
-                        <MaterialCommunityIcons name="home" color={color} size={24} />
+                        <MaterialCommunityIcons name="home-variant" color={color} size={30} />
                     ),
                    
                 }}
@@ -232,13 +250,13 @@ const MyTab = () => {
                 options={{
                     
                     headerShown: false,
-                    title: 'Search',
+                    title: '搜尋',
                     headerTitleStyle:{
                         fontSize:20,
                         fontWeight:'400',
                     },
                     tabBarIcon:({color}) => (
-                        <MaterialCommunityIcons name="magnify" color={color} size={24} />
+                        <MaterialCommunityIcons name="magnify" color={color} size={30} />
                     ),
                 }}
             />
@@ -247,13 +265,13 @@ const MyTab = () => {
                 component={SettingStack}
                 options={{
                     headerShown: false,
-                    title: 'Setting',
+                    title: '設定',
                     headerTitleStyle:{
                         fontSize:20,
                         fontWeight:'400',
                     },
                     tabBarIcon:({color}) => (
-                        <MaterialCommunityIcons name="cog" color={color} size={24} />
+                        <MaterialCommunityIcons name="cog" color={color} size={30} />
                     ),
                 }}
             />
@@ -452,11 +470,26 @@ const SettingStack = ({navigation}) => {
 
 //styles ===========================//
 const styles = StyleSheet.create({
+    drawerTitle:{
+        display:'flex',
+        borderWidth:0,
+        margin:23,
+        marginTop:15,
+        marginBottom:2,
+        alignItems:'flex-end',
+    },
     drawerAppName:{
-        fontSize:24,
+        fontSize:16,
         fontWeight:'500',
-        color:'#131313',
-        marginBottom:16,
+        color:'#5E86C1',
+        marginLeft:5,
+        paddingBottom:5,
+    },
+    drawerDivider:{
+        width:256,
+        marginHorizontal:23,
+        backgroundColor:'#C4D7F3',
+        marginBottom:30,
     },
 });
 
