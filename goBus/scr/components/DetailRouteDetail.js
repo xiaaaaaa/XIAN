@@ -16,6 +16,7 @@ const DetailRouteCard = props => {
                         ) : (
                             <View style={styles.arrivalTime}>
                                 <Text style={styles.arrivalTimeText}>{item.arrivalTime} 分</Text>
+
                             </View>
                         )}
 
@@ -40,14 +41,14 @@ const DetailRouteCard = props => {
 
             </VStack>
         )
-    } else null;
+    } else (null)
 };
 
 const styles = StyleSheet.create({
     context: {
         flexDirection: 'row',
         height: 39,
-        marginLeft: 10,
+        marginLeft: 5,
         marginBottom: 6,
         marginTop: 6
     },
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: 215,
         margin: 3,
+        paddingLeft:10,
         borderRadius: 18
     },
     arrivalTime: {
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center',
         width: 87,
-        margin: 3,
+        
         backgroundColor: '#C4D7F3',
         borderRadius: 18
     },
@@ -88,7 +90,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: 87,
         margin: 3,
-        backgroundColor: '#C4D7F3',
         borderRadius: 18
     },
     spot: {
