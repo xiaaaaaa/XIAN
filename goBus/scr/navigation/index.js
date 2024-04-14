@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { StyleSheet, Keyboard } from "react-native";
+import { StyleSheet, Keyboard} from "react-native";
 import { NavigationContainer, useTheme } from "@react-navigation/native";
 import { NativeBaseProvider } from 'native-base';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -31,6 +31,7 @@ import TakingBusScreen from "../screens/TakingBusScreen";
 import ArriveDestinationScreen from "../screens/ArriveDestinationScreen";
 
 import SearchScreen from "../screens/SearchScreen";
+import DetailRouteScreen from "../screens/DetailRouteScreen";
 import SettingScreen from "../screens/SettingScreen";
 
 //Setting Screen
@@ -372,6 +373,17 @@ const SearchStack = ({navigation}) => {
                             style={{ marginRight: 20 }}
                         />
                     ),
+                }}
+            />
+            <Stack.Screen 
+                name="DetailRoute"
+                component={DetailRouteScreen}
+                options={{
+                    title: '',
+                    headerTitleStyle:{
+                        fontSize:20,
+                        fontWeight:'400',
+                    }
                 }}
             />
         </Stack.Navigator>

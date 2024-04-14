@@ -6,7 +6,7 @@
         
         "busNum": "18",
         "favoriteSotp": 1,
-        
+        "recordSotp": 1,
         "detail": [
             {
                 "startEndStation": "萬華-捷運麟光站",
@@ -99,6 +99,7 @@
     {
         "busNum": "52",
         "favoriteSotp": 0,
+        "recordSotp": 0,
         "arrivalBusNum": "471-FV",
         "detail": [
             {
@@ -188,6 +189,7 @@
     {
         "busNum": "284",
         "favoriteSotp": 0,
+        "recordSotp": 1,
         "arrivalBusNum": "EAA-209",
         "detail": [
             {
@@ -352,6 +354,7 @@
     {
         "busNum": "和平幹線",
         "favoriteSotp": 1,
+        "recordSotp": 1,
         "arrivalBusNum": "EAL-0018",
         "detail": [
             {
@@ -444,6 +447,7 @@
     {
         "busNum": "72",
         "favoriteSotp": 0,
+        "recordSotp": 1,
         "arrivalBusNum": "401-U3",
         "detail": [
             {

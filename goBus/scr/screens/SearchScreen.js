@@ -1,56 +1,111 @@
-import React from "react";
+import React, { useState } from 'react';
+import { StyleSheet, Keyboard, Platform, View, Text, ScrollView, TouchableWithoutFeedback, SectionList, FlatList, } from 'react-native';
 import { SearchBar } from 'react-native-elements';
-import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import BusRouteData from "../json/BusRoute.json";
+import SearchLoveRouteDetail from "../components/SearchLoveRouteDetail"
+import SearchRecordRouteDetail from "../components/SearchRecordRouteDetail"
 
-export default class Search extends React.Component {
-    state = {
-        search: '',
+const Search = () => {
+    const [search, setSearch] = useState('');
+
+    const updateSearch = (search) => {
+        setSearch(search);
     };
 
-    updateSearch = (search) => {
-        this.setState({ search });
-    };
-
-    hideKeyboard = () => {
+    const hideKeyboard = () => {
         Keyboard.dismiss();
     };
-    render() {
-        const { search } = this.state;
+    const renderSectionHeader1 = ({ section, navigation }) => (
+        <>
+            <FlatList
+                data={section.data}
+                renderItem={({ item }) => <SearchLoveRouteDetail busRoute={item} navigation={navigation} />}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.title}
+            />
+        </>
+    );
+    
+    const renderSectionHeader2 = ({ section, navigation }) => (
+        <>
+            <FlatList
 
-        return (
-            <TouchableWithoutFeedback onPress={this.hideKeyboard}>
-                <View style={styles.container} >
-                    <SearchBar
-                        placeholder="搜尋公車路線"
-                        onChangeText={this.updateSearch}
-                        value={search}
-                        inputStyle={{ color: '#000' }}
-                        containerStyle={{
-                            backgroundColor: 'white',
-                            borderBottomWidth: 0,
-                            borderTopWidth: 0,
-                            borderRadius: 14,
-                            paddingHorizontal: 10,
-                            marginTop: 10,
-                            width: 400,
-                            height: 50,
-                        }}
-                        inputContainerStyle={{
-                            backgroundColor: '#EFEFF0',
-                            margin: 5,
-                            borderRadius: 14,
-                        }}
+                data={section.data}
+                renderItem={({ item }) => <SearchRecordRouteDetail busRoute={item} navigation={navigation} />}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.title}
+            />
+        </>
+    );
+    const renderItem = ({ item, section, navigation }) => {
+        return null
+    };
+
+    return (
+        <TouchableWithoutFeedback onPress={hideKeyboard}>
+            <View style={styles.container}>
+                <SearchBar
+                    placeholder="搜尋公車路線"
+                    onChangeText={updateSearch}
+                    value={search}
+                    inputStyle={{ color: '#000' }}
+                    containerStyle={{
+                        backgroundColor: 'white',
+                        borderBottomWidth: 0,
+                        borderTopWidth: 0,
+                        borderRadius: 14,
+                        paddingHorizontal: 10,
+                        marginTop: 10,
+                        width: 410,
+                        height: 50,
+                    }}
+                    inputContainerStyle={{
+                        backgroundColor: '#EFEFF0',
+                        margin: 5,
+                        borderRadius: 14,
+                    }}
+                />
+                <View style={styles.content}>
+                    <Text style={styles.sectionTitle}>最愛路線</Text>
+                    <SectionList
+                        sections={BusRouteData}
+                        contentContainerStyle={{ paddingHorizontal: 10 }}
+                        renderSectionHeader={renderSectionHeader1}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.title}
+                    />
+                    <Text style={styles.sectionTitle}>搜尋紀錄</Text>
+                    <SectionList
+                        sections={BusRouteData}
+                        contentContainerStyle={{ paddingHorizontal: 10 }}
+                        renderSectionHeader={renderSectionHeader2}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.title}
                     />
                 </View>
-            </TouchableWithoutFeedback>
-        );
-    }
-}
+
+            </View>
+        </TouchableWithoutFeedback>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+
         backgroundColor: 'white'
+    },
+    content: {
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        flexDirection: 'column'
+    },
+    sectionTitle: {
+        margin: 30,
+        marginBottom:5,
+        fontSize: 22,
+        textAlign: 'right'
     }
 });
+
+export default Search;
