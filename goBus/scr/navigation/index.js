@@ -31,7 +31,7 @@ import TakingBusScreen from "../screens/TakingBusScreen";
 import ArriveDestinationScreen from "../screens/ArriveDestinationScreen";
 
 import SearchScreen from "../screens/SearchScreen";
-import DetailRouteScreen from "../screens/DetailRouteSrceen";
+import DetailRouteScreen from "../screens/DetailRouteScreen";
 import SettingScreen from "../screens/SettingScreen";
 
 //Setting Screen
