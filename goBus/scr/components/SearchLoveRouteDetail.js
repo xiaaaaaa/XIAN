@@ -19,11 +19,11 @@ const SearchLoveRouteDetail = props => {
                 </View>
                 <View style={styles.icon}>
                     <Pressable onPress={() => changeHeart()}>
-                        <MaterialCommunityIcons name={heartShape} color={'#000000'} size={20} style={styles.icon} />
+                        <MaterialCommunityIcons name={heartShape} color={'#EBAFA3'} size={20} style={styles.icon} />
                     </Pressable>
 
                     <Pressable onPress={() => navigation.navigate('DetailRoute')}>
-                        <MaterialCommunityIcons name="chevron-right" color={'#000000'} size={30} style={styles.icon} />
+                        <MaterialCommunityIcons name="chevron-right" color={'#C4D7F3'} size={30} style={styles.icon} />
                     </Pressable>
                 </View>
 
@@ -34,9 +34,10 @@ const SearchLoveRouteDetail = props => {
 };
 const styles = StyleSheet.create({
     container: {
-        width: 350,
-        margin: 10,
-        marginLeft: 20,
+        width: 380,
+        margin: 5,
+        marginBottom: 0,
+        marginLeft: 0,
         fontSize: 22,
         justifyContent: 'space-between',
         flexDirection: 'row'

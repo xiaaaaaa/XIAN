@@ -383,6 +383,9 @@ const HomeStack = ({navigation}) => {
                         fontWeight:'400',
                         fontSize:20
                     },
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3'
+                    },
                     headerShadowVisible: false,
                 }}
             />
@@ -413,10 +416,14 @@ const SearchStack = ({navigation}) => {
                 name="Search"
                 component={SearchScreen}
                 options={{
-                    title: '',
+                    title: '搜尋',
                     headerTitleStyle:{
                         fontSize:20,
                         fontWeight:'400',
+                    },
+                    headerTitleAlign:'center',
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3'
                     },
                     headerLeft: () => (
                         <MaterialCommunityIcons
@@ -436,7 +443,11 @@ const SearchStack = ({navigation}) => {
                     headerTitleStyle:{
                         fontSize:20,
                         fontWeight:'400',
-                    }
+                    },
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3',
+                    },
+                    headerShadowVisible: false
                 }}
             />
         </Stack.Navigator>
@@ -451,10 +462,14 @@ const SettingStack = ({navigation}) => {
                 name="Setting"
                 component={SettingScreen}
                 options={{
-                    title: '',
+                    title: '設定',
                     headerTitleStyle:{
                         fontSize:20,
                         fontWeight:'400',
+                    },
+                    headerTitleAlign:'center',
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3'
                     },
                     headerLeft: () => (
                         <MaterialCommunityIcons

@@ -21,10 +21,10 @@ const SearchRecordRouteDetail = props => {
                 </View>
                 <View style={styles.icon}>
                     <Pressable onPress={() => changeHeart()}>
-                        <MaterialCommunityIcons name={heartShape} color={'#000000'} size={20} style={styles.icon} />
+                        <MaterialCommunityIcons name={heartShape} color={'#EBAFA3'} size={20} style={styles.icon} />
                     </Pressable>
                     <Pressable onPress={() => navigation.navigate('DetailRoute')}>
-                        <MaterialCommunityIcons name="chevron-right" color={'#000000'} size={30} style={styles.icon} />
+                        <MaterialCommunityIcons name="chevron-right" color={'#C4D7F3'} size={30} style={styles.icon} />
                     </Pressable>
                 </View>
             </View>
@@ -35,14 +35,14 @@ const SearchRecordRouteDetail = props => {
         return(
             <View style={styles.container}>
                 <View style={styles.context}>
-                    <Text>{busRoute.busNum}</Text>
+                    <Text style={styles.text}>{busRoute.busNum}</Text>
                     <Text>往{busRoute.detail[0].startEndStation}</Text>
                 </View>
                 <View style={styles.icon}>
                 <Pressable onPress={() => changeHeart()}>
-                        <MaterialCommunityIcons name={OtherheartShape} color={'#000000'} size={20} style={styles.icon} />
+                        <MaterialCommunityIcons name={OtherheartShape} color={'#EBAFA3'} size={20} style={styles.icon} />
                     </Pressable>
-                    <MaterialCommunityIcons name="chevron-right" color={'#000000'} size={30} style={styles.icon} />
+                    <MaterialCommunityIcons name="chevron-right" color={'#C4D7F3'} size={30} style={styles.icon} />
                 </View>
             </View>
 
@@ -52,12 +52,17 @@ const SearchRecordRouteDetail = props => {
 };
 const styles = StyleSheet.create({
     container: {
-        width: 350,
-        margin: 10,
-        marginLeft: 20,
+        width: 380,
+        margin: 5,
+        marginBottom:0,
+        marginLeft: 0,
         fontSize: 22,
         justifyContent: 'space-between',
         flexDirection: 'row'
+    },
+    text:{
+        fontSize:16,
+        color:'#000'
     },
     context: {
         margin: 10,

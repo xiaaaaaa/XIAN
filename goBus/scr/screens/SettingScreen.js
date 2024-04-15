@@ -1,89 +1,118 @@
-import React from "react";
-import { StyleSheet, Pressable } from 'react-native';
-import { Text, View, Switch } from '@gluestack-ui/themed';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation} from '@react-navigation/native';
+import React, { useState } from 'react';
+import { StyleSheet, Keyboard, Platform, View, Text, ScrollView, TouchableWithoutFeedback, SectionList, FlatList, } from 'react-native';
+import { SearchBar } from 'react-native-elements';
+import BusRouteData from "../json/BusRoute.json";
+import SearchLoveRouteDetail from "../components/SearchLoveRouteDetail"
+import SearchRecordRouteDetail from "../components/SearchRecordRouteDetail"
 
-const SettingScreen = () => {
-    const navigation = useNavigation();
-    return (
-        <View style={styles.container}>
-            <Text style={styles.Text}>偏好設定</Text>
-            <View style={styles.DarkMode}>
-                <Text style={styles.DarkModeText}>深色主題</Text>
-                <Switch size="md" isDisabled={false} style={styles.DarkModeSwitch} />
-            </View>
-            <View style={styles.context}>
-                <Text style={styles.Text}>關於我們</Text>
-                <Pressable onPress={() => navigation.navigate('AboutUs')}>
-                    <MaterialCommunityIcons name="chevron-right" color={'#898A8D'} size={30} style={styles.icon} />
-                </Pressable>
-            </View>
-            <View style={styles.context}>
-                <Text style={styles.Text}>常見問題</Text>
-                <Pressable onPress={() => navigation.navigate('Question')}>
-                    <MaterialCommunityIcons name="chevron-right" color={'#898A8D'} size={30} style={styles.icon} />
-                </Pressable>
-            </View>
-            <View style={styles.context}>
-                <Text style={styles.Text}>使用方式</Text>
-                <Pressable onPress={() => navigation.navigate('Usage')}>
-                    <MaterialCommunityIcons name="chevron-right" color={'#898A8D'} size={30} style={styles.icon} />
-                </Pressable>
-            </View>
-            <View style={styles.context}>
-                <Text style={styles.Text}>版本</Text>
-                <Text style={styles.versionText}>1.0</Text>
-            </View>
-        </View>
+const Search = () => {
+    const [search, setSearch] = useState('');
 
+    const updateSearch = (search) => {
+        setSearch(search);
+    };
+
+    const hideKeyboard = () => {
+        Keyboard.dismiss();
+    };
+    const renderSectionHeader1 = ({ section, navigation }) => (
+        <>
+            <FlatList
+                data={section.data}
+                renderItem={({ item }) => <SearchRecordRouteDetail busRoute={item} navigation={navigation} />}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.title}
+            />
+        </>
     );
-}
+    
+    const renderSectionHeader2 = ({ section, navigation }) => (
+        <>
+            <FlatList
+
+                data={section.data}
+                renderItem={({ item }) => <SearchLoveRouteDetail busRoute={item} navigation={navigation} />}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.title}
+            />
+        </>
+    );
+    const renderItem = ({ item, section, navigation }) => {
+        return null
+    };
+
+    return (
+        <TouchableWithoutFeedback onPress={hideKeyboard}>
+            <View style={styles.container}>
+                <SearchBar
+                    placeholder="搜尋公車路線"
+                    onChangeText={updateSearch}
+                    value={search}
+                    inputStyle={{ color: '#000' }}
+                    containerStyle={{
+                        backgroundColor: 'white',
+                        borderBottomWidth: 0,
+                        borderTopWidth: 0,
+                        borderRadius: 14,
+                        paddingHorizontal: 10,
+                        marginTop: 10,
+                        width: 410,
+                        height: 50,
+                    }}
+                    inputContainerStyle={{
+                        backgroundColor: '#EFEFF0',
+                        margin: 5,
+                        borderRadius: 14,
+                    }}
+                />
+                <View style={styles.content}>
+                    <Text style={styles.sectionTitle}>搜尋紀錄</Text>
+                    <SectionList
+                        sections={BusRouteData}
+                        contentContainerStyle={{ paddingHorizontal: 10 }}
+                        renderSectionHeader={renderSectionHeader1}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.title}
+                    />
+                    <Text style={styles.line}></Text>
+                    <Text style={styles.sectionTitle}>最愛路線</Text>
+                    <SectionList
+                        sections={BusRouteData}
+                        contentContainerStyle={{ paddingHorizontal: 10 }}
+                        renderSectionHeader={renderSectionHeader2}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.title}
+                    />
+                </View>
+
+            </View>
+        </TouchableWithoutFeedback>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
-        width: 'auto',
-        height: '100%',
-        padding: 20,
-        backgroundColor: "white"
+        flex: 1,
+
+        backgroundColor: 'white'
     },
-    Text: {
-        fontSize: 16,
-        margin: 10,
-        marginBottom: 30
+    content: {
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        flexDirection: 'column'
     },
-    DarkMode: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
+    sectionTitle: {
+        margin: 30,
+        marginBottom:5,
+        fontSize: 18,
+        textAlign: 'right'
     },
-    DarkModeText: {
-        fontSize: 16,
-        marginTop: 25,
-        marginBottom: 30,
-        marginLeft: 30,
-        marginRight: 10
-    },
-    DarkModeSwitch: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 5,
-        marginTop: 0,
-        marginRight: 50
-    },
-    context:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginRight:20,
-    },
-    icon:{
-        marginTop:10
-    },
-    versionText:{
-        marginTop:10,
-        color:'#898A8D'
+    line:{
+        width:350,
+        height:2,
+        backgroundColor:'#C4D7F3',
+        marginLeft:25
     }
-
-
 });
 
-export default SettingScreen;
+export default Search;
