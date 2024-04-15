@@ -1,6 +1,6 @@
-import React from "react";
+import React,{useState} from "react";
 import { StyleSheet, View, Image, Pressable,ScrollView } from 'react-native';
-import { Text, VStack, HStack, Fab, Box } from '@gluestack-ui/themed';
+import { Text, VStack, HStack, Fab, Box, Modal, ModalBackdrop,ModalContent, ModalHeader,ModalBody,ModalFooter,ModalCloseButton, Heading, Icon,CloseIcon } from '@gluestack-ui/themed';
 import { useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import DetailRoute from '../components/DetailRoute'
@@ -8,7 +8,8 @@ import DetailRoute from '../components/DetailRoute'
 
 const WattingBus = ({route}) => {
     const navigation = useNavigation();
-
+    const [showModal, setShowModal] = useState(false)
+    const ref = React.useRef(null)
     return(
         <View style={styles.container}>
             <View>
@@ -28,10 +29,25 @@ const WattingBus = ({route}) => {
                  <HStack style={styles.getUpBTN}>
                     <Text style={styles.btnText}>取消搭車</Text>
                  </HStack>
-            </Pressable>
-            <Fab bg="#C4D7F3" size="lg" right="$4" bottom="$5">
+            </Pressable >
+            <Fab bg="#C4D7F3" size="lg" right="$4" bottom="$5" onPress={()=> setShowModal(true) }>
                 <MaterialCommunityIcons name="arrow-right" color={'#fff'} size={30}/>
             </Fab>
+            <Modal
+                isOpen={showModal}
+                onClose={() => {
+                    setShowModal(false)
+                }}
+                finalFocusRef={ref}
+            >
+                <ModalBackdrop />
+                <ModalContent>
+                    <ModalBody>
+                        <Text>目的地抵達通知</Text>
+                        <Text>捷運古亭站（和平） 即將到站</Text>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
 
         </View>
     );
@@ -62,7 +78,7 @@ const styles = StyleSheet.create({
         height:46,
         marginLeft:'auto',
         marginRight:'auto',
-        marginTop:20,
+        marginTop:10,
         marginBottom:50,
         backgroundColor:'#FFFFFF',
         display:'flex',

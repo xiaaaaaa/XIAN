@@ -1,12 +1,14 @@
-import React from "react";
+import React ,{useState}from "react";
 import { StyleSheet, View, Text, Image, Pressable, Linking } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 const SearchLoveRouteDetail = props => {
     let { busRoute } = props;
     const navigation = useNavigation();
-
+    let [flag, setFlag] =useState(true);
+    const changeHeart=()=>setFlag(previousState => !previousState);
+    let heartShape = flag ?"cards-heart":"cards-heart-outline"
 
     if (busRoute.favoriteSotp === 1) {
         return (
@@ -16,7 +18,10 @@ const SearchLoveRouteDetail = props => {
                     <Text>往{busRoute.detail[0].startEndStation}</Text>
                 </View>
                 <View style={styles.icon}>
-                    <MaterialCommunityIcons name="cards-heart" color={'#000000'} size={20} style={styles.icon} />
+                    <Pressable onPress={() => changeHeart()}>
+                        <MaterialCommunityIcons name={heartShape} color={'#000000'} size={20} style={styles.icon} />
+                    </Pressable>
+
                     <Pressable onPress={() => navigation.navigate('DetailRoute')}>
                         <MaterialCommunityIcons name="chevron-right" color={'#000000'} size={30} style={styles.icon} />
                     </Pressable>
