@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image, Pressable, ScrollView,Button,ButtonText} from 'react-native';
-import { Text, VStack, HStack, Fab, Box, Modal, ModalBackdrop,ModalContent, ModalHeader,ModalBody,ModalFooter,ModalCloseButton, Heading, Icon,CloseIcon } from '@gluestack-ui/themed';
+import { StyleSheet, View, Image, Pressable, ScrollView, Button, ButtonText } from 'react-native';
+import { Text, VStack, HStack, Fab, Box, Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton, Heading, Icon, CloseIcon } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import DetailRoute from '../components/DetailRoute'
@@ -18,19 +18,25 @@ const WattingBus = ({ route }) => {
                     style={{ width: 350, height: 150, margin: 20, borderRadius: 14 }}
                 />
             </View>
+            <View style={styles.BusNumContent}>
+                <Text style={styles.BusNumText}>18</Text>
+                <Text style={styles.BusNumRouteText}>往萬華</Text>
+            </View>
 
-            <Text style={styles.BusNumText}>18往萬華</Text>
             <View style={styles.contentContainer}>
-                <DetailRoute />
+                <Text style={styles.Line}></Text>
+                <View style={styles.DetailRoute}>
+                    <DetailRoute />
+                </View>
             </View>
 
             <Pressable
                 onPress={() => navigation.navigate('Home')}>
-                <HStack style={styles.getUpBTN}>
+                <HStack style={styles.cancelBTN}>
                     <Text style={styles.btnText}>取消搭車</Text>
                 </HStack>
             </Pressable>
-            <Fab bg="#C4D7F3" size="lg" right="$4" bottom="$5" onPress={() => { navigation.navigate('TakingBus'); setShowModal(true) }}>
+            <Fab bg="#C4D7F3" size="sm" right="$4" bottom="$5" onPress={() => { navigation.navigate('TakingBus'); setShowModal(true) }}>
                 <MaterialCommunityIcons name="arrow-right" color={'#fff'} size={30} />
             </Fab>
             <Modal
@@ -58,28 +64,49 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         alignItems: 'center',
+        backgroundColor: '#FFF',
     },
     contentContainer: {
-        width: 370,
         height: 390,
+        width: 370
+    },
+    Line: {
+        width: 3,
+        height: 390,
+        backgroundColor: '#C4D7F3',
+        marginLeft: 332
+    },
+    DetailRoute: {
+        height: 380,
+        width: 370,
+        marginTop: -390
+    },
+    BusNumContent:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center',
+        textAlign:'center',
+        marginTop:-10
     },
     BusNumText: {
         color: '#000000',
-        fontSize: 24,
-        paddingBottom: 5,
+        fontSize: 36,
+        paddingRight:5,
         marginLeft: 'auto',
         marginRight: 'auto',
+    },
+    BusNumRouteText:{
     },
     text: {
         margin: 20,
     },
-    getUpBTN: {
+    cancelBTN: {
         width: 145,
         height: 46,
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: 10,
-        marginBottom: 50,
+        marginTop: 5,
+        marginBottom: 60,
         backgroundColor: '#FFFFFF',
         display: 'flex',
         justifyContent: 'center',
@@ -97,6 +124,7 @@ const styles = StyleSheet.create({
     btnText: {
         color: '#8FAFDE',
         fontSize: 24,
+        paddingTop: 3,
         paddingBottom: 5,
         marginLeft: 5,
     },

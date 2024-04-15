@@ -18,19 +18,24 @@ const WattingBus = ({route}) => {
                  style={{ width: 350, height: 150, margin: 20, borderRadius:14}}
                  />
             </View>
-
-            <Text style={styles.BusNumText}>18往萬華</Text>
+            <View style={styles.BusNumContent}>
+                <Text style={styles.BusNumText}>18</Text>
+                <Text style={styles.BusNumRouteText}>往萬華</Text>
+            </View>
             <View style={styles.contentContainer}>
-                <DetailRoute/>
+                <Text style={styles.Line}></Text>
+                <View style={styles.DetailRoute}>
+                    <DetailRoute />
+                </View>
             </View>
 
             <Pressable
                  onPress={() => navigation.navigate('Home')}>
-                 <HStack style={styles.getUpBTN}>
+                 <HStack style={styles.cancelBTN}>
                     <Text style={styles.btnText}>取消搭車</Text>
                  </HStack>
             </Pressable >
-            <Fab bg="#C4D7F3" size="lg" right="$4" bottom="$5" onPress={()=> setShowModal(true) }>
+            <Fab bg="#C4D7F3" size="sm" right="$4" bottom="$5" onPress={()=> {navigation.navigate('ArriveDestination'); setShowModal(true)} }>
                 <MaterialCommunityIcons name="arrow-right" color={'#fff'} size={30}/>
             </Fab>
             <Modal
@@ -54,52 +59,74 @@ const WattingBus = ({route}) => {
 }
 
 const styles = StyleSheet.create({
-    container:{
-        width:'100%',
-        height:'100%',
+    container: {
+        width: '100%',
+        height: '100%',
         alignItems: 'center',
+        backgroundColor: '#FFF',
     },
-    contentContainer:{
-        width:370,
-        height:390,
+    contentContainer: {
+        height: 390,
+        width: 370
     },
-    BusNumText:{
-        color:'#000000',
-        fontSize:24,
-        paddingBottom:5,
-        marginLeft:'auto',
-        marginRight:'auto',
+    Line: {
+        width: 3,
+        height: 390,
+        backgroundColor: '#C4D7F3',
+        marginLeft: 332
     },
-    text:{
-        margin:20,
+    DetailRoute: {
+        height: 380,
+        width: 370,
+        marginTop: -390
     },
-    getUpBTN:{
-        width:145,
-        height:46,
-        marginLeft:'auto',
-        marginRight:'auto',
-        marginTop:10,
-        marginBottom:50,
-        backgroundColor:'#FFFFFF',
-        display:'flex',
-        justifyContent:'center',
+    BusNumContent:{
+        flexDirection:'row',
         alignItems:'center',
+        justifyContent:'center',
+        textAlign:'center',
+        marginTop:-10
+    },
+    BusNumText: {
+        color: '#000000',
+        fontSize: 36,
+        paddingRight:5,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+    },
+    BusNumRouteText:{
+    },
+    text: {
+        margin: 20,
+    },
+    cancelBTN: {
+        width: 145,
+        height: 46,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: 5,
+        marginBottom: 60,
+        backgroundColor: '#FFFFFF',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         borderColor: '#8FAFDE',
-        borderWidth:2,
-        borderRadius:14,
-        shadowColor:'#435a5e',
+        borderWidth: 2,
+        borderRadius: 14,
+        shadowColor: '#435a5e',
 
-        shadowOffset: { width: 0, height: 20},
+        shadowOffset: { width: 0, height: 20 },
         shadowOpacity: 0.1,
         // Android Only
         elevation: 3,
-        },
-        btnText:{
-            color:'#8FAFDE',
-            fontSize:24,
-            paddingBottom:5,
-            marginLeft:5,
-        },
+    },
+    btnText: {
+        color: '#8FAFDE',
+        fontSize: 24,
+        paddingTop: 3,
+        paddingBottom: 5,
+        marginLeft: 5,
+    },
 });
 
 export default WattingBus;

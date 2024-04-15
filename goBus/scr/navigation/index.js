@@ -364,6 +364,14 @@ const HomeStack = ({navigation}) => {
                         backgroundColor:'#C4D7F3'
                     },
                     headerShadowVisible: false,
+                    headerLeft: () => (
+                        <MaterialCommunityIcons
+                          name={'menu'}
+                          size={20}
+                          onPress={() => navigation.openDrawer()}
+                          style={{ marginRight: 20 }}
+                        />
+                    ),
                 }}
             />
             <Stack.Screen 

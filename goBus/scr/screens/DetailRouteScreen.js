@@ -9,23 +9,31 @@ import DetailRouteSegmented from "../components/DetailRouteSegmented";
 const DetailRouteScreen = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.BusNumText}>18</Text>
-            <View style={styles.BusRouteContainer}>
-                <DetailRouteSegmented busDetail={BusRouteData[0]} />
+            <View style={styles.contentContainer}>
+                <Text style={styles.BusNumText}>18</Text>
+                <View style={styles.BusRouteContainer}>
+                    <DetailRouteSegmented busDetail={BusRouteData[0]} />
+                </View>
             </View>
         </View>
+
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
+    container:{
+        backgroundColor: '#C4D7F3',
+    },
+    contentContainer: {
         height: 'auto',
         width: 'auto',
-        paddingTop: 25,
-        paddingBottom: 90,
+        marginTop:20,
+        paddingTop: 5,
+        paddingBottom: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor:"white"
+        backgroundColor: "white",
+        borderRadius: 30
     },
     BusNumText: {
         color: '#000000',

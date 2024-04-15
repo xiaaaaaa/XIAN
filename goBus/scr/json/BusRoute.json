@@ -19,8 +19,8 @@
                 "busRoute": "萬華",
                 "arrivalBusNum": "KKA-0395",
                 "data": [
-                    {"station": "黎忠市場", "arrivalTime":"進站中"},
-                    {"station": "富陽街口", "arrivalTime":4},
+                    {"station": "黎忠市場", "arrivalTime":14},
+                    {"station": "富陽街口", "arrivalTime":"進站中"},
                     {"station": "捷運六張犁站(和平)", "arrivalTime":6},
                     {"station": "和平安和路口", "arrivalTime":8},
                     {"station": "臥龍街", "arrivalTime":10},

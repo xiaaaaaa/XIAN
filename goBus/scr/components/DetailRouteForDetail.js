@@ -26,15 +26,18 @@ const DetailRouteCard = props => {
                         </View>
                         {item.arrivalTime === "進站中" ? (
                             <View style={styles.spot}>
-                                <View >
-                                <MaterialCommunityIcons name="checkbox-blank-circle" color={'#F3DB56'} size={20}/>
+                                <View>
+                                    <Text style={styles.arrivalBusNum}>{busRoute.routes[0].arrivalBusNum}</Text>
+                                    <MaterialCommunityIcons name="menu-down" color={'#F3DB56'} size={20} style={styles.menudown} />
                                 </View>
+                                <MaterialCommunityIcons name="checkbox-blank-circle" color={'#EBAFA3'} size={20} style={styles.checkboxblankcircle} />
+
                             </View>
 
                         ) : (
                             <View style={styles.spot}>
                                 <View >
-                                <MaterialCommunityIcons name="checkbox-blank-circle-outline" color={'#8FAFDE'} size={20}/>
+                                    <MaterialCommunityIcons name="checkbox-blank-circle" color={'#C4D7F3'} size={20} />
                                 </View>
                             </View>
                         )}
@@ -53,7 +56,8 @@ const styles = StyleSheet.create({
         height: 39,
         marginLeft: 5,
         marginBottom: 6,
-        marginTop: 6
+        marginTop: 6,
+
     },
     station: {
         fontSize: 16,
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: 215,
         margin: 3,
-        paddingLeft:10,
+        paddingLeft: 10,
         borderRadius: 18
     },
     arrivalTime: {
@@ -81,7 +85,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center',
         width: 87,
-        
+
         backgroundColor: '#C4D7F3',
         borderRadius: 18
     },
@@ -100,6 +104,23 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         textAlign: 'center',
         alignItems: 'center',
+
+    },
+    arrivalBusNum: {
+        marginLeft: -28,
+        marginTop: -20,
+        backgroundColor: '#F3DB56',
+        borderRadius: 9,
+        padding: 3,
+        paddingLeft: 5,
+        paddingRight: 5
+    },
+    menudown: {
+        marginTop: -9
+    },
+    checkboxblankcircle: {
+        marginLeft: -25,
+        marginTop: -10
     }
 });
 export default DetailRouteCard;
