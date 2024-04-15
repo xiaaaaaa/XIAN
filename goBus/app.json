@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "goBus",
-    "slug": "goBus",
+    "name": "mid_15_gobus",
+    "slug": "mid_15_gobus",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

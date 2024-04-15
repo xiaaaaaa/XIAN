@@ -386,6 +386,14 @@ const HomeStack = ({navigation}) => {
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
+                    headerLeft: () => (
+                        <MaterialCommunityIcons
+                          name={'menu'}
+                          size={20}
+                          onPress={() => navigation.openDrawer()}
+                          style={{ marginRight: 20 }}
+                        />
+                    ),
                     headerShadowVisible: false,
                 }}
             />
@@ -397,7 +405,11 @@ const HomeStack = ({navigation}) => {
                     headerTitleStyle:{
                         fontSize:20,
                         fontWeight:'400',
-                    }
+                    },
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3'
+                    },
+                    headerShadowVisible: false,
                 }}
             />
         </Stack.Navigator>
