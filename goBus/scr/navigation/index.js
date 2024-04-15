@@ -31,7 +31,7 @@ import TakingBusScreen from "../screens/TakingBusScreen";
 import ArriveDestinationScreen from "../screens/ArriveDestinationScreen";
 
 import SearchScreen from "../screens/SearchScreen";
-//import DetailRouteScreen from "../screens/DetailRouteScreen";
+import DetailRouteScreen from "../screens/DetailRouteSrceen";
 import SettingScreen from "../screens/SettingScreen";
 
 //Setting Screen
@@ -210,7 +210,6 @@ const MyTab = () => {
     const { colors } = useTheme();
 
     return(
-        
         <Tab.Navigator
             initialRouteName="HomeStack"
             screenOptions={{
@@ -311,6 +310,9 @@ const HomeStack = ({navigation}) => {
             <Stack.Screen 
                 name="SetDestination"
                 component={SetDestinationScreen}
+                // tabBarStyle={
+                //     display:'none',
+                // },
                 options={{
                     title: "",
                     headerShown:false,
@@ -319,6 +321,9 @@ const HomeStack = ({navigation}) => {
                         fontSize:20
                     },
                     headerShadowVisible: false,
+                    // tabBarStyle:{
+                    //     display:'none'
+                    // }
                 }}
             />
             <Stack.Screen 
@@ -371,6 +376,17 @@ const HomeStack = ({navigation}) => {
                         fontSize:20
                     },
                     headerShadowVisible: false,
+                }}
+            />
+            <Stack.Screen 
+                name="DetailRoute"
+                component={DetailRouteScreen}
+                options={{
+                    title: '',
+                    headerTitleStyle:{
+                        fontSize:20,
+                        fontWeight:'400',
+                    }
                 }}
             />
         </Stack.Navigator>

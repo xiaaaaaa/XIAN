@@ -1,13 +1,25 @@
 import React from "react";
 import { StyleSheet, View, Text, Image, Pressable, Linking} from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import { HStack, Box } from "@gluestack-ui/themed";
+import { HStack, Box,
+    Actionsheet,
+    ActionsheetBackdrop,
+    ActionsheetDragIndicator,
+    ActionsheetDragIndicatorWrapper,
+    ActionsheetItem,
+    ActionsheetItemText,
+    ActionsheetContent,
+    Center,
+    Divider,
+} from "@gluestack-ui/themed"; 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 const HomeLoveBusRouteCardDetail = props => {
     let {busRoute} = props;
-
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const navigation = useNavigation();
 
     const findStopNum = () => {
         let num = 0;
@@ -22,18 +34,44 @@ const HomeLoveBusRouteCardDetail = props => {
     if(busRoute.favoriteSotp === 1){
         return(
             <View style={styles.loveRoute}>
-                
-                <HStack space="none" reversed={false} style={styles.busRouteCard}>
-                    <View style={styles.busNumCard}>
-                        <Text style={styles.busNum}>{busRoute.busNum}</Text>
-                    </View>
-                    <HStack style={styles.arrivalTimeCard}>
-                        <Text style={styles.timeNum}>{findStopNum()}</Text>
-                        <Text style={styles.unit}>分</Text>
-                        <MaterialCommunityIcons name="chevron-right" color={'#000'} size={15} style={styles.icon}/>
+                <Pressable onPress={handleClose}>
+                    <HStack space="none" reversed={false} style={styles.busRouteCard}>
+                        {busRoute.busNum ==='18'?(
+                            <View style={styles.busNumCard}>
+                                <Text style={[styles.busNum,{backgroundColor:'#F3DB56'}]}>{busRoute.busNum}</Text>
+                            </View>
+                        ):(
+                            <View style={styles.busNumCard}>
+                                <Text style={styles.busNum}>{busRoute.busNum}</Text>
+                            </View>
+                        )}
+
+                        <HStack style={styles.arrivalTimeCard}>
+                            <Text style={styles.timeNum}>{findStopNum()}</Text>
+                            <Text style={styles.unit}>分</Text>
+                            <MaterialCommunityIcons name="chevron-right" color={'#000'} size={15} style={styles.icon}/>
+                        </HStack>
                     </HStack>
-                </HStack>
-            
+                </Pressable>
+
+                <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
+                    <ActionsheetBackdrop />
+                    <ActionsheetContent h="$72" zIndex={999} style={{backgroundColor:'transparent'}}>
+                        {/* <ActionsheetDragIndicatorWrapper>
+                            <ActionsheetDragIndicator />
+                        </ActionsheetDragIndicatorWrapper> */}
+                        <Center style={styles.actionsheet}>
+                            <Text style={styles.actionsheetTitle}>{busRoute.busNum}</Text>
+                            <Divider style={styles.actionsheetDivider}/>
+                            <Text onPress={() => {handleClose; navigation.navigate("DetailRoute");}} style={styles.actionsheetText}>查看詳細路線</Text>
+                            <Divider style={styles.actionsheetDivider} />
+                            <Text onPress={handleClose} style={styles.actionsheetText}>設定為最愛路線</Text>
+                        </Center>
+                        <Center style={styles.actionsheet}>
+                            <Text onPress={handleClose} style={styles.actionsheetText}>Cancel</Text>
+                        </Center>
+                    </ActionsheetContent>
+                </Actionsheet>
             </View>
 
         )
@@ -95,7 +133,30 @@ const styles = StyleSheet.create({
     },
     icon:{
         
-    }
+    },
+    actionsheet:{
+        width:377,
+        backgroundColor:'#DFDFDF',
+        marginBottom:10,
+        borderWidth:0,
+        borderRadius:20,
+    },
+    actionsheetTitle:{
+        fontSize:17,
+        color:'#747475',
+        marginVertical:15,
+    },
+    actionsheetDivider:{
+        backgroundColor:'#A5A5A7',
+    },
+    actionsheetText:{
+        fontSize:17,
+        color:'#007AFF',
+        paddingHorizontal:80,
+        paddingVertical:20,
+        //marginVertical:20,
+        borderWidth:0,
+    },
 });
 
 export default HomeLoveBusRouteCardDetail;

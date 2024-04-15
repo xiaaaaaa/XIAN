@@ -36,9 +36,12 @@ const SetGoDestinationSetRouteDetail = props => {
                             {findnowStopNum(item.station) <= thisBusStop ? (
                                 null
                             ):(
-                                
                                 <View key={index} style={styles.context}>
-                                    <Text style={styles.stationText}>{item.station}</Text>
+                                    {findnowStopNum(item.station) === thisBusStop+1?(
+                                        <Text style={[styles.stationText,{backgroundColor:'#F3DB56'}]}>{item.station}</Text>
+                                    ):(               
+                                        <Text style={[styles.stationText,{backgroundColor:'#FFF'}]}>{item.station}</Text>
+                                    )}
                                 </View>
                             )}
                         </>                    
@@ -82,12 +85,15 @@ const styles = StyleSheet.create({
     stationText: {
         fontSize: 16,
         paddingLeft:10,
-        // justifyContent: 'center',
-        // alignContent: 'center',
-        // alignItems: 'center',
+        display:'flex',
+        paddingTop:6,
+        paddingBottom:5,
         width: 215,
-        margin: 3,
-        borderRadius: 18
+        // margin: 3,
+        borderRadius: 12,
+        backgroundColor:'#fff',
+        height: 39,
+        borderWidth:0,
     },
 });
 

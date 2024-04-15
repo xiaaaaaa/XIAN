@@ -46,7 +46,7 @@ const SetDestinationBasicInfo = (props) => {
                             height:53,
                             backgroundColor: "#fff",   
                             borderColor: '#C4D7F3',
-                            shadowColor:'#435a5e',
+                            shadowColor:'#000',
                             shadowOffset: { width: 0, height: 20},
                             shadowOpacity: 0.1,
                             // Android Only
@@ -61,8 +61,15 @@ const SetDestinationBasicInfo = (props) => {
                         }}
                         firstTabStyle={{ marginLeft: 8,  borderTopLeftRadius:9,borderBottomLeftRadius:9,}}
                         lastTabStyle={{ marginRight: 0, borderTopRightRadius:9, borderBottomRightRadius:9 }}
-                        tabTextStyle={{ fontSize: 12, color: "#354967"}}
-                        activeTabTextStyle={{ fontSize: 12, color: "#000"}}
+                        textNumberOfLines={2}
+                        tabTextStyle={{ 
+                            fontSize: 16, color: "#354967", borderWidth:0,
+                            textAlign: 'center',
+                            lineHeight:20,
+                            padding:0,
+                            paddingVertical:0,
+                        }}
+                        activeTabTextStyle={{ color: "#000",}}
                         selectedIndex={selectedIndex}
                         onTabPress={(index) => setSelectedIndex(index)}
                     />

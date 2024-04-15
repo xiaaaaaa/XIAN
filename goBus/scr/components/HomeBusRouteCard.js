@@ -11,7 +11,6 @@ const HomeBusRouteCard = () => {
         <>
           <Text style={styles.sectionHeader}>最愛路線</Text>
           <FlatList
-              
               horizontal={true}
               data={section.data}
               renderItem={({ item }) => <HomeLoveBusRouteCardDetail busRoute={item} navigation={navigation}/>}

@@ -8,6 +8,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 const HomeBusDetailCardDetail = (props) => {
     const {data} = props.busDetail;
     const [selectedIndex, setSelectedIndex] = useState(0);
+    let station1 = data[0].routes[0].busRoute;
+    let station2 =  data[0].routes[1].busRoute;
 
     const SegmentedContent = () => {
         if (selectedIndex == 1) {
@@ -64,13 +66,13 @@ const HomeBusDetailCardDetail = (props) => {
                 <Text style={styles.toText}>往</Text>
                 <Box flex={1}>
                     <SegmentedControlTab 
-                        values={[data[0].routes[0].busRoute, data[0].routes[1].busRoute]}
+                        values={[station1, station2]}
                         activeTabStyle={{
                             width:194,
                             height:53,
                             backgroundColor: "#fff",   
                             borderColor: '#C4D7F3',
-                            shadowColor:'#435a5e',
+                            shadowColor:'#000',
                             shadowOffset: { width: 0, height: 20},
                             shadowOpacity: 0.1,
                             // Android Only
@@ -84,11 +86,19 @@ const HomeBusDetailCardDetail = (props) => {
                             borderWidth:2,
                         }}
                         firstTabStyle={{ marginLeft: 10,  borderTopLeftRadius:9,borderBottomLeftRadius:9,}}
-                        lastTabStyle={{ marginRight: 30, borderTopRightRadius:9, borderBottomRightRadius:9 }}
-                        tabTextStyle={{ fontSize: 12, color: "#354967"}}
-                        activeTabTextStyle={{ fontSize: 12, color: "#000"}}
+                        lastTabStyle={{ marginRight: 30, borderTopRightRadius:9, borderBottomRightRadius:9,}}
+                        textNumberOfLines={2}
+                        tabTextStyle={{ 
+                            fontSize: 16, color: "#354967", borderWidth:0,
+                            textAlign: 'center',
+                            lineHeight:20,
+                            padding:0,
+                            paddingVertical:0,
+                        }}
+                        activeTabTextStyle={{ color: "#000",}}
                         selectedIndex={selectedIndex}
                         onTabPress={(index) => setSelectedIndex(index)}
+                        
                     />
                 </Box>
             </HStack>
@@ -127,6 +137,7 @@ const styles = StyleSheet.create({
     },
     toText:{
         fontSize:20,
+        paddingBottom:4,
     },
     busState:{
         marginTop:60,

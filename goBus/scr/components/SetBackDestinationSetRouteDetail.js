@@ -40,12 +40,17 @@ const SetBackDestinationSetRouteDetail = props => {
                                 
                                 <Pressable onPress={() => (destination>0? setDestination(destination-1):setDestination(destination+1))}>
                                     <View key={index} style={styles.context}>
-                                        
-                                        {destination>0?(
+
+                                        {findnowStopNum(item.station) === thisBusStop-1?(
                                             <Text style={[styles.stationText,{backgroundColor:'#F3DB56'}]}>{item.station}</Text>
                                         ):(               
                                             <Text style={[styles.stationText,{backgroundColor:'#FFF'}]}>{item.station}</Text>
                                         )}
+                                        {/* {destination>0?(
+                                            <Text style={[styles.stationText,{backgroundColor:'#F3DB56'}]}>{item.station}</Text>
+                                        ):(               
+                                            <Text style={[styles.stationText,{backgroundColor:'#FFF'}]}>{item.station}</Text>
+                                        )} */}
                                     </View>
 
                                 </Pressable>
