@@ -74,6 +74,7 @@ const Search = () => {
                         renderItem={renderItem}
                         keyExtractor={item => item.title}
                     />
+                    <Text style={styles.line}></Text>
                     <Text style={styles.sectionTitle}>最愛路線</Text>
                     <SectionList
                         sections={BusRouteData}
@@ -103,8 +104,14 @@ const styles = StyleSheet.create({
     sectionTitle: {
         margin: 30,
         marginBottom:5,
-        fontSize: 22,
+        fontSize: 18,
         textAlign: 'right'
+    },
+    line:{
+        width:350,
+        height:2,
+        backgroundColor:'#C4D7F3',
+        marginLeft:25
     }
 });
 
