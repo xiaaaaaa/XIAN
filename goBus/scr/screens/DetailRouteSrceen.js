@@ -4,14 +4,14 @@ import { Text, View, Box } from '@gluestack-ui/themed';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import DetailRoute from '../components/DetailRoute'
 import BusRouteData from "../json/BusRoute.json";
-import DetialRouteSegmented from "../components/DetialRouteSegmented";
+import DetailRouteSegmented from "../components/DetailRouteSegmented";
 
 const DetailRouteScreen = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.BusNumText}>18</Text>
             <View style={styles.BusRouteContainer}>
-                <DetialRouteSegmented busDetail={BusRouteData[0]} />
+                <DetailRouteSegmented busDetail={BusRouteData[0]} />
             </View>
         </View>
     );

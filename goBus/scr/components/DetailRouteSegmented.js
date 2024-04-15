@@ -4,9 +4,9 @@ import SegmentedControlTab from "react-native-segmented-control-tab";
 import { useNavigation } from '@react-navigation/native';
 import { HStack, Box, Center, VStack } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import DetailRouteSet from "./DetialRouteSet"
+import DetailRouteSet from "./DetailRouteSet"
 
-const DetialRouteSegmented = (props) => {
+const DetailRouteSegmented = (props) => {
     const {data} = props.busDetail;
     const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default DetialRouteSegmented;
+export default DetailRouteSegmented;
