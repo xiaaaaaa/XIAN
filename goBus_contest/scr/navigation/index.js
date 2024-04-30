@@ -4,25 +4,16 @@ import { NavigationContainer, useTheme } from "@react-navigation/native";
 import { NativeBaseProvider } from 'native-base';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { 
-    createDrawerNavigator,
-    DrawerContentScrollView,
-    DrawerItemList,
-} from "@react-navigation/drawer";
+
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Divider, Image, VStack, Text, HStack} from '@gluestack-ui/themed';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
 
 
 //檔案插入 ===========================//
-// Drawer Screen
-import LostFoundScreen from '../screens/drawer/LostFoundScreen';
-import LoveBusScreen from '../screens/drawer/LoveBusScreen';
-
 //Tab Screen
 import HomeScreen from "../screens/HomeScreen";
 import SetDestinationScreen from "../screens/SetDestinationScreen";
@@ -39,6 +30,8 @@ import AboutUsScreen from "../screens/setting/AboutUsScreen";
 import QuestionScreen from "../screens/setting/QuestionScreen";
 import UsageScreen from "../screens/setting/UsageScreen";
 
+import LostFoundScreen from "../screens/LostFound/LostFoundScreen";
+import PlusLostFoundScreen from "../screens/LostFound/PlusLostFoundScreen";
 
 //Theme ===========================//
 import MyTheme from "../Theme";
@@ -51,156 +44,11 @@ const Navigation = () => {
 
         <NativeBaseProvider>
             <NavigationContainer theme={MyTheme}>
-                <MyDrawer  />
+                <MyTab  />
             </NavigationContainer>
         </NativeBaseProvider>
     )
 }
-
-
-//Drawer ===========================//
-
-//Drawer自訂項目
-const DrawerContent = (props) => {
-    return(
-        <DrawerContentScrollView {...props} >
-            <HStack space="none" reversed={false} style={styles.drawerTitle}>
-                <MaterialCommunityIcons name="bus-stop" color={"#5E86C1"} size={40} />
-                <Text style={styles.drawerAppName}>上巴 GoBus</Text>
-            </HStack>
-            <Divider my="$0.5" style={styles.drawerDivider}/>
-            <DrawerItemList {...props} />
-        </DrawerContentScrollView>
-    );
-}
-
-//Drawer
-const MyDrawer = () => {
-    const {colors} = useTheme();
-
-    return(
-        <Drawer.Navigator 
-            initialRouteName="HomeStack"
-            screenOptions={{
-                drawerActiveBackgroundColor: colors.light400,
-                drawerActiveTintColor: "#354967",
-                drawerInactiveTintColor: colors.primary700,
-                drawerItemStyle:{borderWidth:0, borderRadius:12, marginHorizontal:23, paddingLeft:10},
-                drawerStyle:{width:300, backgroundColor:'#fff'},
-                drawerLabelStyle:{ fontSize:18, fontWeight:'400'},
-            }}
-            drawerContent={ props => <DrawerContent {...props}/> } 
-        >
-
-            <Drawer.Screen 
-                name= "HomeStack"
-                component={MyTab}
-                options={{
-                    headerShown: false,
-                    drawerLabel: '主畫面',
-                    drawerLabelStyle:{
-                        fontSize:16,
-                        fontWeight:'400',
-                        marginLeft:-20,
-                    },
-                    drawerIcon:({color})=>(
-                        <MaterialCommunityIcons name="home" color={color} size={26} />
-                    ),
-                }}
-            />
-            <Drawer.Screen 
-                name= "lostFoundStack"
-                component={LostFoundStack}
-                options={{
-                    headerShown: false,
-                    drawerLabel: '失物招領',
-                    drawerLabelStyle:{
-                        fontSize:16,
-                        fontWeight:'400',
-                        marginLeft:-20,
-                    },
-                    drawerIcon:({color})=>(
-                        <MaterialCommunityIcons name="briefcase-search" color={color} size={26} />
-                    ),
-                }}
-            />
-            <Drawer.Screen 
-                name="loveBusStack"
-                component={LoveBusStack}
-                options={{
-                    headerShown: false,
-                    drawerLabel: '設定最愛公車路線',
-                    drawerLabelStyle:{
-                        fontSize:16,
-                        fontWeight:'400',
-                        marginLeft:-20,
-                    },
-                    
-                    drawerIcon:({color})=>(
-                        <MaterialCommunityIcons name="bus-multiple" color={color} size={26} />
-                    ),
-                }}
-            />
-
-        </Drawer.Navigator>
-    );
-}
-
-//drawer 【失物招領】
-const LostFoundStack = ({navigation}) => {
-    return(
-        <Stack.Navigator>
-            <Stack.Screen 
-                name="LostFound"
-                component={LostFoundScreen}
-                options={{
-                    title: "",
-                    headerTitleStyle: {
-                        fontWeight:'400',
-                        fontSize:20
-                    },
-                    headerLeft: () => (
-                        <MaterialCommunityIcons
-                        name={'menu'}
-                        size={20}
-                        onPress={() => navigation.openDrawer()}
-                        style={{ marginRight: 20 }}
-                        />
-                    ),
-                }}
-            />
-        </Stack.Navigator>
-    )
-}
-
-//drawer 【設定最愛公車路線】
-const LoveBusStack = ({navigation}) => {
-    return(
-        <Stack.Navigator>
-            <Stack.Screen 
-                name="LoveBus"
-                component={LoveBusScreen}
-                options={{
-                    title: "",
-                    headerTitleStyle: {
-                        fontWeight:'400',
-                        fontSize:20
-                    },
-                    headerLeft: () => (
-                        <MaterialCommunityIcons
-                        name={'menu'}
-                        size={20}
-                        onPress={() => navigation.openDrawer()}
-                        style={{ marginRight: 20 }}
-                        />
-                    ),
-                }}
-            />
-        </Stack.Navigator>
-    );
-
-}
-
 
 
 //Tab ===========================//
@@ -215,9 +63,9 @@ const MyTab = () => {
             screenOptions={{
                 tabBarInactiveTintColor: colors.primary700,
                 tabBarActiveTintColor: colors.light600,
-
                 tabBarLabelStyle:{
-                    fontSize:14,
+                    fontWeight:'600',
+                    fontSize:12,
                     marginBottom:20,
                 },
                 tabBarStyle:{
@@ -226,6 +74,21 @@ const MyTab = () => {
                 }
             }}
         >
+            <Tab.Screen 
+                name="LostFoundStack"
+                component={LostFoundStack}
+                options={{
+                    headerShown: false,
+                    title: '失物招領',
+                    headerTitleStyle:{
+                        fontSize:20,
+                        fontWeight:'400',
+                    },
+                    tabBarIcon:({color}) => (
+                        <MaterialCommunityIcons name="archive-search" color={color} size={30} />
+                    ),
+                }}
+            />
             <Tab.Screen 
                 name="HomeStack"
                 component={HomeStack}
@@ -274,7 +137,48 @@ const MyTab = () => {
                     ),
                 }}
             />
+
         </Tab.Navigator>
+    );
+}
+
+const LostFoundStack = ({navigation}) => {
+    return(
+        <Stack.Navigator >
+            <Stack.Screen 
+                name="LostFound"
+                component={LostFoundScreen}
+                options={{
+                    title: '失物招領',
+                    headerTitleStyle:{
+                        fontSize:20,
+                        fontWeight:'400',
+                    },
+                    headerTitleAlign:'center',
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3'
+                    },
+                    
+                }}
+            />
+            <Stack.Screen 
+                name="PlusLostFound"
+                component={PlusLostFoundScreen}
+                options={{
+                    title: '增加遺失物品',
+                    headerTitleStyle:{
+                        fontSize:20,
+                        fontWeight:'400',
+                    },
+                    headerTitleAlign:'center',
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3'
+                    },
+                    
+                }}
+            />
+            
+        </Stack.Navigator>
     );
 }
 
@@ -296,14 +200,7 @@ const HomeStack = ({navigation}) => {
                         backgroundColor:'#C4D7F3'
                     },
                     headerShadowVisible: false,
-                    headerLeft: () => (
-                        <MaterialCommunityIcons
-                          name={'menu'}
-                          size={20}
-                          onPress={() => navigation.openDrawer()}
-                          style={{ marginRight: 20 }}
-                        />
-                    ),
+                    
                     
                 }}
             />
@@ -340,14 +237,7 @@ const HomeStack = ({navigation}) => {
                         backgroundColor:'#C4D7F3'
                     },
                     headerShadowVisible: false,
-                    headerLeft: () => (
-                        <MaterialCommunityIcons
-                          name={'menu'}
-                          size={20}
-                          onPress={() => navigation.openDrawer()}
-                          style={{ marginRight: 20 }}
-                        />
-                    ),
+                    
                 }}
             />
             <Stack.Screen 
@@ -364,14 +254,7 @@ const HomeStack = ({navigation}) => {
                         backgroundColor:'#C4D7F3'
                     },
                     headerShadowVisible: false,
-                    headerLeft: () => (
-                        <MaterialCommunityIcons
-                          name={'menu'}
-                          size={20}
-                          onPress={() => navigation.openDrawer()}
-                          style={{ marginRight: 20 }}
-                        />
-                    ),
+                    
                 }}
             />
             <Stack.Screen 
@@ -386,14 +269,7 @@ const HomeStack = ({navigation}) => {
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
-                    headerLeft: () => (
-                        <MaterialCommunityIcons
-                          name={'menu'}
-                          size={20}
-                          onPress={() => navigation.openDrawer()}
-                          style={{ marginRight: 20 }}
-                        />
-                    ),
+                    
                     headerShadowVisible: false,
                 }}
             />
@@ -437,14 +313,7 @@ const SearchStack = ({navigation}) => {
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
-                    headerLeft: () => (
-                        <MaterialCommunityIcons
-                            name={'menu'}
-                            size={20}
-                            onPress={hideKeyboardAndOpenDrawer}
-                            style={{ marginRight: 20 }}
-                        />
-                    ),
+                    
                 }}
             />
             <Stack.Screen 
@@ -483,14 +352,7 @@ const SettingStack = ({navigation}) => {
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
-                    headerLeft: () => (
-                        <MaterialCommunityIcons
-                            name={'menu'}
-                            size={20}
-                            onPress={() => navigation.openDrawer()}
-                            style={{ marginRight: 20 }}
-                        />
-                    ),
+                    
                 }}
             />
             <Stack.Screen 
@@ -529,6 +391,8 @@ const SettingStack = ({navigation}) => {
         </Stack.Navigator>
     );
 }
+
+
 
 //styles ===========================//
 const styles = StyleSheet.create({

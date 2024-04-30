@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet } from 'react-native';
 import { Text } from '@gluestack-ui/themed';
 
-const LoveBusScreen = () => {
+const PlusLostFoundScreen = () => {
     return(
-        <Text style={styles.text}>The LoveBus Screen</Text>
+        <Text style={styles.text}>The PlusLostFound Screen</Text>
     );
 }
 
@@ -14,5 +14,4 @@ const styles = StyleSheet.create({
     }
 });
 
-
-export default LoveBusScreen;
+export default PlusLostFoundScreen;

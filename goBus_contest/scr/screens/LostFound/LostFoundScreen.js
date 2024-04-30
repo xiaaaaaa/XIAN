@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from 'react-native';
 import { Text } from '@gluestack-ui/themed';
 
-const LostFoundScreen = () => {
+const LostFoundScreen = () =>{
     return(
         <Text style={styles.text}>The LostFound Screen</Text>
     );

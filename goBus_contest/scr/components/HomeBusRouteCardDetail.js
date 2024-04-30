@@ -101,6 +101,9 @@ const styles = StyleSheet.create({
         borderColor:'#424242',
     },
     busNum:{
+        borderWidth:0,
+        borderTopLeftRadius:8,
+        borderBottomLeftRadius:8,
         fontSize:18,
         paddingRight:10,
         paddingLeft:10,

@@ -83,13 +83,13 @@ const HomeBusDetailCardDetail = (props) => {
                             height:53,
                             backgroundColor: "#C4D7F3",
                             borderColor: "#C4D7F3",
-                            borderWidth:2,
+                            borderWidth:1,
                         }}
                         firstTabStyle={{ marginLeft: 10,  borderTopLeftRadius:9,borderBottomLeftRadius:9,}}
                         lastTabStyle={{ marginRight: 30, borderTopRightRadius:9, borderBottomRightRadius:9,}}
                         textNumberOfLines={2}
                         tabTextStyle={{ 
-                            fontSize: 16, color: "#354967", borderWidth:0,
+                            fontSize: 16, color: "#354967", borderWidth:0,fontWeight:'500',
                             textAlign: 'center',
                             lineHeight:20,
                             padding:0,
