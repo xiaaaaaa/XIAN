@@ -23,13 +23,14 @@ import ArriveDestinationScreen from "../screens/ArriveDestinationScreen";
 
 import SearchScreen from "../screens/SearchScreen";
 import DetailRouteScreen from "../screens/DetailRouteScreen";
-import SettingScreen from "../screens/SettingScreen";
+import SettingScreen from "../screens/setting/SettingScreen";
 
 //Setting Screen
-import AboutUsScreen from "../screens/setting/AboutUsScreen";
 import QuestionScreen from "../screens/setting/QuestionScreen";
 import UsageScreen from "../screens/setting/UsageScreen";
+import ChangePasswordScreen from "../screens/setting/ChangePasswordScreen";
 
+//Lost found Screen
 import LostFoundScreen from "../screens/LostFound/LostFoundScreen";
 import PlusLostFoundScreen from "../screens/LostFound/PlusLostFoundScreen";
 
@@ -356,13 +357,16 @@ const SettingStack = ({navigation}) => {
                 }}
             />
             <Stack.Screen 
-                name="AboutUs"
-                component={AboutUsScreen}
+                name="ChangePassword"
+                component={ChangePasswordScreen}
                 options={{
-                    title: 'AboutUs',
+                    title: '修改密碼',
                     headerTitleStyle:{
                         fontSize:20,
                         fontWeight:'400',
+                    },
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3'
                     },
                 }}
             />
@@ -370,10 +374,13 @@ const SettingStack = ({navigation}) => {
                 name="Question"
                 component={QuestionScreen}
                 options={{
-                    title: 'Question',
+                    title: '常見問題',
                     headerTitleStyle:{
                         fontSize:20,
                         fontWeight:'400',
+                    },
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3'
                     },
                 }}
             />
@@ -381,10 +388,13 @@ const SettingStack = ({navigation}) => {
                 name="Usage"
                 component={UsageScreen}
                 options={{
-                    title: 'Usage',
+                    title: '使用方式',
                     headerTitleStyle:{
                         fontSize:20,
                         fontWeight:'400',
+                    },
+                    headerStyle:{
+                        backgroundColor:'#C4D7F3'
                     },
                 }}
             />

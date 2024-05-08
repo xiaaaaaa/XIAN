@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet } from 'react-native';
 import { Text } from '@gluestack-ui/themed';
 
-const AboutUsScreen = () => {
+const ChangePasswordScreen = () =>{
     return(
-        <Text style={styles.text}>The About Us Screen</Text>
+        <Text style={styles.text}>The Frequently Asked Questions Screen</Text>
     );
 }
 
@@ -14,4 +14,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AboutUsScreen;
+export default ChangePasswordScreen;
