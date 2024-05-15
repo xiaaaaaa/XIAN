@@ -24,7 +24,7 @@ const QuestionScreen = () => {
                             {({ isExpanded }) => {
                             return (
                                 <>
-                                <AccordionTitleText>
+                                <AccordionTitleText style={styles.questionTest}>
                                     公車路線有錯誤
                                 </AccordionTitleText>
                                 {isExpanded ? (
@@ -49,7 +49,7 @@ const QuestionScreen = () => {
                             {({ isExpanded }) => {
                             return (
                                 <>
-                                <AccordionTitleText>
+                                <AccordionTitleText style={styles.questionTest}>
                                     失物招領沒有下文
                                 </AccordionTitleText>
                                 {isExpanded ? (
@@ -74,7 +74,7 @@ const QuestionScreen = () => {
                             {({ isExpanded }) => {
                             return (
                                 <>
-                                <AccordionTitleText>
+                                <AccordionTitleText style={styles.questionTest}>
                                     為什麼沒有收到到站通知
                                 </AccordionTitleText>
                                 {isExpanded ? (
@@ -99,7 +99,7 @@ const QuestionScreen = () => {
                             {({ isExpanded }) => {
                             return (
                                 <>
-                                <AccordionTitleText>
+                                <AccordionTitleText style={styles.questionTest}>
                                     為什麼沒有收到到目的地通知
                                 </AccordionTitleText>
                                 {isExpanded ? (
@@ -124,7 +124,7 @@ const QuestionScreen = () => {
                             {({ isExpanded }) => {
                             return (
                                 <>
-                                <AccordionTitleText>
+                                <AccordionTitleText style={styles.questionTest}>
                                     不知道如何使用各項功能
                                 </AccordionTitleText>
                                 {isExpanded ? (
@@ -149,7 +149,7 @@ const QuestionScreen = () => {
                             {({ isExpanded }) => {
                             return (
                                 <>
-                                <AccordionTitleText>
+                                <AccordionTitleText style={styles.questionTest}>
                                     在公車遺失物品了怎麼辦
                                 </AccordionTitleText>
                                 {isExpanded ? (
@@ -174,7 +174,7 @@ const QuestionScreen = () => {
                             {({ isExpanded }) => {
                             return (
                                 <>
-                                <AccordionTitleText>
+                                <AccordionTitleText style={styles.questionTest}>
                                     遺失物品頁面的遺失物品狀態是什麼
                                 </AccordionTitleText>
                                 {isExpanded ? (
@@ -208,8 +208,9 @@ const QuestionScreen = () => {
 }
 
 const styles = StyleSheet.create({
-    text:{
-        margin:20,
+    questionTest:{
+        fontWeight:'500',
+        fontSize:16,
     }
 });
 

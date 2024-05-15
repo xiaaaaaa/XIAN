@@ -17,10 +17,11 @@ const SettingScreen = () => {
                     {edit>0?
                         <Input style={styles.userNameEdit} variant="underlined" isReadOnly={false}>
                             <InputField type="text" />
+                            
                         </Input>
                         :
                         <Input style={styles.userName} variant="underlined" isReadOnly={true}>
-                            <InputField type="text" />
+                            <InputField type="text"/>
                         </Input>
                     }
                     
