@@ -9,6 +9,17 @@ const Search = () => {
     const [data, setData] = useState(BusRouteData[0].data);
     const [search, setSearch] = useState('');
     const [filteredData, setFilteredData] = useState([]);
+    const [flag, setFlag] = useState(true);
+    const heartShape = flag ? "heart" : "hearto"
+    const OtherheartShape = flag ? "hearto" : "heart"
+
+    const changeHeart = (favorite) => { 
+        if(favorite===1){
+            setFlag(previousState => !previousState)
+        } else{
+            setFlag(previousState => !previousState)
+        }
+    };
 
     useEffect(() => {
         filterList(search);
@@ -59,7 +70,9 @@ const Search = () => {
                                 </View>
 
                                 <View style={styles.searchResultContent}>
-                                    <Icon name={'heart'} size={20} style={styles.heart} />
+                                    <Pressable onPress={() => changeHeart()}>
+                                        <Icon name={item.favoriteSotp ? 'heart' : 'hearto'} size={20} style={styles.heart} />
+                                    </Pressable>
                                     <Pressable onPress={() => navigation.navigate('DetailRoute')}>
                                         <Icon name={'right'} size={20} style={styles.right} />
                                     </Pressable>
@@ -70,7 +83,7 @@ const Search = () => {
                         keyExtractor={(item) => item.busNum}
                     />
                 </View>
-                
+
             </View>
         </TouchableWithoutFeedback>
     );
@@ -79,7 +92,8 @@ const Search = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        paddingTop: 20
     },
     content: {
         alignItems: 'flex-start',
@@ -101,19 +115,19 @@ const styles = StyleSheet.create({
     searchspace: {
         flexDirection: 'row',
         alignItems: 'center',
-      },
-      icon: {
+    },
+    icon: {
         color: '#848488',
         backgroundColor: '#EFEFF0',
         height: 35,
         marginLeft: '10%',
         marginTop: '4%',
         paddingTop: 7,
-        paddingLeft: 5,
+        paddingLeft: 8,
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
-      },
-      Input: {
+    },
+    Input: {
         backgroundColor: '#EFEFF0',
         borderTopRightRadius: 10,
         borderBottomRightRadius: 10,
@@ -122,39 +136,40 @@ const styles = StyleSheet.create({
         marginTop: '4%',
         fontSize: 18,
         paddingLeft: 10
-      },
-      searchTitle: {
+    },
+    searchTitle: {
         fontSize: 18,
         marginTop: '4%',
+        marginBottom: '4%',
         marginLeft: '10%',
-      },
-      searchResultContain: {
+    },
+    searchResultContain: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom:10
-      },
-      searchResultContent: {
+        marginBottom: 10
+    },
+    searchResultContent: {
         flexDirection: 'row'
-      },
-      searchResult: {
+    },
+    searchResult: {
         fontSize: 18,
         marginTop: 10,
         marginLeft: 40,
-      },
-      searchResultDetail: {
+    },
+    searchResultDetail: {
         marginLeft: 40,
         marginTop: 5,
-      },
-      heart: {
+    },
+    heart: {
         color: '#EBAFA3',
         height: 35,
         marginTop: 23,
         marginRight: '15%',
-      },
-      right: {
+    },
+    right: {
         color: '#C4D7F3',
         marginTop: 23,
-      }
+    }
 });
 
 export default Search;
