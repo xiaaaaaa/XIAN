@@ -305,7 +305,7 @@ const SearchStack = ({navigation}) => {
                 name="Search"
                 component={SearchScreen}
                 options={{
-                    title: '搜尋',
+                    title: '搜尋公車路線',
                     headerTitleStyle:{
                         fontSize:20,
                         fontWeight:'400',
