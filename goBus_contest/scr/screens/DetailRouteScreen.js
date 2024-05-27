@@ -1,49 +1,51 @@
-import React, { useState } from "react";
-import { StyleSheet } from 'react-native';
-import { Text, View, Box } from '@gluestack-ui/themed';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import DetailRoute from '../components/DetailRoute'
-import BusRouteData from "../json/BusRoute.json";
-import DetailRouteSegmented from "../components/DetailRouteSegmented";
+import React from "react";
+import { StyleSheet, Text } from 'react-native';
+import MapView from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
+import { Box, Button, ButtonText, Fab, FabIcon, FabLabel } from '@gluestack-ui/themed';
+import Icon from "react-native-vector-icons/AntDesign"
+import DetailRouteList from "../components/DetailRouteList";
 
-const DetailRouteScreen = () => {
+const HomeScreen = () => {
+    const navigation = useNavigation();
     return (
-        <View style={styles.container}>
-            <View style={styles.contentContainer}>
-                <Text style={styles.BusNumText}>18</Text>
-                <View style={styles.BusRouteContainer}>
-                    <DetailRouteSegmented busDetail={BusRouteData[0]} />
-                </View>
-            </View>
-        </View>
-
+        <Box>
+            <MapView style={styles.map}
+                initialRegion={{
+                    longitude: 121.544637,
+                    latitude: 25.024624,
+                    longitudeDelta: 0.01,
+                    latitudeDelta: 0.02
+                }}
+            />
+            <Fab
+                size="md"
+                height={50}
+                width={60}
+                left="$4"
+                top="$10"
+                isHovered={false}
+                isDisabled={false}
+                isPressed={false}
+                onPress={() => navigation.navigate('Search')}
+                backgroundColor="none"
+                shadowColor="transparent"
+            >
+                <Icon name={'left'} size={20} style={styles.right} />
+            </Fab>
+            <DetailRouteList />
+        </Box>
     );
 }
 
 const styles = StyleSheet.create({
-    container:{
-        backgroundColor: '#C4D7F3',
+    text: {
+        margin: 20,
     },
-    contentContainer: {
-        height: 'auto',
-        width: 'auto',
-        paddingTop: 10,
-        paddingBottom: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: "white",
-        borderRadius: 30
-    },
-    BusNumText: {
-        color: '#000000',
-        fontSize: 48,
-        marginTop: 10,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-    },
-    BusRouteContainer: {
-        justifyContent: 'center',
+    map: {
+        width: '100%',
+        height: '100%',
     }
 });
 
-export default DetailRouteScreen;
+export default HomeScreen;

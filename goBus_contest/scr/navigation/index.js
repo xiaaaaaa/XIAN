@@ -322,14 +322,9 @@ const SearchStack = ({navigation}) => {
                 component={DetailRouteScreen}
                 options={{
                     title: '',
-                    headerTitleStyle:{
-                        fontSize:20,
-                        fontWeight:'400',
-                    },
-                    headerStyle:{
-                        backgroundColor:'#C4D7F3',
-                    },
-                    headerShadowVisible: false
+                    headerShown: false,
+                    headerBackVisible: false,
+                    headerShadowVisible: false,
                 }}
             />
         </Stack.Navigator>
