@@ -11,12 +11,12 @@ import DetailRouteSegmented from "../components/DetailRouteSegmented";
 
 const DetailRouteList = () => {
     const [showActionsheet, setShowActionsheet] = React.useState(true);
-    const [snapPoints, setSnapPoints] = React.useState([60]);
+    const [snapPoints, setSnapPoints] = React.useState([61]);
     const handleClose = () => {
-        if (snapPoints.length === 1 && snapPoints[0] === 60) {
+        if (snapPoints.length === 1 && snapPoints[0] === 80) {
             setSnapPoints([20]);
         } else {
-            setSnapPoints([60]);
+            setSnapPoints([80]);
         }
     };
     const Item = React.useCallback(
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         height: 'auto',
         width: 'auto',
         paddingTop: 10,
-        paddingBottom: 100,
+
         justifyContent: 'center',
         alignItems: 'center',
 

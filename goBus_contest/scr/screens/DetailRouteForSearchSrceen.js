@@ -6,7 +6,7 @@ import { Box, Button, ButtonText, Fab, FabIcon, FabLabel } from '@gluestack-ui/t
 import Icon from "react-native-vector-icons/AntDesign"
 import DetailRouteList from "../components/DetailRouteList";
 
-const DetailRouteScreen = () => {
+const DetailRouteForSearchScreen = () => {
     const navigation = useNavigation();
     return (
         <Box>
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default DetailRouteScreen;
+export default DetailRouteForSearchScreen;
