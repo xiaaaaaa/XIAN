@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#fff',
         borderWidth:1,
         borderRadius:9,
-        borderColor:'#424242',
+        borderColor:'#999999',
         paddingRight:3,
     },
     busNumCard:{

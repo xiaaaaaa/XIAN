@@ -48,11 +48,11 @@ const SettingScreen = () => {
                     <MaterialCommunityIcons name="chevron-right" color={'#898A8D'} size={30} style={styles.secondaryIcon} />
                 </Pressable>
             </HStack>
-            <Text style={styles.Text}>偏好設定</Text>
+            {/* <Text style={styles.Text}>偏好設定</Text>
             <HStack style={styles.DarkMode}>
                 <Text style={styles.DarkModeText}>深色主題</Text>
                 <Switch size="md" isDisabled={false} style={styles.DarkModeSwitch} />
-            </HStack>
+            </HStack> */}
             <HStack style={styles.context}>
                 <Text style={styles.Text}>常見問題</Text>
                 <Pressable onPress={() => navigation.navigate('Question')}>
