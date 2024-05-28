@@ -1,22 +1,86 @@
-import React,{useState} from "react";
-import { StyleSheet, View, Image, Pressable,ScrollView } from 'react-native';
-import { Text, VStack, HStack, Fab, Box, Modal, ModalBackdrop,ModalContent, ModalHeader,ModalBody,ModalFooter,ModalCloseButton, Heading, Icon,CloseIcon } from '@gluestack-ui/themed';
-import { useNavigation} from '@react-navigation/native';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, Image, Pressable, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, VStack, HStack, Fab, Box, Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton, Heading, Icon, CloseIcon } from '@gluestack-ui/themed';
+import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import DetailRoute from '../components/DetailRoute'
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
 
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: false,
+        shouldSetBadge: false,
+    }),
+});
 
-const WattingBus = ({route}) => {
+async function registerForPushNotificationsAsync() {
+    let token;
+
+    if (Device.isDevice) {
+        const { status: existingStatus } = await Notifications.getPermissionsAsync();
+        let finalStatus = existingStatus;
+
+        //  if notification permission not granted, request the permission again
+        if (existingStatus !== 'granted')
+            finalStatus = (await Notifications.requestPermissionsAsync()).status;
+        if (finalStatus !== 'granted') {
+            alert('Failed to get push token for push notification!');
+            return;
+        }
+
+        // Learn more about projectId:
+        // https://docs.expo.dev/push-notifications/push-notifications-setup/#configure-projectid
+        const projectId =
+            Constants?.expoConfig?.extra?.eas?.projectId ??
+            Constants?.easConfig?.projectId;
+
+        token = (await Notifications.getExpoPushTokenAsync({ projectId })).data;
+    }
+    else
+        alert('Must use physical device for Push Notifications');
+
+    return token;
+}
+
+async function sendPushNotification({ token, title, body }) {
+    const message = {
+        to: token,
+        title, body
+    };
+    const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(message),
+    };
+
+    await fetch('https://exp.host/--/api/v2/push/send', options);
+}
+
+const WattingBus = ({ route }) => {
+    const [expoPushToken, setExpoPushToken] = useState("");
+    const [inputToken, setInputToken] = useState("");
+    const [title, setTitle] = useState("到站通知");
+    const [body, setBody] = useState("18(華江站)\n約3分鐘後到站");
+
+    useEffect(() => {
+        registerForPushNotificationsAsync().then(token => {
+            setExpoPushToken(token);
+            setInputToken(token);
+        });
+    }, []);
     const navigation = useNavigation();
     const [showModal, setShowModal] = useState(false)
     const ref = React.useRef(null)
-    return(
+    return (
         <View style={styles.container}>
             <View>
                 <Image
-                 source={{ uri: 'https://img.freepik.com/premium-vector/city-bus-public-transportation-vehicle-set-vector-illustration-isolated-flat-design-icon_679085-72.jpg' }}
-                 style={{ width: 350, height: 150, margin: 20, borderRadius:14}}
-                 />
+                    source={{ uri: 'https://img.freepik.com/premium-vector/city-bus-public-transportation-vehicle-set-vector-illustration-isolated-flat-design-icon_679085-72.jpg' }}
+                    style={{ width: 350, height: 150, margin: 20, borderRadius: 14 }}
+                />
             </View>
             <View style={styles.BusNumContent}>
                 <Text style={styles.BusNumText}>18</Text>
@@ -28,32 +92,26 @@ const WattingBus = ({route}) => {
                     <DetailRoute />
                 </View>
             </View>
-
             <Pressable
-                 onPress={() => navigation.navigate('Home')}>
-                 <HStack style={styles.cancelBTN}>
+                onPress={() => navigation.navigate('Home')}>
+                <HStack style={styles.cancelBTN}>
                     <Text style={styles.btnText}>取消搭車</Text>
-                 </HStack>
+                </HStack>
             </Pressable >
-            <Fab bg="#C4D7F3" size="sm" right="$4" bottom="$5" onPress={()=> {navigation.navigate('ArriveDestination'); setShowModal(true)} }>
-                <MaterialCommunityIcons name="arrow-right" color={'#fff'} size={30}/>
+            <Fab bg="#C4D7F3" size="sm" right="$4" bottom="$20"
+                onPress={async () => {
+                    await sendPushNotification({
+                        token: inputToken,
+                        title,
+                        body,
+                    });
+                }}>
+                <MaterialCommunityIcons name="arrow-right" color={'#fff'} size={30} />
             </Fab>
-            <Modal
-                isOpen={showModal}
-                onClose={() => {
-                    setShowModal(false)
-                }}
-                finalFocusRef={ref}
-            >
-                <ModalBackdrop />
-                <ModalContent>
-                    <ModalBody>
-                        <Text>目的地抵達通知</Text>
-                        <Text>捷運古亭站（和平） 即將到站</Text>
-                    </ModalBody>
-                </ModalContent>
-            </Modal>
-
+            <Fab bg="#C4D7F3" size="sm" right="$4" bottom="$5"
+                onPress={() => { navigation.navigate('ArriveDestination');}}>
+                <MaterialCommunityIcons name="arrow-right" color={'#fff'} size={30} />
+            </Fab>
         </View>
     );
 }
@@ -80,21 +138,21 @@ const styles = StyleSheet.create({
         width: 370,
         marginTop: -390
     },
-    BusNumContent:{
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center',
-        textAlign:'center',
-        marginTop:-10
+    BusNumContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        marginTop: -10
     },
     BusNumText: {
         color: '#000000',
         fontSize: 36,
-        paddingRight:5,
+        paddingRight: 5,
         marginLeft: 'auto',
         marginRight: 'auto',
     },
-    BusNumRouteText:{
+    BusNumRouteText: {
     },
     text: {
         margin: 20,
@@ -126,6 +184,19 @@ const styles = StyleSheet.create({
         paddingTop: 3,
         paddingBottom: 5,
         marginLeft: 5,
+    },
+    button: {
+        backgroundColor: 'transparent',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: 200,
+        marginTop: 500
+    },
+    buttonText: {
+        color: 'black',
+        fontSize: 16,
     },
 });
 

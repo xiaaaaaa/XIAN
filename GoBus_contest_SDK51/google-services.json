@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "238090345287",
+    "project_id": "gobus-contest-sdk51",
+    "storage_bucket": "gobus-contest-sdk51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238090345287:android:836b1422600d10b78a4a62",
+        "android_client_info": {
+          "package_name": "com.ntuedtd2024app.GoBus_contest_SDK51"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIAV1-XY_zovQjDzmCml-qUL6Ra-S_lkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
