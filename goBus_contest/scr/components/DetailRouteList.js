@@ -65,13 +65,13 @@ const styles = StyleSheet.create({
         paddingBottom: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: "white",
+
         borderRadius: 30
     },
     BusNumText: {
         color: '#000000',
-        fontSize: 48,
-        marginTop: 10,
+        fontSize: 30,
+        marginTop: 60,
         marginLeft: 'auto',
         marginRight: 'auto',
     },
