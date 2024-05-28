@@ -57,7 +57,7 @@ const HomeBusRouteCard = props => {
                         <Center style={styles.actionsheet}>
                             <Text style={styles.actionsheetTitle}>{busRoute.busNum}</Text>
                             <Divider style={styles.actionsheetDivider}/>
-                            <Text onPress={() => navigation.navigate("DetailRoute")} style={styles.actionsheetText}>查看詳細路線</Text>
+                            <Text onPress={() => {handleClose(); navigation.navigate("DetailRoute");}} style={styles.actionsheetText}>查看詳細路線</Text>
                             <Divider style={styles.actionsheetDivider} />
                             <Text onPress={handleClose} style={styles.actionsheetText}>設定為最愛路線</Text>
                         </Center>

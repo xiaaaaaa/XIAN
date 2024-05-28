@@ -68,17 +68,17 @@ const DetailRouteSegmented = (props) => {
 const styles = StyleSheet.create({
     busDetailCard: {
         width: 350,
-        height: 500,
+        height: 300,
 
         display: 'flex',
         marginTop: 20,
-        marginBottom: 15,
+        marginBottom: 300,
         marginLeft: 'auto',
         marginRight: 'auto',
     },
     route: {
         // height:900,
-        marginBottom: 15,
+        marginBottom: 10,
 
         justifyContent: 'center',
         alignItems: 'center',
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         marginLeft: 332
     },
     SegmentedContent: {
-        height: 500,
+        height: 390,
         width: 370,
         marginTop: -500
     },

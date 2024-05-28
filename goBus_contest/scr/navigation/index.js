@@ -23,6 +23,7 @@ import ArriveDestinationScreen from "../screens/ArriveDestinationScreen";
 
 import SearchScreen from "../screens/SearchScreen";
 import DetailRouteScreen from "../screens/DetailRouteScreen";
+import DetailRouteForSearchScreen from "../screens/DetailRouteForSearchSrceen";
 import SettingScreen from "../screens/setting/SettingScreen";
 
 //Setting Screen
@@ -279,14 +280,7 @@ const HomeStack = ({navigation}) => {
                 component={DetailRouteScreen}
                 options={{
                     title: '',
-                    headerTitleStyle:{
-                        fontSize:20,
-                        fontWeight:'400',
-                    },
-                    headerStyle:{
-                        backgroundColor:'#C4D7F3'
-                    },
-                    headerShadowVisible: false,
+                    headerShown:false,
                 }}
             />
         </Stack.Navigator>
@@ -319,17 +313,10 @@ const SearchStack = ({navigation}) => {
             />
             <Stack.Screen 
                 name="DetailRoute"
-                component={DetailRouteScreen}
+                component={DetailRouteForSearchScreen}
                 options={{
                     title: '',
-                    headerTitleStyle:{
-                        fontSize:20,
-                        fontWeight:'400',
-                    },
-                    headerStyle:{
-                        backgroundColor:'#C4D7F3',
-                    },
-                    headerShadowVisible: false
+                    headerShown:false,
                 }}
             />
         </Stack.Navigator>

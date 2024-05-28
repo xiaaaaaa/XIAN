@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         marginRight: '15%',
     },
     right: {
-        color: '#C4D7F3',
+        color: '#D9D9D9',
         marginTop: 23,
     }
 });
