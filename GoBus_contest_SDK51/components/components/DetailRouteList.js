@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import {
     Actionsheet, Box, Button, ButtonText, ActionsheetBackdrop,
     ActionsheetContent, ActionsheetDragIndicatorWrapper, ActionsheetDragIndicator,
@@ -12,12 +12,19 @@ import DetailRouteSegmented from "../components/DetailRouteSegmented";
 const DetailRouteList = () => {
     const [showActionsheet, setShowActionsheet] = React.useState(true);
     const [snapPoints, setSnapPoints] = React.useState([61]);
+    const [isExpanded, setIsExpanded] = React.useState(false);
     const handleClose = () => {
         if (snapPoints.length === 1 && snapPoints[0] === 80) {
-            setSnapPoints([20]);
+            setSnapPoints([40]);
+            closeActionsheet();
+            setIsExpanded(false);
         } else {
             setSnapPoints([80]);
+            setIsExpanded(true);
         }
+    };
+    const closeActionsheet = () => {
+        setShowActionsheet(false);
     };
     const Item = React.useCallback(
         ({ title }) => (
@@ -30,12 +37,21 @@ const DetailRouteList = () => {
     return (
         <Actionsheet
             isOpen={showActionsheet}
+            onClose={handleClose}
             snapPoints={snapPoints}
-            initialSnap={[50]}>
-            <ActionsheetBackdrop style={styles.backdrop} />
+            initialSnap={[61]}>
+
+            <ActionsheetBackdrop
+                style={styles.backdrop}
+                closeOnOverlayClick={true}
+                onClick={closeActionsheet} />
+
             <ActionsheetContent h='$72' >
+                <ActionsheetDragIndicatorWrapper>
+                    <ActionsheetDragIndicator />
+                </ActionsheetDragIndicatorWrapper>
                 <View style={styles.contentContainer}>
-                    <Text style={styles.BusNumText}>18</Text>
+                    <Text style={isExpanded ? styles.BusNumTextExpanded : styles.BusNumText}>18</Text>
                     <View style={styles.BusRouteContainer}>
                         <DetailRouteSegmented busDetail={BusRouteData[0]} />
                     </View>
@@ -47,8 +63,8 @@ const DetailRouteList = () => {
 
 const styles = StyleSheet.create({
     backdrop: {
-        backgroundColor: 'transparent',
-        marginTop: 900
+        backgroundColor:'transparent',
+        marginTop: -900
     },
     busNum: {
         flex: 1,
@@ -72,6 +88,13 @@ const styles = StyleSheet.create({
         color: '#000000',
         fontSize: 30,
         marginTop: 60,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+    },
+    BusNumTextExpanded:{
+        color: '#000000',
+        fontSize: 30,
+        marginTop: 10,
         marginLeft: 'auto',
         marginRight: 'auto',
     },

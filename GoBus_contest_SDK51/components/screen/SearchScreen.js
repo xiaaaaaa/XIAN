@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Keyboard, View, Text, TouchableWithoutFeedback, FlatList, TextInput, Pressable } from 'react-native';
 import BusRouteData from "../json/BusRoute.json";
 import { useNavigation } from '@react-navigation/native';
-import Icon from "react-native-vector-icons/AntDesign"
+import Icon from "react-native-vector-icons/AntDesign";
+import { SearchBar } from 'react-native-ios-kit';
 
 const Search = () => {
     const navigation = useNavigation();
@@ -13,10 +14,10 @@ const Search = () => {
     const heartShape = flag ? "heart" : "hearto"
     const OtherheartShape = flag ? "hearto" : "heart"
 
-    const changeHeart = (favorite) => { 
-        if(favorite===1){
+    const changeHeart = (favorite) => {
+        if (favorite === 1) {
             setFlag(previousState => !previousState)
-        } else{
+        } else {
             setFlag(previousState => !previousState)
         }
     };
@@ -49,13 +50,17 @@ const Search = () => {
         <TouchableWithoutFeedback onPress={hideKeyboard}>
             <View style={styles.container}>
                 <View style={styles.searchspace}>
-                    <Icon name={'search1'} size={20} style={styles.icon} />
+                    <View style={styles.iconRadius}>
+                        <Icon name={'search1'} size={18} style={styles.icon} />
+                    </View>
                     <TextInput
                         onChangeText={updateSearch}
                         value={search}
                         type="text"
                         style={styles.Input}
-                        placeholder='搜尋公車路線' />
+                        placeholder='搜尋公車路線'
+                        placeholderTextColor="#676767"
+                        clearButtonMode="always" />
                 </View>
                 <View>
                     <Text style={styles.searchTitle}>搜尋紀錄</Text>
@@ -115,20 +120,25 @@ const styles = StyleSheet.create({
     searchspace: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 30
     },
-    icon: {
-        color: '#848488',
+    iconRadius:{
         backgroundColor: '#EFEFF0',
         height: 35,
         marginLeft: '10%',
         marginTop: '4%',
-        paddingTop: 7,
-        paddingLeft: 8,
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
     },
+    icon: {
+        color: '#848488',
+        marginTop: 8,
+        marginLeft: 8,
+    },
     Input: {
         backgroundColor: '#EFEFF0',
+
         borderTopRightRadius: 10,
         borderBottomRightRadius: 10,
         height: 35,

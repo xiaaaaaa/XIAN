@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { StyleSheet, Keyboard} from "react-native";
+import { StyleSheet, Keyboard, View} from "react-native";
 import { NavigationContainer, useTheme } from "@react-navigation/native";
 import { NativeBaseProvider } from 'native-base';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -230,14 +230,15 @@ const HomeStack = ({navigation}) => {
                         backgroundColor:'#C4D7F3'
                     },
                     headerShadowVisible: false,
-                    
+                    headerLeft: () => <View />,
                 }}
             />
             <Stack.Screen 
                 name="TakingBus"
                 component={TakingBusScreen}
                 options={{
-                    title: "國立台北教育大學",
+                    title: "西門市場(成都)",
+                    //headerBackTitle:'back',
                     headerTitleStyle: {
                         fontWeight:'400',
                         fontSize:20
@@ -247,14 +248,14 @@ const HomeStack = ({navigation}) => {
                         backgroundColor:'#C4D7F3'
                     },
                     headerShadowVisible: false,
-                    
+                    headerLeft: () => <View />,
                 }}
             />
             <Stack.Screen 
                 name="ArriveDestination"
                 component={ArriveDestinationScreen}
                 options={{
-                    title: "",
+                    title: "西寧南路",
                     headerTitleStyle: {
                         fontWeight:'400',
                         fontSize:20
@@ -262,7 +263,7 @@ const HomeStack = ({navigation}) => {
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
-                    
+                    headerLeft: () => <View />,
                     headerShadowVisible: false,
                 }}
             />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image, Pressable } from 'react-native';
+import { StyleSheet, View, Image, Pressable, Platform} from 'react-native';
 import { Text, VStack, HStack } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 
@@ -11,8 +11,8 @@ const WattingBus = ({ route }) => {
         <View style={styles.container}>
             <View>
                 <Image
-                    source={{ uri: 'https://static.vecteezy.com/system/resources/previews/005/741/977/non_2x/back-to-school-little-girl-with-teacher-waiting-for-bus-at-bus-stop-vector.jpg' }}
-                    style={{ width: 350, height: 150, margin: 20, borderRadius: 14 }}
+                    source={require('../image/waitingBus.png')}
+                    style={{ width: 230, height: 180, marginTop: 30, marginBottom: 10, borderRadius: 14 }}
                 />
             </View>
             <View style={styles.Content}>
@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
     Content: {
         height: 200,
         width: 370,
-        alignItems:'center',
-        justifyContent:'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     Text: {
-        fontSize:20,
-        fontWeight:500,
-        color:'#000',
-        marginBottom:5,
+        fontSize: 20,
+        fontWeight: 500,
+        color: '#000',
+        marginBottom: 5,
     },
     cancelBTN: {
         width: 145,
@@ -64,8 +64,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 14,
         shadowColor: '#435a5e',
-
-        shadowOffset: { width: 0, height: 20 },
+        shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
         shadowOpacity: 0.1,
         // Android Only
         elevation: 3,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Image, Pressable, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, Pressable, ScrollView, TouchableOpacity, Platform } from 'react-native';
 import { Text, VStack, HStack, Fab, Box, Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton, Heading, Icon, CloseIcon } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -78,15 +78,15 @@ const WattingBus = ({ route }) => {
         <View style={styles.container}>
             <View>
                 <Image
-                    source={{ uri: 'https://img.freepik.com/premium-vector/city-bus-public-transportation-vehicle-set-vector-illustration-isolated-flat-design-icon_679085-72.jpg' }}
-                    style={{ width: 350, height: 150, margin: 20, borderRadius: 14 }}
+                    source={require('../image/takingBus.png')}
+                    style={{ width: 350, height: 180, marginTop: 5, marginBottom: 10, borderRadius: 14 }}
                 />
             </View>
             <View style={styles.BusNumContent}>
                 <Text style={styles.BusNumText}>18</Text>
                 <Text style={styles.BusNumRouteText}>往萬華</Text>
             </View>
-            <View style={styles.contentContainer}>
+            <View style={styles.DetailRouteContainer}>
                 <Text style={styles.Line}></Text>
                 <View style={styles.DetailRoute}>
                     <DetailRoute />
@@ -98,7 +98,14 @@ const WattingBus = ({ route }) => {
                     <Text style={styles.btnText}>取消搭車</Text>
                 </HStack>
             </Pressable >
-            <Fab bg="#C4D7F3" size="sm" right="$4" bottom="$20"
+            <Fab
+                height={50}
+                width={50}
+                size="sm"
+                left="$4"
+                bottom="$5"
+                bg="transparent"
+                shadowColor="transparent"
                 onPress={async () => {
                     await sendPushNotification({
                         token: inputToken,
@@ -108,8 +115,13 @@ const WattingBus = ({ route }) => {
                 }}>
                 <MaterialCommunityIcons name="arrow-right" color={'#fff'} size={30} />
             </Fab>
-            <Fab bg="#C4D7F3" size="sm" right="$4" bottom="$5"
-                onPress={() => { navigation.navigate('ArriveDestination');}}>
+            <Fab
+                size="sm"
+                right="$4"
+                bottom="$5"
+                bg="transparent"
+                shadowColor="transparent"
+                onPress={() => { navigation.navigate('ArriveDestination'); }}>
                 <MaterialCommunityIcons name="arrow-right" color={'#fff'} size={30} />
             </Fab>
         </View>
@@ -122,21 +134,6 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         backgroundColor: '#FFF',
-    },
-    contentContainer: {
-        height: 390,
-        width: 370
-    },
-    Line: {
-        width: 3,
-        height: 390,
-        backgroundColor: '#C4D7F3',
-        marginLeft: 332
-    },
-    DetailRoute: {
-        height: 380,
-        width: 370,
-        marginTop: -390
     },
     BusNumContent: {
         flexDirection: 'row',
@@ -152,10 +149,21 @@ const styles = StyleSheet.create({
         marginLeft: 'auto',
         marginRight: 'auto',
     },
-    BusNumRouteText: {
+    DetailRouteContainer: {
+        height: 310,
+        width: 370
     },
-    text: {
-        margin: 20,
+    Line: {
+        width: 3,
+        height: 310,
+        backgroundColor: '#C4D7F3',
+        marginLeft: 330
+    },
+    DetailRoute: {
+        height: 310,
+        width: 370,
+        paddingLeft: 8,
+        marginTop: -310
     },
     cancelBTN: {
         width: 145,
@@ -172,8 +180,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 14,
         shadowColor: '#435a5e',
-
-        shadowOffset: { width: 0, height: 20 },
+        shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
         shadowOpacity: 0.1,
         // Android Only
         elevation: 3,
@@ -184,20 +191,7 @@ const styles = StyleSheet.create({
         paddingTop: 3,
         paddingBottom: 5,
         marginLeft: 5,
-    },
-    button: {
-        backgroundColor: 'transparent',
-        padding: 10,
-        borderRadius: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: 200,
-        marginTop: 500
-    },
-    buttonText: {
-        color: 'black',
-        fontSize: 16,
-    },
+    }
 });
 
 export default WattingBus;

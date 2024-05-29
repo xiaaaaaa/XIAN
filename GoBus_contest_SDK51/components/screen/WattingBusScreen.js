@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Image, Pressable, ScrollView, Button, ButtonText } from 'react-native';
+import { StyleSheet, View, Image, Pressable, ScrollView, Button, ButtonText, Platform } from 'react-native';
 import { Text, VStack, HStack, Fab, Box, Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton, Heading, Icon, CloseIcon } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -79,16 +79,15 @@ const WattingBus = ({ route }) => {
         <View style={styles.container}>
             <View>
                 <Image
-                    source={{ uri: 'https://static.vecteezy.com/system/resources/previews/005/741/977/non_2x/back-to-school-little-girl-with-teacher-waiting-for-bus-at-bus-stop-vector.jpg' }}
-                    style={{ width: 350, height: 150, margin: 20, borderRadius: 14 }}
+                    source={require('../image/waitingBus.png')}
+                    style={{ width: 230, height: 180, marginTop: 5, marginBottom: 10, borderRadius: 14 }}
                 />
             </View>
             <View style={styles.BusNumContent}>
                 <Text style={styles.BusNumText}>18</Text>
                 <Text style={styles.BusNumRouteText}>往萬華</Text>
             </View>
-
-            <View style={styles.contentContainer}>
+            <View style={styles.DetailRouteContainer}>
                 <Text style={styles.Line}></Text>
                 <View style={styles.DetailRoute}>
                     <DetailRoute />
@@ -101,7 +100,14 @@ const WattingBus = ({ route }) => {
                     <Text style={styles.btnText}>取消搭車</Text>
                 </HStack>
             </Pressable>
-            <Fab bg="#C4D7F3" size="sm" right="$4" bottom="$20"
+            <Fab
+                height={50}
+                width={50}
+                size="sm"
+                left="$4"
+                bottom="$5"
+                bg="transparent"
+                shadowColor="transparent"
                 onPress={async () => {
                     await sendPushNotification({
                         token: inputToken,
@@ -111,11 +117,15 @@ const WattingBus = ({ route }) => {
                 }}>
                 <MaterialCommunityIcons name="arrow-right" color={'#fff'} size={30} />
             </Fab>
-            <Fab bg="#C4D7F3" size="sm" right="$4" bottom="$5"
-                onPress={() => { navigation.navigate('TakingBus');}}>
+            <Fab
+                size="sm"
+                right="$4"
+                bottom="$5"
+                bg="transparent"
+                shadowColor="transparent"
+                onPress={() => { navigation.navigate('TakingBus'); }}>
                 <MaterialCommunityIcons name="arrow-right" color={'#fff'} size={30} />
             </Fab>
-
         </View>
     );
 }
@@ -127,39 +137,35 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#FFF',
     },
-    contentContainer: {
-        height: 390,
-        width: 370
-    },
-    Line: {
-        width: 3,
-        height: 390,
-        backgroundColor: '#C4D7F3',
-        marginLeft: 332
-    },
-    DetailRoute: {
-        height: 380,
-        width: 370,
-        marginTop: -390
-    },
-    BusNumContent:{
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center',
-        textAlign:'center',
-        marginTop:-10
+    BusNumContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        marginTop: -10
     },
     BusNumText: {
         color: '#000000',
         fontSize: 36,
-        paddingRight:5,
+        paddingRight: 5,
         marginLeft: 'auto',
         marginRight: 'auto',
     },
-    BusNumRouteText:{
+    DetailRouteContainer: {
+        height: 310,
+        width: 370
     },
-    text: {
-        margin: 20,
+    Line: {
+        width: 3,
+        height: 310,
+        backgroundColor: '#C4D7F3',
+        marginLeft: 330
+    },
+    DetailRoute: {
+        height: 310,
+        width: 370,
+        paddingLeft: 8,
+        marginTop: -310
     },
     cancelBTN: {
         width: 145,
@@ -176,8 +182,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 14,
         shadowColor: '#435a5e',
-
-        shadowOffset: { width: 0, height: 20 },
+        shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
         shadowOpacity: 0.1,
         // Android Only
         elevation: 3,
