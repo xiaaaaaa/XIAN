@@ -1,4 +1,4 @@
-import { SafeAreaView, AppRegistry, Text} from 'react-native';
+import { SafeAreaView, AppRegistry, Text, StatusBar} from 'react-native';
 //import Navigation from './scr/navigation';
 import Navigation from '../components/navigation'
 import { GluestackUIProvider } from '@gluestack-ui/themed';
@@ -61,6 +61,7 @@ async function sendPushNotification({ token, title, body }) {
 export default function App() {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor:'#fff'}}>
+      <StatusBar barStyle={'dark-content'} />
       <GluestackUIProvider config={config}>
         <Navigation />  
         {/* <Text>sfasf</Text> */}

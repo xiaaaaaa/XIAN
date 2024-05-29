@@ -37,8 +37,8 @@ const HomeLoveBusRouteCardDetail = props => {
                 <Pressable onPress={handleClose}>
                     <HStack space="none" reversed={false} style={styles.busRouteCard}>
                         {busRoute.busNum ==='18'?(
-                            <View style={styles.busNumCard}>
-                                <Text style={[styles.busNum,{backgroundColor:'#F3DB56'}]}>{busRoute.busNum}</Text>
+                            <View style={[styles.busNumCard,{backgroundColor:'#F3DB56'}]}>
+                                <Text style={styles.busNum}>{busRoute.busNum}</Text>
                             </View>
                         ):(
                             <View style={styles.busNumCard}>
