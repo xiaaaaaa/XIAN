@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Image, Pressable, Linking} from "react-native";
+import { StyleSheet, View, Text, Image, Pressable, Linking } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { HStack, VStack, Box, Center } from "@gluestack-ui/themed";
 
 const SetBackDestinationSetRouteDetail = props => {
-    let {busRoute} = props;
+    let { busRoute } = props;
     const [destination, setDestination] = useState(0);
     let thisBusStop = 100;
     let nowBusStop = 100;
 
     const findthisStopNum = () => {
-        for(let i=0; i<busRoute.detail[0].stationNum; i++){
-            if(busRoute.routes[0].data[i].station === '國立臺北教育大學'){
+        for (let i = 0; i < busRoute.detail[0].stationNum; i++) {
+            if (busRoute.routes[0].data[i].station === '國立臺北教育大學') {
                 thisBusStop = i;
             }
         }
@@ -19,13 +19,13 @@ const SetBackDestinationSetRouteDetail = props => {
     findthisStopNum();
     //thisBusStop -= busRoute.detail[0].stationNum;
 
-    const findnowStopNum = (num) =>{
-        for(let i=0; i<busRoute.detail[0].stationNum; i++){
-            if(busRoute.routes[0].data[i].station === num){
+    const findnowStopNum = (num) => {
+        for (let i = 0; i < busRoute.detail[0].stationNum; i++) {
+            if (busRoute.routes[0].data[i].station === num) {
                 nowBusStop = i;
             }
         }
-        return(nowBusStop);
+        return (nowBusStop);
     }
 
     if (busRoute.busNum === "18" && busRoute.routes[0].busRoute === "萬華") {
@@ -36,15 +36,17 @@ const SetBackDestinationSetRouteDetail = props => {
                         <>
                             {findnowStopNum(item.station) >= thisBusStop ? (
                                 null
-                            ):(
-                                
-                                <Pressable onPress={() => (destination>0? setDestination(destination-1):setDestination(destination+1))}>
+                            ) : (
+
+                                <Pressable onPress={() => (destination > 0 ? setDestination(destination - 1) : setDestination(destination + 1))}>
                                     <View key={index} style={styles.context}>
 
-                                        {findnowStopNum(item.station) === thisBusStop-1?(
-                                            <Text style={[styles.stationText,{backgroundColor:'#F3DB56'}]}>{item.station}</Text>
-                                        ):(               
-                                            <Text style={[styles.stationText,{backgroundColor:'#FFF'}]}>{item.station}</Text>
+                                        {findnowStopNum(item.station) === thisBusStop - 1 ? (
+                                            <View style={styles.stationTextBox}>
+                                                <Text style={styles.stationText}>{item.station}</Text>
+                                            </View>
+                                        ) : (
+                                            <Text style={[styles.stationText, { backgroundColor: '#FFF' }]}>{item.station}</Text>
                                         )}
                                         {/* {destination>0?(
                                             <Text style={[styles.stationText,{backgroundColor:'#F3DB56'}]}>{item.station}</Text>
@@ -56,11 +58,11 @@ const SetBackDestinationSetRouteDetail = props => {
                                 </Pressable>
 
                             )}
-                        </>                    
+                        </>
                     ))}
-                    
-                </VStack>  
-                <Text style={{paddingBottom:10,backgroundColor:'#fff'}}></Text>
+
+                </VStack>
+                <Text style={{ paddingBottom: 10, backgroundColor: '#fff' }}></Text>
             </Center>
         )
     } else null;
@@ -69,21 +71,21 @@ const SetBackDestinationSetRouteDetail = props => {
 }
 
 const styles = StyleSheet.create({
-    setDestinationCard:{
-        width:287,
-        borderWidth:0,
-        backgroundColor:'#fff',
+    setDestinationCard: {
+        width: 287,
+        borderWidth: 0,
+        backgroundColor: '#fff',
     },
     context: {
         flexDirection: 'row',
         height: 39,
-        marginHorizontal:35,
+        marginHorizontal: 35,
         marginBottom: 10,
         marginTop: 0,
-        borderWidth:0,
-        borderRadius:12,
-        display:'flex',
-        alignItems:'center'
+        borderWidth: 0,
+        borderRadius: 12,
+        display: 'flex',
+        alignItems: 'center'
     },
     // station: {
     //     fontSize: 16,
@@ -97,18 +99,24 @@ const styles = StyleSheet.create({
     //     margin: 3,
     //     borderRadius: 12
     // },
+    stationTextBox: {
+        width: 215,
+        height: 39,
+        backgroundColor: '#F3DB56',
+        borderRadius: 12,
+    },
     stationText: {
         fontSize: 16,
-        paddingLeft:10,
-        display:'flex',
-        paddingTop:6,
-        paddingBottom:5,
+        paddingLeft: 10,
+        display: 'flex',
+        paddingTop: 8,
+        paddingBottom: 5,
         width: 215,
         // margin: 3,
         borderRadius: 12,
-        backgroundColor:'#fff',
+
         height: 39,
-        borderWidth:0,
+        borderWidth: 0,
     },
 });
 

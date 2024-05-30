@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Image, Pressable, Linking } from "react-native";
+import { StyleSheet, View, Text, Image, Pressable, Linking,Platform } from "react-native";
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import { useNavigation } from '@react-navigation/native';
 import { HStack, Box, Center, VStack } from "@gluestack-ui/themed";
@@ -34,7 +34,7 @@ const DetailRouteSegmented = (props) => {
                             backgroundColor: "#FFFFFF",
                             borderColor: '#C4D7F3',
                             shadowColor: '#435a5e',
-                            shadowOffset: { width: 0, height: 20 },
+                            shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
                             shadowOpacity: 0.1,
                             // Android Only
                             elevation: 3,
@@ -46,10 +46,17 @@ const DetailRouteSegmented = (props) => {
                             borderColor: "#C4D7F3",
                             borderWidth: 2,
                         }}
-                        firstTabStyle={{ marginLeft: 10, borderTopLeftRadius: 9, borderBottomLeftRadius: 9, }}
-                        lastTabStyle={{ marginRight: 50, borderTopRightRadius: 9, borderBottomRightRadius: 9 }}
-                        tabTextStyle={{ fontSize: 16, color: "#354967" }}
-                        activeTabTextStyle={{ fontSize: 16, color: "#000" }}
+                        firstTabStyle={{ marginLeft: 8,  borderTopLeftRadius:9,borderBottomLeftRadius:9,}}
+                        lastTabStyle={{ marginRight: 0, borderTopRightRadius:9, borderBottomRightRadius:9 }}
+                        textNumberOfLines={2}
+                        tabTextStyle={{ 
+                            fontSize: 16, color: "#354967", borderWidth:0,
+                            textAlign: 'center',
+                            lineHeight:20,
+                            padding:0,
+                            paddingVertical:0,
+                        }}
+                        activeTabTextStyle={{ color: "#000",}}
                         selectedIndex={selectedIndex}
                         onTabPress={(index) => setSelectedIndex(index)}
                     />
@@ -78,11 +85,12 @@ const styles = StyleSheet.create({
     },
     route: {
         // height:900,
-        marginBottom: 10,
-
-        justifyContent: 'center',
-        alignItems: 'center',
-
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        borderWidth:0,
+        width:300,
+        marginBottom:10,
     },
     SegmentedControl: {
         display: 'flex',
@@ -90,25 +98,24 @@ const styles = StyleSheet.create({
     busNum: {
         paddingLeft: 35,
         paddingRight: 35,
-        fontSize: 55,
+        fontSize: 60,
     },
     toText: {
         fontSize: 20,
-        marginLeft: 50
+        marginLeft: 60
     },
     Line: {
         width: 3,
-        height: 500,
+        height: 450,
         backgroundColor: '#C4D7F3',
-        marginLeft: 332
+        marginLeft: 322
     },
     SegmentedContent: {
-        height: 390,
+        height: 450,
         width: 370,
-        marginTop: -500
+        marginTop: -450
     },
     contentContainer:{
-        marginLeft:-8
     }
 });
 

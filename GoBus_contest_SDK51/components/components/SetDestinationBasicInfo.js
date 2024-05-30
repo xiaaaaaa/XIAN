@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Image, Pressable, Linking} from "react-native";
+import { StyleSheet, View, Text, Image, Pressable, Linking, Platform} from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { HStack, VStack, Box, Center } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -47,7 +47,7 @@ const SetDestinationBasicInfo = (props) => {
                             backgroundColor: "#fff",   
                             borderColor: '#C4D7F3',
                             shadowColor:'#000',
-                            shadowOffset: { width: 0, height: 20},
+                            shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
                             shadowOpacity: 0.1,
                             // Android Only
                             elevation: 3,

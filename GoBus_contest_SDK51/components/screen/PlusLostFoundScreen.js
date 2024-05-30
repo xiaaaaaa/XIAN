@@ -50,7 +50,7 @@ const PlusLostFoundScreen = () => {
 
     return(
         <View>
-            <Center style={{height:800, backgroundColor:'#fff'}}>
+            <Center style={{height:800, marginTop: -50, backgroundColor:'#fff'}}>
                 <VStack style={styles.Card}>
                     <Text style={styles.text}>遺失的公車路線</Text>
                     <Input variant="outline" size="md" isDisabled={false} isInvalid={false} isReadOnly={false} style={styles.input}>
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius:14,
         borderBottomLeftRadius:14,
         shadowColor:'#435a5e',
-        shadowOffset: { width: 0, height: 20},
+        shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
         shadowOpacity: 0.1,
         // Android Only
         elevation: 3,
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius:14,
         borderBottomRightRadius:14,
         shadowColor:'#435a5e',
-        shadowOffset: { width: 0, height: 20},
+        shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
         shadowOpacity: 0.1,
         // Android Only
         elevation: 3,

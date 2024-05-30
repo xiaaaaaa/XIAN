@@ -1,5 +1,5 @@
 import React from "react";
-import { SectionList, FlatList, StyleSheet, Text } from "react-native";
+import { SectionList, FlatList, StyleSheet, Text, Platform} from "react-native";
 import { Divider, Center, HStack, Box } from "@gluestack-ui/themed";
 import SegmentedControlTab from "react-native-segmented-control-tab";
 
@@ -49,14 +49,36 @@ const SetDestinationSetRoute = ({route}) =>{
     };
 
     return (
-      <Center>
-        <SectionList style={styles.sectionList}
-          sections={BusRouteData}
-          contentContainerStyle={{ paddingHorizontal: 10 }}
-          renderSectionHeader={renderSectionHeader}
-          renderItem={renderItem}
-          keyExtractor={item => item.title}
-        />
+      <Center style={styles.sectionList}>
+        {route === 1?(
+            <FlatList
+              horizontal={false}
+              data={BusRouteData[0].data}
+              renderItem={({ item }) => <SetBackDestinationSetRouteDetail busRoute={item} />}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={ item => item.title }
+              contentContainerStyle={{
+                // flexDirection : "row", flexWrap : "wrap", maxWidth:287,paddingLeft:10, paddingRight:4, 
+                //flexDirection : "row", flexWrap : "wrap", 
+                maxWidth:287, marginHorizontal:'auto',
+                
+              }} 
+            />
+          ):(
+            <FlatList
+              horizontal={false}
+              data={BusRouteData[0].data}
+              renderItem={({ item }) => <SetGoDestinationSetRouteDetail busRoute={item} />}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={ item => item.title }
+              contentContainerStyle={{
+                // flexDirection : "row", flexWrap : "wrap", maxWidth:287,paddingLeft:10, paddingRight:4, 
+                //flexDirection : "row", flexWrap : "wrap", 
+                maxWidth:287, marginHorizontal:'auto',
+              }} 
+            />
+            //null
+          )}
       </Center>
 
     );
@@ -65,16 +87,17 @@ const SetDestinationSetRoute = ({route}) =>{
 
 const styles = StyleSheet.create({
     sectionList:{
-      height:388,
+      height:330,
       width:287,
       backgroundColor:'#fff',
       borderColor:'#000',
       marginTop:0,
-      paddingTop:20,
+      paddingTop:30,
       paddingBottom:20,
+      borderRadius:20,
       borderWidth:0,
       shadowColor:'#435a5e',
-      shadowOffset: { width: 0, height: 20},
+      shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
       shadowOpacity: 0.1,
       // Android Only
       elevation: 3,

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Button, Pressable, View } from 'react-native';
+import { StyleSheet, Button, Pressable, View, Platform} from 'react-native';
 import { Text, VStack, HStack } from '@gluestack-ui/themed';
 import { useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -54,8 +54,7 @@ const styles = StyleSheet.create({
         borderWidth:0,
         borderRadius:14,
         shadowColor:'#435a5e',
-        
-        shadowOffset: { width: 0, height: 20},
+        shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
         shadowOpacity: 0.1,
         // Android Only
         elevation: 3,

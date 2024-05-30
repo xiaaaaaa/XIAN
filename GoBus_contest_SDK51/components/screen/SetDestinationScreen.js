@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Button, Pressable, View, SafeAreaView, StatusBar} from 'react-native';
+import { StyleSheet, Button, Pressable, View, SafeAreaView, StatusBar, Platform} from 'react-native';
 import { Text, VStack, HStack, Center, Divider } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -41,7 +41,7 @@ const SetDestinationScreen = ({}) => {
 
 const styles = StyleSheet.create({
     screen:{
-        marginTop:50,
+
         width:'auto',
         display:'flex',
         flex: 1, 
@@ -54,13 +54,14 @@ const styles = StyleSheet.create({
         // marginRight:'auto',
     },
     card:{
+        marginTop:0,
         backgroundColor:'#fff',
         width:339,
-        height:728,
+        height:650,
         borderWidth:0,
         borderRadius:34,
         shadowColor:'#435a5e',
-        shadowOffset: { width: 0, height: 20},
+        shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
         shadowOpacity: 0.1,
         // Android Only
         elevation: 3,
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
       color:'#000',
       fontSize: 22,
       fontWeight:'500',
-      marginTop:15,
+      marginTop:Platform.OS === 'ios' ? 20 :  5 ,
       marginBottom:5,
     },
     divider:{
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
         height:60,
         marginLeft:'auto',
         marginRight:'auto',
-        marginTop:60,
+        marginTop:0,
         marginBottom:20,
         borderWidth:0,
         borderRadius:14,
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius:14,
         borderBottomLeftRadius:14,
         shadowColor:'#435a5e',
-        shadowOffset: { width: 0, height: 20},
+        shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
         shadowOpacity: 0.1,
         // Android Only
         elevation: 3,
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius:14,
         borderBottomRightRadius:14,
         shadowColor:'#435a5e',
-        shadowOffset: { width: 0, height: 20},
+        shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
         shadowOpacity: 0.1,
         // Android Only
         elevation: 3,

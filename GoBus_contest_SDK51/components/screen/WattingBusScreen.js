@@ -63,8 +63,8 @@ async function sendPushNotification({ token, title, body }) {
 const WattingBus = ({ route }) => {
     const [expoPushToken, setExpoPushToken] = useState("");
     const [inputToken, setInputToken] = useState("");
-    const [title, setTitle] = useState("到站通知");
-    const [body, setBody] = useState("18(國立台北教育大學站)\n約3分鐘後到站");
+    const [title, setTitle] = useState("公車即將到站");
+    const [body, setBody] = useState("18（國立台北教育大學站）即將到站");
 
     useEffect(() => {
         registerForPushNotificationsAsync().then(token => {

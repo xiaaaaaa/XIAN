@@ -40,7 +40,6 @@ const DetailRouteList = () => {
             onClose={handleClose}
             snapPoints={snapPoints}
             initialSnap={[61]}>
-
             <ActionsheetBackdrop
                 style={styles.backdrop}
                 closeOnOverlayClick={true}

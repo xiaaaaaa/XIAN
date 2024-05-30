@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Platform} from 'react-native';
 import { Text,  Center, Input, InputField, InputSlot, InputIcon, EyeIcon, EyeOffIcon, HStack } from '@gluestack-ui/themed';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { VStack } from "native-base";
@@ -104,8 +104,7 @@ const styles = StyleSheet.create({
         borderWidth:0,
         borderRadius:14,
         shadowColor:'#435a5e',
-        
-        shadowOffset: { width: 0, height: 20},
+        shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
         shadowOpacity: 0.1,
         // Android Only
         elevation: 3,
