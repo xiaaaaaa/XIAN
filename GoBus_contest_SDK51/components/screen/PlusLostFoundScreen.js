@@ -60,8 +60,6 @@ const PlusLostFoundScreen = () => {
                     </Input>
                 </VStack>
 
-
-                
                 <VStack  style={styles.Card}>  
                     <Text style={styles.text}>遺失物品時間</Text>
 
@@ -71,10 +69,10 @@ const PlusLostFoundScreen = () => {
                             display="spinner"
                             value={date}
                             onChange={onChange}
-                            style={styles.datePicker}
+                            textColor='#000'
+                            style={[styles.datePicker]}
                             maximumDate={new Date()}
                         />
-
                     )}
 
                     {showPicker && Platform.OS === "ios" && (
@@ -84,13 +82,14 @@ const PlusLostFoundScreen = () => {
                             <TouchableOpacity style={[
                                     styles.button, 
                                     styles.pickerButton,
+                                    { backgroundColor :'#fff', borderWidth:1, borderColor:'#075985'}
                                 ]}
                                 onPress={toggleDatepicker}
                             >
                                 <Text style={[
                                     styles.buttonText,
-                                    {color: '#075985'}
-                                ]}>Cancel</Text>
+                                    { color :'#075985'}
+                                ]}>取消</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity style={[
@@ -101,7 +100,7 @@ const PlusLostFoundScreen = () => {
                             >
                                 <Text style={[
                                     styles.buttonText,
-                                ]}>Confirm</Text>
+                                ]}>確認</Text>
                             </TouchableOpacity>
                         </View>
                     )}
@@ -178,20 +177,23 @@ const styles = StyleSheet.create({
         height:40,
         width:300,
         borderRadius:15,
-        borderColor:'#999999'
+        borderColor:'#999999',
+        color:'#000'
     },
     datePicker:{
         height:120,
         marginTop:-10,
+        
+        color:'#000',
     },
     button:{
-        height:50,
+        height:40,
         justifyContent:'center',
         alignItems:'center',
         borderRadius:50,
-        marginTop:10,
-        marginBottom:15,
-        backgroundColor:'#075985',
+        marginTop:0,
+        marginBottom:-10,
+        backgroundColor:'#5E86C1',
     },
     pickerButton:{
         paddingHorizontal:20,
@@ -206,8 +208,8 @@ const styles = StyleSheet.create({
         height:60,
         marginLeft:'auto',
         marginRight:'auto',
-        marginTop:60,
-        marginBottom:20,
+        marginTop:0,
+        marginBottom:70,
         borderWidth:0,
         borderRadius:14,
     },

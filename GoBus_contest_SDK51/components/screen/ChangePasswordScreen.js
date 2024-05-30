@@ -1,13 +1,15 @@
 import React, {useState} from "react";
-import { StyleSheet, View, Platform} from 'react-native';
+import { StyleSheet, View, Platform, Pressable} from 'react-native';
 import { Text,  Center, Input, InputField, InputSlot, InputIcon, EyeIcon, EyeOffIcon, HStack } from '@gluestack-ui/themed';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { VStack } from "native-base";
+import { useNavigation} from '@react-navigation/native';
 
 const ChangePasswordScreen = () =>{
     const [showPassword1, setShowPassword1] = useState(false)
     const [showPassword2, setShowPassword2] = useState(false)
     const [showPassword3, setShowPassword3] = useState(false)
+    const navigation = useNavigation();
     const handleState1 = () => {
         setShowPassword1((showState) => {
         return !showState
@@ -71,9 +73,14 @@ const ChangePasswordScreen = () =>{
                         </InputSlot>
                     </Input>
                 </VStack>
-                <HStack style={styles.getUpBTN}>
+                <Pressable onPress={() => navigation.navigate('Setting')}>
+                    <HStack style={styles.getUpBTN}>
+                        <Text style={styles.btnText}>確認</Text>
+                    </HStack>
+                </Pressable>
+                {/* <HStack style={styles.getUpBTN}>
                     <Text style={styles.btnText}>確認</Text>
-                </HStack>
+                </HStack> */}
             </View>
         </Center>
     );

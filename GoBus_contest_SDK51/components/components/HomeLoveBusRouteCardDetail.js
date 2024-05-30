@@ -80,13 +80,10 @@ const HomeLoveBusRouteCardDetail = props => {
 };
 
 const styles = StyleSheet.create({
-    loveRoute:{
-        
-    },
     busRouteCard:{
         width:null,
         height:32,
-        marginRight:10,
+        marginRight:8,
         marginTop:10,
         display:'flex',
         justifyContent:'center',
@@ -101,41 +98,48 @@ const styles = StyleSheet.create({
         height:30,
         backgroundColor:'#BBDBFF',
         borderWidth:0,
-        borderRadius:9,
+        borderRadius:8,
         borderTopRightRadius:0,
         borderBottomRightRadius:0,
-        borderColor:'#424242',
+        borderColor:'#fff',
     },
     busNum:{
         borderWidth:0,
         borderTopLeftRadius:8,
         borderBottomLeftRadius:8,
-        fontSize:18,
-        paddingRight:10,
-        paddingLeft:10,
+        fontSize:16,
+        paddingRight:6,
+        paddingLeft:6,
         paddingBottom:6,
-        paddingTop:2,
+        paddingTop:5,
+        fontWeight:'bold',
     },
     arrivalTimeCard:{
         width:65,
         display:'flex',
         alignItems:'center',
         paddingLeft:8,
+        paddingRight:-9,
+        //borderWidth:1,
         
     },
     timeNum:{
-        width:27,
-        fontSize:18,
+        width:30,
+        fontSize:16,
         paddingRight:0,
         paddingLeft:0,
         paddingTop:0,
+        //borderWidth:1,
     },
     unit:{
         fontSize:12,
-        
+        marginLeft:-6,
+        //borderWidth:1,
     },
     icon:{
-        
+        marginRight:-9,
+        paddingRight:-3,
+        //borderWidth:1,
     },
     actionsheet:{
         width:377,

@@ -79,7 +79,7 @@ const WattingBus = ({ route }) => {
         <View style={styles.container}>
             <View>
                 <Image
-                    source={require('../image/waitingBus.png')}
+                    source={require('../image/waitingBus.jpg')}
                     style={{ width: 230, height: 180, marginTop: 5, marginBottom: 10, borderRadius: 14 }}
                 />
             </View>

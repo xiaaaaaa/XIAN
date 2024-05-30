@@ -87,14 +87,14 @@ const SetDestinationSetRoute = ({route}) =>{
 
 const styles = StyleSheet.create({
     sectionList:{
-      height:330,
+      height:300,
       width:287,
       backgroundColor:'#fff',
       borderColor:'#000',
       marginTop:0,
-      paddingTop:30,
+      paddingTop:20,
       paddingBottom:20,
-      borderRadius:20,
+      borderRadius:16,
       borderWidth:0,
       shadowColor:'#435a5e',
       shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },

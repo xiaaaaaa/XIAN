@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
         // marginRight:'auto',
     },
     getUpBTN:{
-        width:200,
-        height:65,
+        width:180,
+        height:60,
         marginLeft:'auto',
         marginRight:'auto',
         marginTop:20,
@@ -64,9 +64,9 @@ const styles = StyleSheet.create({
     },
     btnText:{
         color:'#fff',
-        fontSize:24,
-        paddingBottom:5,
-        marginLeft:13,
+        fontSize:22,
+        //paddingBottom:5,
+        marginLeft:10,
     },
 });
 

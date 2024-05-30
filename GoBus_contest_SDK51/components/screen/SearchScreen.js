@@ -14,12 +14,11 @@ const Search = () => {
     const heartShape = flag ? "heart" : "hearto"
     const OtherheartShape = flag ? "hearto" : "heart"
 
-    const changeHeart = (favorite) => {
-        if (favorite === 1) {
-            setFlag(previousState => !previousState)
-        } else {
-            setFlag(previousState => !previousState)
-        }
+    const changeHeart = () => {
+        setFlag(previousState => !previousState)
+    };
+    const changeOtherHeart = () => {
+        setFlag(previousState => !previousState)
     };
 
     useEffect(() => {
@@ -73,16 +72,28 @@ const Search = () => {
                                     <Text style={styles.searchResult}>{item.busNum}</Text>
                                     <Text style={styles.searchResultDetail}>{item.detail[0].startEndStation}</Text>
                                 </View>
-
-                                <View style={styles.searchResultContent}>
-                                    <Pressable onPress={() => changeHeart()}>
-                                        <Icon name={item.favoriteSotp ? 'heart' : 'hearto'} size={20} style={styles.heart} />
-                                    </Pressable>
-                                    <Pressable onPress={() => navigation.navigate('DetailRoute')}>
-                                        <Icon name={'right'} size={20} style={styles.right} />
-                                    </Pressable>
-                                </View>
-
+                                {
+                                    item.favoriteSotp === 1 && item.busNum === '18'? (
+                                        <View style={styles.searchResultContent}>
+                                            <View>
+                                                <Pressable onPress={() => changeHeart()}>
+                                                    <Icon name={heartShape} size={20} style={styles.heart} />
+                                                </Pressable>
+                                            </View>
+                                            <Pressable onPress={() => navigation.navigate('DetailRoute')}>
+                                                <Icon name={'right'} size={20} style={styles.right} />
+                                            </Pressable>
+                                        </View>) : (
+                                        <View style={styles.searchResultContent}>
+                                            <Pressable onPress={() => changeOtherHeart()}>
+                                                <Icon name={'hearto'} size={20} style={styles.heart} />
+                                            </Pressable>
+                                            <Pressable onPress={() => navigation.navigate('DetailRoute')}>
+                                                <Icon name={'right'} size={20} style={styles.right} />
+                                            </Pressable>
+                                        </View>
+                                    )
+                                }
                             </View>
                         }
                         keyExtractor={(item) => item.busNum}
@@ -123,7 +134,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginRight: 30
     },
-    iconRadius:{
+    iconRadius: {
         backgroundColor: '#EFEFF0',
         height: 35,
         marginLeft: '10%',

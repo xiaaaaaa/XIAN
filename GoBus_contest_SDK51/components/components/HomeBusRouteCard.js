@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     marginLeft:10,
   },
   divider:{
-    width:360,
+    width:330,
     marginTop:25,
     // marginHorizontal:'auto',
     marginLeft: 10,

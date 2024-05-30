@@ -61,7 +61,7 @@ async function sendPushNotification({ token, title, body }) {
 export default function App() {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor:'#fff'}}>
-      
+      <StatusBar translucent={true} backgroundColor="transparent" barStyle='dark-content' />
       <GluestackUIProvider config={config}>
       <StatusBar translucent={true} backgroundColor="transparent" barStyle='dark-content' />
         <Navigation />  
