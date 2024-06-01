@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Button, Pressable, View } from 'react-native';
+import { StyleSheet, Button, Pressable, View, Platform} from 'react-native';
 import { Text, VStack, HStack } from '@gluestack-ui/themed';
 import { useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
         // marginRight:'auto',
     },
     getUpBTN:{
-        width:200,
-        height:65,
+        width:180,
+        height:60,
         marginLeft:'auto',
         marginRight:'auto',
         marginTop:20,
@@ -54,8 +54,7 @@ const styles = StyleSheet.create({
         borderWidth:0,
         borderRadius:14,
         shadowColor:'#435a5e',
-        
-        shadowOffset: { width: 0, height: 20},
+        shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
         shadowOpacity: 0.1,
         // Android Only
         elevation: 3,
@@ -65,9 +64,9 @@ const styles = StyleSheet.create({
     },
     btnText:{
         color:'#fff',
-        fontSize:24,
-        paddingBottom:5,
-        marginLeft:13,
+        fontSize:22,
+        //paddingBottom:5,
+        marginLeft:10,
     },
 });
 

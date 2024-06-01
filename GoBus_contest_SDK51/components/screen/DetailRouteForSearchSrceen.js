@@ -19,16 +19,17 @@ const DetailRouteForSearchScreen = () => {
                 }}
             />
             <Fab
-                size="md"
-                height={50}
-                width={60}
+                size="sm"
+                height={40}
+                width={40}
                 left="$4"
-                top="$10"
+                top="$5"
                 isHovered={false}
                 isDisabled={false}
                 isPressed={false}
                 onPress={() => navigation.goBack()}
-                backgroundColor="none"
+                backgroundColor="#EFEFF0"
+                opacity='$40'
                 shadowColor="transparent"
             >
                 <Icon name={'close'} size={20} style={styles.right} />

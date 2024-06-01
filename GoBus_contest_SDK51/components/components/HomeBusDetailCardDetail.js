@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Image, Pressable, Linking} from "react-native";
+import { StyleSheet, View, Text, Image, Pressable, Linking, Platform} from "react-native";
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import { useNavigation } from '@react-navigation/native';
 import { HStack, Box, Center, VStack } from "@gluestack-ui/themed";
@@ -47,7 +47,7 @@ const HomeBusDetailCardDetail = (props) => {
                             <Text style={styles.arrivalBusNum}>{data[0].routes[0].arrivalBusNum}</Text>
                         </Center>
                         <Center style={styles.arrivalTimeCard}>
-                            <Text style={styles.SiteName}>國立台北教育大學</Text>
+                            <Text style={styles.SiteName}>國立臺北教育大學</Text>
                             <HStack style={styles.arrivalTime}>
                                 <Text style={styles.arrivalTimeNum}>{data[0].routes[0].data[6].arrivalTime}</Text>
                                 <Text style={styles.unit}>分</Text>
@@ -73,7 +73,7 @@ const HomeBusDetailCardDetail = (props) => {
                             backgroundColor: "#fff",   
                             borderColor: '#C4D7F3',
                             shadowColor:'#000',
-                            shadowOffset: { width: 0, height: 20},
+                            shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
                             shadowOpacity: 0.1,
                             // Android Only
                             elevation: 3,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         height:190,
         backgroundColor:'#E1E9F7',
         display:'flex',
-        marginTop:36,
+        marginTop:30,
         marginBottom:15,
         marginLeft:'auto',
         marginRight:'auto',
@@ -122,10 +122,12 @@ const styles = StyleSheet.create({
         borderRadius:20,
     },
     route:{
+        marginTop:3,
         // height:900,
         display:'flex',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        borderWidth:0,
     },
     SegmentedControl:{
         display:'flex', flexWrap:'wrap'
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
 
     },
     detailCardText:{
-        marginTop:-70,
+        marginTop:-63,
         
     },
     arrivalBus:{

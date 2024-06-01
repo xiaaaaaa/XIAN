@@ -1,38 +1,36 @@
 import React from 'react';
-import { View, Text, SectionList, FlatList } from "react-native"
+import { View, Text, SectionList, FlatList, StyleSheet, StatusBar } from "react-native"
 import BusRouteData from "../json/BusRoute.json";
 import DetailRouteForDetail from "./DetailRouteForDetail"
 import DetailRouteEndDetail from "./DetailRouteEndDetail"
 
 const DetailRouteSet = ({ route }) => {
-
-    const renderItem = ({ item }) => {
-        return null
-    };
     const DetailRouteComponent = route === 0 ? DetailRouteForDetail : DetailRouteEndDetail;
-    const renderSectionHeader = ({ section }) => (
-        <>
+    return (
+        <View>
             <FlatList
             horizontal={false}
-            data={section.data}
+            data={BusRouteData[0].data}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => <DetailRouteComponent busRoute={item} />} 
             keyExtractor={item => item.title}
         />
-
-        </>
-    );
-    return (
-        <View>
-            <SectionList
-                sections={BusRouteData}
-                keyExtractor={item => item.title}
-                contentContainerStyle={{ paddingHorizontal: 10 }}
-                renderItem={renderItem}
-                renderSectionHeader={renderSectionHeader}
-            />
         </View>
-
     );
 };
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      marginTop: StatusBar.currentHeight || 0,
+    },
+    item: {
+      backgroundColor: '#f9c2ff',
+      padding: 20,
+      marginVertical: 8,
+      marginHorizontal: 16,
+    },
+    title: {
+      fontSize: 32,
+    },
+  });
 export default DetailRouteSet;

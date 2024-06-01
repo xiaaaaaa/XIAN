@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { StyleSheet, Keyboard} from "react-native";
+import { StyleSheet, Keyboard, View} from "react-native";
 import { NavigationContainer, useTheme } from "@react-navigation/native";
 import { NativeBaseProvider } from 'native-base';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -143,14 +143,15 @@ const LostFoundStack = ({navigation}) => {
                 component={LostFoundScreen}
                 options={{
                     title: '失物招領',
-                    headerTitleStyle:{
-                        fontSize:20,
-                        fontWeight:'400',
+                    headerTitleStyle: {
+                        fontSize:18
                     },
+                    headerTintColor: '#000',
                     headerTitleAlign:'center',
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
+                    headerShadowVisible: false,
                     
                 }}
             />
@@ -159,14 +160,15 @@ const LostFoundStack = ({navigation}) => {
                 component={PlusLostFoundScreen}
                 options={{
                     title: '增加遺失物品',
-                    headerTitleStyle:{
-                        fontSize:20,
-                        fontWeight:'400',
+                    headerTitleStyle: {
+                        fontSize:18
                     },
+                    headerTintColor: '#000',
                     headerTitleAlign:'center',
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
+                    headerShadowVisible: false,
                     
                 }}
             />
@@ -182,9 +184,8 @@ const HomeStack = ({navigation}) => {
             <Stack.Screen 
                 name="Home"
                 component={HomeScreen}
-                
                 options={{
-                    title: "國立台北教育大學",
+                    title: "國立臺北教育大學",
                     headerTitleStyle: {
                         fontSize:18
                     },
@@ -192,17 +193,12 @@ const HomeStack = ({navigation}) => {
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
-                    headerShadowVisible: false,
-                    
-                    
+                    headerShadowVisible: false, 
                 }}
             />
             <Stack.Screen 
                 name="SetDestination"
                 component={SetDestinationScreen}
-                // tabBarStyle={
-                //     display:'none',
-                // },
                 options={{
                     title: "",
                     headerShown:false,
@@ -220,50 +216,48 @@ const HomeStack = ({navigation}) => {
                 name="WattingBus"
                 component={WattingBusScreen}
                 options={{
-                    title: "國立台北教育大學",
+                    title: "國立臺北教育大學",
                     headerTitleStyle: {
-                        fontWeight:'400',
-                        fontSize:20
+                        fontSize:18
                     },
                     headerTitleAlign:'center',
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
                     headerShadowVisible: false,
-                    
+                    headerLeft: () => <View />,
                 }}
             />
             <Stack.Screen 
                 name="TakingBus"
                 component={TakingBusScreen}
                 options={{
-                    title: "國立台北教育大學",
+                    title: "西門市場(成都)",
                     headerTitleStyle: {
-                        fontWeight:'400',
-                        fontSize:20
+                        fontSize:18
                     },
                     headerTitleAlign:'center',
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
                     headerShadowVisible: false,
-                    
+                    headerLeft: () => <View />,
                 }}
             />
             <Stack.Screen 
                 name="ArriveDestination"
                 component={ArriveDestinationScreen}
                 options={{
-                    title: "",
+                    title: "西寧南路",
                     headerTitleStyle: {
-                        fontWeight:'400',
-                        fontSize:20
+                        fontSize:18
                     },
+                    headerTitleAlign:'center',
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
-                    
                     headerShadowVisible: false,
+                    headerLeft: () => <View />,
                 }}
             />
             <Stack.Screen 
@@ -291,15 +285,14 @@ const SearchStack = ({navigation}) => {
                 component={SearchScreen}
                 options={{
                     title: '搜尋公車路線',
-                    headerTitleStyle:{
-                        fontSize:20,
-                        fontWeight:'400',
+                    headerTitleStyle: {
+                        fontSize:18
                     },
                     headerTitleAlign:'center',
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
-                    
+                    headerShadowVisible: false,
                 }}
             />
             <Stack.Screen 
@@ -323,29 +316,30 @@ const SettingStack = ({navigation}) => {
                 component={SettingScreen}
                 options={{
                     title: '設定',
-                    headerTitleStyle:{
-                        fontSize:20,
-                        fontWeight:'400',
+                    headerTitleStyle: {
+                        fontSize:18
                     },
                     headerTitleAlign:'center',
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
-                    
+                    headerShadowVisible: false,
                 }}
             />
             <Stack.Screen 
                 name="ChangePassword"
                 component={ChangePasswordScreen}
                 options={{
-                    title: '修改密碼',
-                    headerTitleStyle:{
-                        fontSize:20,
-                        fontWeight:'400',
+                    title: '更改密碼',
+                    headerTitleStyle: {
+                        fontSize:18
                     },
+                    headerTintColor: '#000',
+                    headerTitleAlign:'center',
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
+                    headerShadowVisible: false,
                 }}
             />
             <Stack.Screen 
@@ -353,13 +347,15 @@ const SettingStack = ({navigation}) => {
                 component={QuestionScreen}
                 options={{
                     title: '常見問題',
-                    headerTitleStyle:{
-                        fontSize:20,
-                        fontWeight:'400',
+                    headerTitleStyle: {
+                        fontSize:18
                     },
+                    headerTintColor: '#000',
+                    headerTitleAlign:'center',
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
+                    headerShadowVisible: false,
                 }}
             />
             <Stack.Screen 
@@ -367,13 +363,15 @@ const SettingStack = ({navigation}) => {
                 component={UsageScreen}
                 options={{
                     title: '使用方式',
-                    headerTitleStyle:{
-                        fontSize:20,
-                        fontWeight:'400',
+                    headerTitleStyle: {
+                        fontSize:18
                     },
+                    headerTintColor: '#000',
+                    headerTitleAlign:'center',
                     headerStyle:{
                         backgroundColor:'#C4D7F3'
                     },
+                    headerShadowVisible: false,
                 }}
             />
         </Stack.Navigator>

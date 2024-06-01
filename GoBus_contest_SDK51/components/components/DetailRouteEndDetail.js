@@ -12,28 +12,26 @@ const DetailRouteCard = props => {
                     <View key={index} style={styles.context}>
                         {item.arrivalTime === "進站中" || item.arrivalTime === "將進站" ? (
                             <View style={[styles.arrivalTime, { backgroundColor: '#F3DB56' }]}>
-                                <Text style={[styles.arrivalTimeText, { backgroundColor: '#F3DB56' }]}>{item.arrivalTime}</Text>
+                                <Text style={styles.arrivalTimeText}>{item.arrivalTime}</Text>
                             </View>
                         ) : (
                             <View style={styles.arrivalTime}>
                                 <Text style={styles.arrivalTimeText}>{item.arrivalTime} 分</Text>
-
                             </View>
                         )}
-
                         <View style={styles.station}>
                             <Text style={styles.stationText}>{item.station}</Text>
                         </View>
                         {item.arrivalTime === "進站中" ? (
                             <View style={styles.spot}>
                                 <View>
-                                    <Text style={styles.arrivalBusNum}>{busRoute.routes[0].arrivalBusNum}</Text>
+                                    <View style={styles.arrivalBusNumBox}>
+                                        <Text style={styles.arrivalBusNum}>{busRoute.routes[0].arrivalBusNum}</Text>
+                                    </View>
                                     <MaterialCommunityIcons name="menu-down" color={'#F3DB56'} size={20} style={styles.menudown} />
                                 </View>
                                 <MaterialCommunityIcons name="checkbox-blank-circle" color={'#EBAFA3'} size={20} style={styles.checkboxblankcircle} />
-
                             </View>
-
                         ) : (
                             <View style={styles.spot}>
                                 <View >
@@ -41,10 +39,8 @@ const DetailRouteCard = props => {
                                 </View>
                             </View>
                         )}
-
                     </View>
                 ))}
-
             </VStack>
         )
     } else (null)
@@ -57,7 +53,6 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         marginBottom: 6,
         marginTop: 6,
-
     },
     station: {
         fontSize: 16,
@@ -84,8 +79,8 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         textAlign: 'center',
         alignItems: 'center',
+        marginLeft: 0,
         width: 87,
-
         backgroundColor: '#C4D7F3',
         borderRadius: 18
     },
@@ -106,21 +101,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
     },
-    arrivalBusNum: {
-        marginLeft: -28,
-        marginTop: -20,
+    arrivalBusNumBox:{
         backgroundColor: '#F3DB56',
         borderRadius: 9,
+        width: 80,
+        margin: 3,
+        marginLeft: -35,
+        marginTop: -20,
         padding: 3,
         paddingLeft: 5,
         paddingRight: 5
     },
-    menudown:{
-        marginTop:-9
+    arrivalBusNum: {
+
     },
-    checkboxblankcircle:{
-        marginLeft:-25,
-        marginTop:-10
+    menudown: {
+        marginTop: -12
+    },
+    checkboxblankcircle: {
+        marginLeft: -25,
+        marginTop: -10
     }
 });
 export default DetailRouteCard;

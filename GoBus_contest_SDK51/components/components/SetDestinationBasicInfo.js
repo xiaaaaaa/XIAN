@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Image, Pressable, Linking} from "react-native";
+import { StyleSheet, View, Text, Image, Pressable, Linking, Platform} from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { HStack, VStack, Box, Center } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -38,16 +38,16 @@ const SetDestinationBasicInfo = (props) => {
             <Text style={styles.sectionHeader}>國立台北教育大學站</Text>
             <HStack style={styles.route}>
                 <Text style={styles.toText}>往</Text>
-                <Box flex={1}>
+                <Box flex={1} style={{borderWidth:0}}>
                     <SegmentedControlTab 
                         values={[data[0].routes[0].busRoute, data[0].routes[1].busRoute]}
-                        activeTabStyle={{
+                       activeTabStyle={{
                             width:194,
                             height:53,
                             backgroundColor: "#fff",   
                             borderColor: '#C4D7F3',
                             shadowColor:'#000',
-                            shadowOffset: { width: 0, height: 20},
+                            shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
                             shadowOpacity: 0.1,
                             // Android Only
                             elevation: 3,
@@ -57,13 +57,13 @@ const SetDestinationBasicInfo = (props) => {
                             height:53,
                             backgroundColor: "#C4D7F3",
                             borderColor: "#C4D7F3",
-                            borderWidth:2,
+                            borderWidth:1,
                         }}
-                        firstTabStyle={{ marginLeft: 8,  borderTopLeftRadius:9,borderBottomLeftRadius:9,}}
-                        lastTabStyle={{ marginRight: 0, borderTopRightRadius:9, borderBottomRightRadius:9 }}
+                        firstTabStyle={{ marginLeft: 5,  borderTopLeftRadius:9,borderBottomLeftRadius:9,}}
+                        lastTabStyle={{ marginRight: 5, borderTopRightRadius:9, borderBottomRightRadius:9,}}
                         textNumberOfLines={2}
                         tabTextStyle={{ 
-                            fontSize: 16, color: "#354967", borderWidth:0,
+                            fontSize: 16, color: "#354967", borderWidth:0,fontWeight:'500',
                             textAlign: 'center',
                             lineHeight:20,
                             padding:0,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     },
     destinationText:{
         fontSize:16,
-        marginBottom:10,
+        marginBottom:8,
     },
     sectionHeader:{
         fontSize:16,
