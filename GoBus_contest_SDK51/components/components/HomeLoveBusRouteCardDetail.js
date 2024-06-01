@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
         //borderWidth:1,
     },
     actionsheet:{
-        width:377,
+        width:355,
         backgroundColor:'#DFDFDF',
         marginBottom:10,
         borderWidth:0,
