@@ -115,7 +115,7 @@ const WattingBus = ({ route }) => {
                         body,
                     });
                 }}>
-                <MaterialCommunityIcons name="arrow-right" color={'#fff'} size={30} />
+                <MaterialCommunityIcons name="arrow-right" color={'#000'} size={30} />
             </Fab>
             <Fab
                 size="sm"
