@@ -34,25 +34,26 @@ const HomeLoveBusRouteCardDetail = props => {
     if(busRoute.favoriteSotp === 1){
         return(
             <View style={styles.loveRoute}>
-                <Pressable onPress={handleClose}>
-                    <HStack space="none" reversed={false} style={styles.busRouteCard}>
-                        {busRoute.busNum ==='18'?(
-                            <View style={[styles.busNumCard,{backgroundColor:'#F3DB56'}]}>
-                                <Text style={styles.busNum}>{busRoute.busNum}</Text>
-                            </View>
-                        ):(
-                            <View style={styles.busNumCard}>
-                                <Text style={styles.busNum}>{busRoute.busNum}</Text>
-                            </View>
-                        )}
+                <HStack space="none" reversed={false} style={styles.busRouteCard}>
+                    {busRoute.busNum ==='18'?(
+                        <View style={[styles.busNumCard,{backgroundColor:'#F3DB56'}]}>
+                            <Text style={styles.busNum}>{busRoute.busNum}</Text>
+                        </View>
+                    ):(
+                        <View style={styles.busNumCard}>
+                            <Text style={styles.busNum}>{busRoute.busNum}</Text>
+                        </View>
+                    )}
 
-                        <HStack style={styles.arrivalTimeCard}>
-                            <Text style={styles.timeNum}>{findStopNum()}</Text>
-                            <Text style={styles.unit}>分</Text>
+                    <HStack style={styles.arrivalTimeCard}>
+                        <Text style={styles.timeNum}>{findStopNum()}</Text>
+                        <Text style={styles.unit}>分</Text>
+                        <Pressable onPress={handleClose}>
                             <MaterialCommunityIcons name="chevron-right" color={'#000'} size={15} style={styles.icon}/>
-                        </HStack>
+                        </Pressable>
                     </HStack>
-                </Pressable>
+                </HStack>
+
 
                 <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
                     <ActionsheetBackdrop />
