@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "fin_4_GoBus",
-    "slug": "GoBus_contest_SDK51",
+    "slug": "fin_4_GoBus",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -37,20 +37,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "0b6e6c0f-66e2-4bb4-adc8-4713791faea8"
-      }
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/0b6e6c0f-66e2-4bb4-adc8-4713791faea8"
     }
   }
 }
