@@ -40,13 +40,13 @@ const SettingScreen = () => {
                     <Text style={styles.DarkModeText}>使用者名稱</Text>
                     <HStack>
                         {edit > 0 ?
-                            <Input style={styles.userNameEdit} variant="underlined" isReadOnly={false} >
-                                <InputField type="text" onChangeText={handleChangeText}/>
+                            <Input style={styles.userNameEdit} variant="underlined" isReadOnly={false}>
+                                <InputField type="text" onChangeText={handleChangeText}  />
 
                             </Input>
                             :
                             <Input style={styles.userName} variant="underlined" isReadOnly={true} value={userName}>
-                                <InputField type="text" />
+                                <InputField type="text"  value={userName}/>
                             </Input>
                         }
                         <Pressable
