@@ -11,7 +11,7 @@ import Constants from 'expo-constants';
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
         shouldShowAlert: true,
-        shouldPlaySound: false,
+        shouldPlaySound: true,
         shouldSetBadge: false,
     }),
 });
@@ -48,7 +48,8 @@ async function registerForPushNotificationsAsync() {
 async function sendPushNotification({ token, title, body }) {
     const message = {
         to: token,
-        title, body
+        title, body,
+        sound:'default'
     };
     const options = {
         method: 'POST',
