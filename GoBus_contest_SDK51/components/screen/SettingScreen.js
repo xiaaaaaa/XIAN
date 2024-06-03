@@ -4,13 +4,33 @@ import { Text, View, HStack, Switch, Input, InputField, InputSlot, InputIcon, Bu
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from "react-native-vector-icons/AntDesign";
 import { useNavigation } from '@react-navigation/native';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCounter } from "../redux/Slice";
+import { updateUserName } from '../redux/Slice';
 
 const SettingScreen = () => {
     const [edit, setEdit] = useState(0);
     const navigation = useNavigation();
     const hideKeyboard = () => {
         Keyboard.dismiss();
+    };
+    const dispatch = useDispatch();
+    const userName = useSelector((state) => state.counter.userName);
+
+
+    const [inputValue, setInputValue] = useState(userName);
+
+    const handleChangeText = (text) => {
+        setInputValue(text);
+    };
+
+    const handleSave = () => {
+        dispatch(updateUserName(inputValue));
+    };
+
+    const handleEditPress = () => {
+        handleSave();
+        setEdit(edit - 1);
     };
     return (
         <TouchableWithoutFeedback onPress={hideKeyboard}>
@@ -20,62 +40,60 @@ const SettingScreen = () => {
                     <Text style={styles.DarkModeText}>使用者名稱</Text>
                     <HStack>
                         {edit > 0 ?
-                            <Input style={styles.userNameEdit} variant="underlined" isReadOnly={false}>
-                                <InputField type="text" />
+                            <Input style={styles.userNameEdit} variant="underlined" isReadOnly={false} >
+                                <InputField type="text" onChangeText={handleChangeText}/>
 
                             </Input>
                             :
-                            <Input style={styles.userName} variant="underlined" isReadOnly={true}>
+                            <Input style={styles.userName} variant="underlined" isReadOnly={true} value={userName}>
                                 <InputField type="text" />
                             </Input>
                         }
-
-
                         <Pressable
-                            onPress={() => (edit > 0 ? (setEdit(edit - 1)) : (setEdit(edit + 1)))}
+                            onPress={() => (edit > 0 ? (handleEditPress()) : (setEdit(edit + 1)))}
                         >
-                            {edit > 0 ?
-                                <HStack>
-                                    <MaterialCommunityIcons name="check" color={'#3987FA'} size={20} style={{ marginTop: 27 }} />
-                                </HStack>
-                                :
-                                <HStack>
-                                    <MaterialCommunityIcons name="pencil" color={'#898A8D'} size={20} style={{ marginTop: 26 }} />
-                                </HStack>
-                            }
+                        {edit > 0 ?
+                            <HStack>
+                                <MaterialCommunityIcons name="check" color={'#3987FA'} size={20} style={{ marginTop: 27 }} />
+                            </HStack>
+                            :
+                            <HStack>
+                                <MaterialCommunityIcons name="pencil" color={'#898A8D'} size={20} style={{ marginTop: 26 }} />
+                            </HStack>
+                        }
 
-                        </Pressable>
-                    </HStack>
-                </HStack>
-                <HStack style={styles.DarkMode}>
-                    <Text style={styles.DarkModeText}>更改密碼</Text>
-                    <Pressable onPress={() => navigation.navigate('ChangePassword')}>
-                        <Icon name={'right'} size={20} style={[styles.right, { marginRight: 20 }]} />
                     </Pressable>
                 </HStack>
-                {/* <Text style={styles.Text}>偏好設定</Text>
+            </HStack>
+            <HStack style={styles.DarkMode}>
+                <Text style={styles.DarkModeText}>更改密碼</Text>
+                <Pressable onPress={() => navigation.navigate('ChangePassword')}>
+                    <Icon name={'right'} size={20} style={[styles.right, { marginRight: 20 }]} />
+                </Pressable>
+            </HStack>
+            {/* <Text style={styles.Text}>偏好設定</Text>
             <HStack style={styles.DarkMode}>
                 <Text style={styles.DarkModeText}>深色主題</Text>
                 <Switch size="md" isDisabled={false} style={styles.DarkModeSwitch} />
             </HStack> */}
-                <HStack style={styles.context}>
-                    <Text style={styles.Text}>常見問題</Text>
-                    <Pressable onPress={() => navigation.navigate('Question')}>
-                        <Icon name={'right'} size={20} style={[styles.right, { marginTop: 10 }]} />
-                    </Pressable>
-                </HStack>
-                <HStack style={styles.context}>
-                    <Text style={styles.Text}>使用方式</Text>
-                    <Pressable onPress={() => navigation.navigate('Usage')}>
-                        <Icon name={'right'} size={20} style={[styles.right, { marginTop: 10 }]} />
-                    </Pressable>
-                </HStack>
-                <HStack style={styles.context}>
-                    <Text style={styles.Text}>版本</Text>
-                    <Text style={styles.versionText}>1.0</Text>
-                </HStack>
-            </View>
-        </TouchableWithoutFeedback>
+            <HStack style={styles.context}>
+                <Text style={styles.Text}>常見問題</Text>
+                <Pressable onPress={() => navigation.navigate('Question')}>
+                    <Icon name={'right'} size={20} style={[styles.right, { marginTop: 10 }]} />
+                </Pressable>
+            </HStack>
+            <HStack style={styles.context}>
+                <Text style={styles.Text}>使用方式</Text>
+                <Pressable onPress={() => navigation.navigate('Usage')}>
+                    <Icon name={'right'} size={20} style={[styles.right, { marginTop: 10 }]} />
+                </Pressable>
+            </HStack>
+            <HStack style={styles.context}>
+                <Text style={styles.Text}>版本</Text>
+                <Text style={styles.versionText}>1.0</Text>
+            </HStack>
+        </View>
+        </TouchableWithoutFeedback >
     );
 }
 

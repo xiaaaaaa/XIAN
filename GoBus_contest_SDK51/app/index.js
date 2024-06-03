@@ -1,4 +1,4 @@
-import { SafeAreaView, AppRegistry, Text, StatusBar} from 'react-native';
+import { SafeAreaView, AppRegistry, Text, StatusBar } from 'react-native';
 //import Navigation from './scr/navigation';
 import Navigation from '../components/navigation'
 import { GluestackUIProvider } from '@gluestack-ui/themed';
@@ -6,6 +6,8 @@ import { config } from "@gluestack-ui/config";
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
+import { Provider } from "react-redux";
+import store from "../components/redux/Store";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -60,14 +62,16 @@ async function sendPushNotification({ token, title, body }) {
 
 export default function App() {
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor:'#fff'}}>
-      
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+
       <GluestackUIProvider config={config}>
-      <StatusBar translucent={true} backgroundColor="transparent" barStyle='dark-content' />
-        <Navigation />  
+        <StatusBar translucent={true} backgroundColor="transparent" barStyle='dark-content' />
+        <Provider store={store}>
+          <Navigation />
+        </Provider>
         {/* <Text>sfasf</Text> */}
       </GluestackUIProvider>
-        {/* <Text>sfaf</Text> */}
+      {/* <Text>sfaf</Text> */}
     </SafeAreaView>
 
   );

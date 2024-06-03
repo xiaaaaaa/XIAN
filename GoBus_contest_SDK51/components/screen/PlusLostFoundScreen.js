@@ -5,9 +5,15 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import { Text, HStack, VStack, Center, Input, InputField, KeyboardAvoidingView } from '@gluestack-ui/themed';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCounter } from "../redux/Slice";
+import { updateUserName } from '../redux/Slice';
 
 const PlusLostFoundScreen = () => {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
+    const userName = useSelector(selectCounter);
+
     const [date, setDate] = useState(new Date())
     const [showPicker, setShowPicker] = useState(false);
     const [dateOfBirth, setDateOfBirth] = useState("");
@@ -60,7 +66,9 @@ const PlusLostFoundScreen = () => {
                 <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                     <View>
                         <Center style={{ height: 800, marginTop: -50, backgroundColor: '#fff' }}>
+
                             <VStack style={styles.Card}>
+                            <Text style={{ marginBottom: 20}}>嗨，{userName}</Text>
                                 <Text style={styles.text}>遺失的公車路線</Text>
                                 <Input variant="outline" size="md" isDisabled={false} isInvalid={false} isReadOnly={false} style={styles.input}>
                                     <InputField
@@ -137,7 +145,6 @@ const PlusLostFoundScreen = () => {
                                     </Pressable>
                                 )}
 
-
                             </VStack>
 
                             <VStack style={styles.Card}>
@@ -162,7 +169,6 @@ const PlusLostFoundScreen = () => {
                                 </Pressable>
                             </HStack>
                         </Center>
-
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
