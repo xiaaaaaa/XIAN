@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, Button, Pressable, Platform, TouchableOpacity, ScrollView} from 'react-native';
+import { StyleSheet, View, Button, Pressable, Platform, TouchableOpacity, ScrollView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 //import DatePicker from 'react-native-date-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
@@ -11,7 +11,9 @@ const PlusLostFoundScreen = () => {
     const [date, setDate] = useState(new Date())
     const [showPicker, setShowPicker] = useState(false);
     const [dateOfBirth, setDateOfBirth] = useState("");
-
+    const hideKeyboard = () => {
+        Keyboard.dismiss();
+    };
     const toggleDatepicker = () => {
         setShowPicker(!showPicker);
     };
@@ -49,120 +51,122 @@ const PlusLostFoundScreen = () => {
     }
 
     return (
-        <KeyboardAvoidingView
-            keyboardVerticalOffset={Platform.select({ ios: 90, android: -500 })}
-            behavior={Platform.OS === 'ios' ? "padding" : "height"}
-            flex={1}
-        >
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-                <View>
-                    <Center style={{ height: 800, marginTop: -50, backgroundColor: '#fff' }}>
-                        <VStack style={styles.Card}>
-                            <Text style={styles.text}>遺失的公車路線</Text>
-                            <Input variant="outline" size="md" isDisabled={false} isInvalid={false} isReadOnly={false} style={styles.input}>
-                                <InputField
-                                    placeholder='請輸入您遺失物品的公車路線'
-                                />
-                            </Input>
-                        </VStack>
+        <TouchableWithoutFeedback onPress={hideKeyboard}>
+            <KeyboardAvoidingView
+                keyboardVerticalOffset={Platform.select({ ios: 90, android: -500 })}
+                behavior={Platform.OS === 'ios' ? "padding" : "height"}
+                flex={1}
+            >
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                    <View>
+                        <Center style={{ height: 800, marginTop: -50, backgroundColor: '#fff' }}>
+                            <VStack style={styles.Card}>
+                                <Text style={styles.text}>遺失的公車路線</Text>
+                                <Input variant="outline" size="md" isDisabled={false} isInvalid={false} isReadOnly={false} style={styles.input}>
+                                    <InputField
+                                        placeholder='請輸入您遺失物品的公車路線'
+                                    />
+                                </Input>
+                            </VStack>
 
-                        <VStack style={styles.Card}>
-                            <Text style={styles.text}>遺失物品時間</Text>
+                            <VStack style={styles.Card}>
+                                <Text style={styles.text}>遺失物品時間</Text>
 
-                            {showPicker && (
-                                <DateTimePicker
-                                    mode="date"
-                                    display="spinner"
-                                    value={date}
-                                    onChange={onChange}
-                                    textColor='#000'
-                                    style={[styles.datePicker]}
-                                    maximumDate={new Date()}
-                                />
-                            )}
+                                {showPicker && (
+                                    <DateTimePicker
+                                        mode="date"
+                                        display="spinner"
+                                        value={date}
+                                        onChange={onChange}
+                                        textColor='#000'
+                                        style={[styles.datePicker]}
+                                        maximumDate={new Date()}
+                                    />
+                                )}
 
-                            {showPicker && Platform.OS === "ios" && (
-                                <View
-                                    style={{ flexDirection: 'row', justifyContent: 'space-around' }}
-                                >
-                                    <TouchableOpacity style={[
-                                        styles.button,
-                                        styles.pickerButton,
-                                        { backgroundColor: '#fff', borderWidth: 1, borderColor: '#075985' }
-                                    ]}
+                                {showPicker && Platform.OS === "ios" && (
+                                    <View
+                                        style={{ flexDirection: 'row', justifyContent: 'space-around' }}
+                                    >
+                                        <TouchableOpacity style={[
+                                            styles.button,
+                                            styles.pickerButton,
+                                            { backgroundColor: '#fff', borderWidth: 1, borderColor: '#075985' }
+                                        ]}
+                                            onPress={toggleDatepicker}
+                                        >
+                                            <Text style={[
+                                                styles.buttonText,
+                                                { color: '#075985' }
+                                            ]}>取消</Text>
+                                        </TouchableOpacity>
+
+                                        <TouchableOpacity style={[
+                                            styles.button,
+                                            styles.pickerButton,
+                                        ]}
+                                            onPress={confirmIOSDate}
+                                        >
+                                            <Text style={[
+                                                styles.buttonText,
+                                            ]}>確認</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                )}
+
+
+                                {!showPicker && (
+                                    <Pressable
                                         onPress={toggleDatepicker}
                                     >
-                                        <Text style={[
-                                            styles.buttonText,
-                                            { color: '#075985' }
-                                        ]}>取消</Text>
-                                    </TouchableOpacity>
+                                        <Input
+                                            variant="outline"
+                                            size="md"
+                                            isDisabled={true}
+                                            isInvalid={false}
+                                            isReadOnly={false}
+                                            style={styles.timeInput}
+                                        >
+                                            <InputField
+                                                value={dateOfBirth}
+                                                placeholder="2024-05-26"
+                                                onChangeText={setDateOfBirth}
+                                                onPressIn={toggleDatepicker}
+                                            />
+                                        </Input>
+                                    </Pressable>
+                                )}
 
-                                    <TouchableOpacity style={[
-                                        styles.button,
-                                        styles.pickerButton,
-                                    ]}
-                                        onPress={confirmIOSDate}
-                                    >
-                                        <Text style={[
-                                            styles.buttonText,
-                                        ]}>確認</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            )}
 
+                            </VStack>
 
-                            {!showPicker && (
-                                <Pressable
-                                    onPress={toggleDatepicker}
-                                >
-                                    <Input
-                                        variant="outline"
-                                        size="md"
-                                        isDisabled={true}
-                                        isInvalid={false}
-                                        isReadOnly={false}
-                                        style={styles.timeInput}
-                                    >
-                                        <InputField
-                                            value={dateOfBirth}
-                                            placeholder="2024-05-26"
-                                            onChangeText={setDateOfBirth}
-                                            onPressIn={toggleDatepicker}
-                                        />
-                                    </Input>
+                            <VStack style={styles.Card}>
+                                <Text style={styles.text}>遺失的物品</Text>
+                                <Input variant="outline" size="md" isDisabled={false} isInvalid={false} isReadOnly={false} style={styles.input}>
+                                    <InputField
+                                        placeholder='請輸入您遺失的物品 e.g. 水壺'
+                                    />
+                                </Input>
+                            </VStack>
+
+                            <HStack style={styles.getUpBTN}>
+                                <Pressable onPress={() => navigation.navigate('LostFound')}>
+                                    <View style={styles.getUpBTNCancel}>
+                                        <Text style={styles.btnTextCancel}>取消</Text>
+                                    </View>
                                 </Pressable>
-                            )}
+                                <Pressable onPress={() => navigation.navigate('LostFound')}>
+                                    <View style={styles.getUpBTNConfirm}>
+                                        <Text style={styles.btnTextConfirm}>確認</Text>
+                                    </View>
+                                </Pressable>
+                            </HStack>
+                        </Center>
 
-
-                        </VStack>
-
-                        <VStack style={styles.Card}>
-                            <Text style={styles.text}>遺失的物品</Text>
-                            <Input variant="outline" size="md" isDisabled={false} isInvalid={false} isReadOnly={false} style={styles.input}>
-                                <InputField
-                                    placeholder='請輸入您遺失的物品 e.g. 水壺'
-                                />
-                            </Input>
-                        </VStack>
-
-                        <HStack style={styles.getUpBTN}>
-                            <Pressable onPress={() => navigation.navigate('LostFound')}>
-                                <View style={styles.getUpBTNCancel}>
-                                    <Text style={styles.btnTextCancel}>取消</Text>
-                                </View>
-                            </Pressable>
-                            <Pressable onPress={() => navigation.navigate('LostFound')}>
-                                <View style={styles.getUpBTNConfirm}>
-                                    <Text style={styles.btnTextConfirm}>確認</Text>
-                                </View>
-                            </Pressable>
-                        </HStack>
-                    </Center>
-
-                </View>
-            </ScrollView>
-        </KeyboardAvoidingView>
+                    </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
+        </TouchableWithoutFeedback>
     );
 }
 

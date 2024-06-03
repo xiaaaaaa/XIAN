@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Platform, Pressable } from 'react-native';
+import { StyleSheet, Keyboard, View, Platform, Pressable, TouchableWithoutFeedback } from 'react-native';
 import { Text, Center, Input, InputField, InputSlot, InputIcon, EyeIcon, EyeOffIcon, HStack, KeyboardAvoidingView } from '@gluestack-ui/themed';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView, VStack } from "native-base";
@@ -25,72 +25,76 @@ const ChangePasswordScreen = () => {
             return !showState
         })
     }
-
+    const hideKeyboard = () => {
+        Keyboard.dismiss();
+    };
     return (
-        <KeyboardAvoidingView
-            keyboardVerticalOffset={Platform.select({ ios: 90, android: -500 })}
-            behavior={Platform.OS === 'ios' ? "padding" : "height"}
-            flex={1}
-        >
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-                <Center style={{ height: 755, backgroundColor: '#fff' }}>
-                    <View>
-                        <VStack style={{ marginBottom: 40 }}>
-                            <Text style={styles.text}>舊密碼</Text>
-                            {/* <Input variant="rounded" size="md" isDisabled={false} isInvalid={false} isReadOnly={false} style={styles.input}>
+        <TouchableWithoutFeedback onPress={hideKeyboard}>
+            <KeyboardAvoidingView
+                keyboardVerticalOffset={Platform.select({ ios: 90, android: -500 })}
+                behavior={Platform.OS === 'ios' ? "padding" : "height"}
+                flex={1}
+            >
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                    <Center style={{ height: 755, backgroundColor: '#fff' }}>
+                        <View>
+                            <VStack style={{ marginBottom: 40 }}>
+                                <Text style={styles.text}>舊密碼</Text>
+                                {/* <Input variant="rounded" size="md" isDisabled={false} isInvalid={false} isReadOnly={false} style={styles.input}>
                         <InputField
                             placeholder='請輸入舊密碼'
                         />
                     </Input> */}
-                            <Input textAlign="center" style={styles.input}>
-                                <InputField type={showPassword1 ? "text" : "password"} />
-                                <InputSlot pr="$3" onPress={handleState1}>
-                                    {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-                                    <InputIcon
-                                        as={showPassword1 ? EyeIcon : EyeOffIcon}
-                                        color="$darkBlue500"
-                                    />
-                                </InputSlot>
-                            </Input>
-                        </VStack>
-                        <VStack style={{ marginBottom: 20 }}>
-                            <Text style={styles.text}>新密碼</Text>
-                            <Input textAlign="center" style={styles.input}>
-                                <InputField type={showPassword2 ? "text" : "password"} />
-                                <InputSlot pr="$3" onPress={handleState2}>
-                                    {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-                                    <InputIcon
-                                        as={showPassword2 ? EyeIcon : EyeOffIcon}
-                                        color="$darkBlue500"
-                                    />
-                                </InputSlot>
-                            </Input>
-                        </VStack>
-                        <VStack style={{ marginBottom: 70 }}>
-                            <Text style={styles.text}>重新輸入新密碼</Text>
-                            <Input textAlign="center" style={styles.input}>
-                                <InputField type={showPassword3 ? "text" : "password"} />
-                                <InputSlot pr="$3" onPress={handleState3}>
-                                    {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-                                    <InputIcon
-                                        as={showPassword3 ? EyeIcon : EyeOffIcon}
-                                        color="$darkBlue500"
-                                    />
-                                </InputSlot>
-                            </Input>
-                        </VStack>
-                        <Pressable onPress={() => navigation.navigate('Setting')}>
-                            <HStack style={styles.getUpBTN}>
-                                <Text style={styles.btnText}>確認</Text>
-                            </HStack>
-                        </Pressable>
-                        {/* <HStack style={styles.getUpBTN}>
+                                <Input textAlign="center" style={styles.input}>
+                                    <InputField type={showPassword1 ? "text" : "password"} />
+                                    <InputSlot pr="$3" onPress={handleState1}>
+                                        {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
+                                        <InputIcon
+                                            as={showPassword1 ? EyeIcon : EyeOffIcon}
+                                            color="$darkBlue500"
+                                        />
+                                    </InputSlot>
+                                </Input>
+                            </VStack>
+                            <VStack style={{ marginBottom: 20 }}>
+                                <Text style={styles.text}>新密碼</Text>
+                                <Input textAlign="center" style={styles.input}>
+                                    <InputField type={showPassword2 ? "text" : "password"} />
+                                    <InputSlot pr="$3" onPress={handleState2}>
+                                        {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
+                                        <InputIcon
+                                            as={showPassword2 ? EyeIcon : EyeOffIcon}
+                                            color="$darkBlue500"
+                                        />
+                                    </InputSlot>
+                                </Input>
+                            </VStack>
+                            <VStack style={{ marginBottom: 70 }}>
+                                <Text style={styles.text}>重新輸入新密碼</Text>
+                                <Input textAlign="center" style={styles.input}>
+                                    <InputField type={showPassword3 ? "text" : "password"} />
+                                    <InputSlot pr="$3" onPress={handleState3}>
+                                        {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
+                                        <InputIcon
+                                            as={showPassword3 ? EyeIcon : EyeOffIcon}
+                                            color="$darkBlue500"
+                                        />
+                                    </InputSlot>
+                                </Input>
+                            </VStack>
+                            <Pressable onPress={() => navigation.navigate('Setting')}>
+                                <HStack style={styles.getUpBTN}>
+                                    <Text style={styles.btnText}>確認</Text>
+                                </HStack>
+                            </Pressable>
+                            {/* <HStack style={styles.getUpBTN}>
                     <Text style={styles.btnText}>確認</Text>
                 </HStack> */}
-                    </View>
-                </Center>
-            </ScrollView>
-        </KeyboardAvoidingView>
+                        </View>
+                    </Center>
+                </ScrollView>
+            </KeyboardAvoidingView>
+        </TouchableWithoutFeedback>
     );
 }
 
