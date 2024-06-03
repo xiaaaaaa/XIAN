@@ -35,9 +35,6 @@ const Tab = createBottomTabNavigator();
 
 const Navigation = () => {
     return (
-        // <NavigationContainer>
-        //     <MyTab  />
-        // </NavigationContainer>
         <NativeBaseProvider>
             <NavigationContainer independent={true} theme={MyTheme}>
                 <MyTab />
