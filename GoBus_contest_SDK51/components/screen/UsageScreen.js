@@ -70,11 +70,11 @@ const UsageScreen = () => {
                         <AccordionContent>
                             <Image
                                 style={styles.usage2_1Image}
-                                source={require('../image/usage2-1.png')}
+                                source={require('../image/usage2_1.png')}
                             />
                             <Image
                                 style={styles.usage2_2Image}
-                                source={require('../image/usage2-2.png')}
+                                source={require('../image/usage2_2.png')}
                             />
                             
                         </AccordionContent>
@@ -99,9 +99,14 @@ const UsageScreen = () => {
                             </AccordionTrigger>
                         </AccordionHeader>
                         <AccordionContent>
-                            <AccordionContentText>
-                                至手機的設定中打開「上巴 GoBus 」軟體通知。
-                            </AccordionContentText>
+                                <Image
+                                    style={styles.usage3_1Image}
+                                    source={require('../image/usage3_1.png')}
+                                />
+                                <Image
+                                    style={styles.usage3_2Image}
+                                    source={require('../image/usage3_2.png')}
+                                />
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="d">
@@ -158,6 +163,17 @@ const styles = StyleSheet.create({
         marginTop:50,
         width:317,
         height:529,
+        resizeMode:'cover',
+    },
+    usage3_1Image:{
+        width:317,
+        height:812,
+        resizeMode:'cover',
+    },
+    usage3_2Image:{
+        marginTop:50,
+        width:317,
+        height:539,
         resizeMode:'cover',
     },
     usage4Image:{
