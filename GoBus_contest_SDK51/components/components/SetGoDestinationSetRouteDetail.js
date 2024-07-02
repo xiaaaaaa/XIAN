@@ -1,17 +1,31 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { StyleSheet, View, Text, Image, Pressable, Linking } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { HStack, VStack, Box, Center } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Provider , useDispatch, useSelector } from "react-redux";
+import { selectDestination } from "../redux/Slice";
+import { setbusInfoDestination } from "../redux/Slice";
+
 
 const SetGoDestinationSetRouteDetail = props => {
     let { busRoute } = props;
     let thisBusStop = 100;
     let nowBusStop = 100;
 
+    // state ---------
+    const destination = useSelector(selectDestination);
+    //const busNum = [bus.busNum];
+    const dispatch = useDispatch();
+    const [destinationState, setDestinationState] = useState(destination);
+
+    useEffect(()=>{
+        dispatch(setbusInfoDestination(destinationState))
+    }, [destinationState]);
+
     const findthisStopNum = () => {
-        for (let i = 0; i < busRoute.detail[0].stationNum; i++) {
-            if (busRoute.routes[0].data[i].station === '國立臺北教育大學') {
+        for (let i = 0; i < busRoute.stationNum; i++) {
+            if (busRoute.data[i].station === '國立臺北教育大學') {
                 thisBusStop = i;
             }
         }
@@ -19,30 +33,38 @@ const SetGoDestinationSetRouteDetail = props => {
     findthisStopNum();
 
     const findnowStopNum = (num) => {
-        for (let i = 0; i < busRoute.detail[0].stationNum; i++) {
-            if (busRoute.routes[0].data[i].station === num) {
+        for (let i = 0; i < busRoute.stationNum; i++) {
+            if (busRoute.data[i].station === num) {
                 nowBusStop = i;
             }
         }
         return (nowBusStop);
     }
-
-    if (busRoute.busNum === "18" && busRoute.routes[0].busRoute === "萬華") {
+    
+    if (true) {
         return (
             <Center>
+                <Text>{busRoute.busRoute}</Text>
                 <VStack style={styles.setDestinationCard}>
-                    {busRoute.routes[0].data.map((item, index) => (
+                    {busRoute.data.map((item, index) => (
                         <>
                             {findnowStopNum(item.station) <= thisBusStop ? (
                                 null
                             ) : (
                                 <View key={index} style={styles.context}>
-                                    {findnowStopNum(item.station) === thisBusStop + 1 ? (
-                                        <View style={styles.stationTextBox}>
-                                            <Text style={styles.stationText}>{item.station}</Text>
-                                        </View>
+                                    {destination === item.station ? (
+                                        <Pressable onPress={() => setDestinationState(item.station)}>
+                                            <View style={styles.stationTextBox}>
+                                                <Text style={styles.stationText}>{item.station}</Text>
+                                            </View>
+                                        </Pressable>
                                     ) : (
-                                        <Text style={[styles.stationText, { backgroundColor: '#FFF' }]}>{item.station}</Text>
+                                        // <Text style={[styles.stationText, { backgroundColor: '#FFF' }]}>{item.station}</Text>
+                                        <Pressable onPress={() => setDestinationState(item.station)}>
+                                            <View style={[styles.stationTextBox, {backgroundColor:'#fff'}]}>
+                                                <Text style={styles.stationText}>{item.station}</Text>
+                                            </View>
+                                        </Pressable>
                                     )}
                                 </View>
                             )}

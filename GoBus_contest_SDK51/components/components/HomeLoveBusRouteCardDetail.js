@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { StyleSheet, View, Text, Image, Pressable, Linking} from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { HStack, Box,
@@ -13,13 +13,25 @@ import { HStack, Box,
     Divider,
 } from "@gluestack-ui/themed"; 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import { Provider , useDispatch, useSelector } from "react-redux";
+import { selectbusNum } from "../redux/Slice";
+import { setbusInfoBus } from "../redux/Slice";
 
 const HomeLoveBusRouteCardDetail = props => {
     let {busRoute} = props;
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(!showActionsheet);
     const navigation = useNavigation();
+
+     // state ---------
+     const busNum = useSelector(selectbusNum);
+     //const busNum = [bus.busNum];
+     const dispatch = useDispatch();
+     const [busNumState, setBusNumState] = useState(busNum);
+ 
+     useEffect(()=>{
+         dispatch(setbusInfoBus(busNumState))
+     }, [busNumState]);
 
     const findStopNum = () => {
         let num = 0;
@@ -33,47 +45,49 @@ const HomeLoveBusRouteCardDetail = props => {
 
     if(busRoute.favoriteSotp === 1){
         return(
-            <View style={styles.loveRoute}>
-                <HStack space="none" reversed={false} style={styles.busRouteCard}>
-                    {busRoute.busNum ==='18'?(
-                        <View style={[styles.busNumCard,{backgroundColor:'#F3DB56'}]}>
-                            <Text style={styles.busNum}>{busRoute.busNum}</Text>
-                        </View>
-                    ):(
-                        <View style={styles.busNumCard}>
-                            <Text style={styles.busNum}>{busRoute.busNum}</Text>
-                        </View>
-                    )}
+            <Pressable onPress={() => setBusNumState(busRoute.busNum)}>
+                <View style={styles.loveRoute}>
+                    <HStack space="none" reversed={false} style={styles.busRouteCard}>
+                        {busRoute.busNum === busNum?(
+                            <View style={[styles.busNumCard,{backgroundColor:'#F3DB56'}]}>
+                                <Text style={styles.busNum}>{busRoute.busNum}</Text>
+                            </View>
+                        ):(
+                            <View style={styles.busNumCard}>
+                                <Text style={styles.busNum}>{busRoute.busNum}</Text>
+                            </View>
+                        )}
 
-                    <HStack style={styles.arrivalTimeCard}>
-                        <Text style={styles.timeNum}>{findStopNum()}</Text>
-                        <Text style={styles.unit}>分</Text>
-                        <Pressable onPress={handleClose}>
-                            <MaterialCommunityIcons name="chevron-right" color={'#000'} size={15} style={styles.icon}/>
-                        </Pressable>
+                        <HStack style={styles.arrivalTimeCard}>
+                            <Text style={styles.timeNum}>{findStopNum()}</Text>
+                            <Text style={styles.unit}>分</Text>
+                            <Pressable onPress={handleClose}>
+                                <MaterialCommunityIcons name="chevron-right" color={'#000'} size={15} style={styles.icon}/>
+                            </Pressable>
+                        </HStack>
                     </HStack>
-                </HStack>
 
 
-                <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
-                    <ActionsheetBackdrop />
-                    <ActionsheetContent h="$72" zIndex={999} style={{backgroundColor:'transparent'}}>
-                        {/* <ActionsheetDragIndicatorWrapper>
-                            <ActionsheetDragIndicator />
-                        </ActionsheetDragIndicatorWrapper> */}
-                        <Center style={styles.actionsheet}>
-                            <Text style={styles.actionsheetTitle}>{busRoute.busNum}</Text>
-                            <Divider style={styles.actionsheetDivider}/>
-                            <Text onPress={() => {handleClose(); navigation.navigate("DetailRoute");}} style={styles.actionsheetText}>查看詳細路線</Text>
-                            <Divider style={styles.actionsheetDivider} />
-                            <Text onPress={handleClose} style={styles.actionsheetText}>設定為最愛路線</Text>
-                        </Center>
-                        <Center style={styles.actionsheet}>
-                            <Text onPress={handleClose} style={styles.actionsheetText}>Cancel</Text>
-                        </Center>
-                    </ActionsheetContent>
-                </Actionsheet>
-            </View>
+                    <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
+                        <ActionsheetBackdrop />
+                        <ActionsheetContent h="$72" zIndex={999} style={{backgroundColor:'transparent'}}>
+                            {/* <ActionsheetDragIndicatorWrapper>
+                                <ActionsheetDragIndicator />
+                            </ActionsheetDragIndicatorWrapper> */}
+                            <Center style={styles.actionsheet}>
+                                <Text style={styles.actionsheetTitle}>{busRoute.busNum}</Text>
+                                <Divider style={styles.actionsheetDivider}/>
+                                <Text onPress={() => {handleClose(); navigation.navigate("DetailRoute");}} style={styles.actionsheetText}>查看詳細路線</Text>
+                                <Divider style={styles.actionsheetDivider} />
+                                <Text onPress={handleClose} style={styles.actionsheetText}>設定為最愛路線</Text>
+                            </Center>
+                            <Center style={styles.actionsheet}>
+                                <Text onPress={handleClose} style={styles.actionsheetText}>Cancel</Text>
+                            </Center>
+                        </ActionsheetContent>
+                    </Actionsheet>
+                </View>
+            </Pressable>
 
         )
     }else null;

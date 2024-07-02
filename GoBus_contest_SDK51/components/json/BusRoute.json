@@ -10,14 +10,15 @@
         "detail": [
             {
                 "startEndStation": "萬華-捷運麟光站",
-                "startEndTime":"平日:0525~2300/假日:0525~2300",
-                "stationNum":32
+                "startEndTime":"平日:0525~2300/假日:0525~2300"
+                
             }
         ],
         "routes": [
             {
                 "busRoute": "萬華",
                 "arrivalBusNum": "KKA-0395",
+                "stationNum":32,
                 "data": [
                     {"station": "黎忠市場", "arrivalTime":14},
                     {"station": "富陽街口", "arrivalTime":"進站中"},
@@ -56,6 +57,7 @@
             {
                 "busRoute": "捷運麟光站",
                 "arrivalBusNum": "786-U3",
+                "stationNum":34,
                 "data": [
                     {"station": "華江站", "arrivalTime":24},
                     {"station": "人壽一村", "arrivalTime":25},
@@ -104,13 +106,14 @@
         "detail": [
             {
                 "startEndStation": "景明街口-聯合醫院中興院區(塔城)",
-                "startEndTime":"平日:0525~2300/假日:0525~2300",
-                "stationNum":32
+                "startEndTime":"平日:0525~2300/假日:0525~2300"
+                
             }
         ],
         "routes": [
             {
                 "busRoute": "景明街口",
+                "stationNum":32,
                 "data": [
                     {"station": "後車站","arrivalTime":34},
                     {"station": "圓環(重慶)","arrivalTime":35},
@@ -148,6 +151,7 @@
             },
             {
                 "busRoute": "聯合醫院中興院區(塔城)",
+                "stationNum":32,
                 "data": [
                     {"station": "景明街口","arrivalTime":43},
                     {"station": "武功國小(興隆)","arrivalTime":44},
@@ -194,13 +198,14 @@
         "detail": [
             {
                 "startEndStation": "汐止社后 - 景美",
-                "startEndTime":"平日:0500~2230/假日:0530~2230",
-                "stationNum":71
+                "startEndTime":"平日:0500~2230/假日:0530~2230"
+                
             }
         ],
         "routes": [
             {
                 "busRoute": "汐止社后",
+                "stationNum":71,
                 "data": [
                     {"station": "景華公園","arrivalTime":3},
                     {"station": "景美國中","arrivalTime":4},
@@ -278,6 +283,7 @@
             },
             {
                 "busRoute": "景美",
+                "stationNum":71,
                 "data": [
                     {"station": "福德二路","arrivalTime":"未發車"},
                     {"station": "泛碟科技","arrivalTime":"未發車"},
@@ -359,13 +365,14 @@
         "detail": [
             {
                 "startEndStation": "萬芳社區 - 衡陽路",
-                "startEndTime":"平日:0520~2300/假日:0520~2300",
-                "stationNum":34
+                "startEndTime":"平日:0520~2300/假日:0520~2300"
+                
             }
         ],
         "routes": [
             {
                 "busRoute": "萬芳社區",
+                "stationNum":34,
                 "data": [
                     {"station": "博愛路","arrivalTime":10},
                     {"station": "臺北郵局","arrivalTime":12},
@@ -405,6 +412,7 @@
             },
             {
                 "busRoute": "衡陽路",
+                "stationNum":34,
                 "data": [
                     {"station": "萬芳社區","arrivalTime":"未發車"},
                     {"station": "萬芳活動中心","arrivalTime":"未發車"},
@@ -452,13 +460,14 @@
         "detail": [
             {
                 "startEndStation": "麟光-大直",
-                "startEndTime":"平日:0600~2200/假日:0600~2200",
-                "stationNum":32
+                "startEndTime":"平日:0600~2200/假日:0600~2200"
+                
             }
         ],
         "routes": [
             {
                 "busRoute": "麟光",
+                "stationNum":32,
                 "data": [
                     {"station": "後車站","arrivalTime":34},
                     {"station": "圓環(重慶)","arrivalTime":35},
@@ -496,6 +505,7 @@
             },
             {
                 "busRoute": "大直",
+                "stationNum":32,
                 "data": [
                     {"station": "大我新舍","arrivalTime":15},
                     {"station": "麟光站","arrivalTime":16},

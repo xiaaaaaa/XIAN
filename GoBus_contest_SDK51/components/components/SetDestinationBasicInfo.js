@@ -5,17 +5,38 @@ import { HStack, VStack, Box, Center } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import SetDestinationSetRoute from "./SetDestinationSetRoute";
+import { Provider , useDispatch, useSelector } from "react-redux";
+// import { selectbusNum } from "../redux/Slice";
+// import { selectDestination } from "../redux/Slice";
+import { selectbusNum } from "../redux/Slice";
+import { selectDestination } from "../redux/Slice";
+// import { setbusInfoDestination } from "../redux/slice";
 
 const SetDestinationBasicInfo = (props) => {
     const {data} = props.busDetail;
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const destination = useSelector(selectDestination);
+
+    // state ---------
+    const busNum = useSelector(selectbusNum);
+
+    const findBusNum = (busNum) => {
+       let nowBusNumArray = 100;
+       for(let i=0; i<5; i++){
+         if(data[i].busNum === busNum ){
+           nowBusNumArray = i;
+         }
+       }
+  
+       return(nowBusNumArray)
+    }
 
     const SegmentedContent = () => {
         if (selectedIndex == 1) {
             return (
                 <View style={styles.SetDestinationCard}>
                     <Center>
-                        <Text style={styles.destinationText}>抵達目的地：臥龍街</Text>
+                        <Text style={[styles.destinationText,{fontWeight:'bold'}]}>抵達目的地：{destination}</Text>
                     </Center>
                     <SetDestinationSetRoute route={1}/>
                 </View> 
@@ -24,7 +45,7 @@ const SetDestinationBasicInfo = (props) => {
             return (
                 <View style={styles.SetDestinationCard}>
                     <Center>
-                        <Text style={styles.destinationText}>抵達目的地：復興南路口</Text>
+                        <Text style={[styles.destinationText,{fontWeight:'bold'}]}>抵達目的地：{destination}</Text>
                     </Center>
                     <SetDestinationSetRoute route={0}/>
                 </View> 
@@ -36,11 +57,12 @@ const SetDestinationBasicInfo = (props) => {
     return(
         <Center>
             <Text style={styles.sectionHeader}>國立台北教育大學站</Text>
+            <Text>{data[0].busNum}sdfg</Text>
             <HStack style={styles.route}>
                 <Text style={styles.toText}>往</Text>
                 <Box flex={1} style={{borderWidth:0}}>
                     <SegmentedControlTab 
-                        values={[data[0].routes[0].busRoute, data[0].routes[1].busRoute]}
+                        values={[data[findBusNum(busNum)].routes[0].busRoute, data[findBusNum(busNum)].routes[1].busRoute]}
                        activeTabStyle={{
                             width:194,
                             height:53,

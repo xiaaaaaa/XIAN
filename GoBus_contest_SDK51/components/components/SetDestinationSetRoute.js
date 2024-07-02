@@ -1,13 +1,30 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { SectionList, FlatList, StyleSheet, Text, Platform} from "react-native";
 import { Divider, Center, HStack, Box } from "@gluestack-ui/themed";
 import SegmentedControlTab from "react-native-segmented-control-tab";
+import { Provider , useDispatch, useSelector } from "react-redux";
+import { selectbusNum } from "../redux/Slice";
+
 
 import BusRouteData from "../json/BusRoute.json";
 import SetGoDestinationSetRouteDetail from "./SetGoDestinationSetRouteDetail";
 import SetBackDestinationSetRouteDetail from "./SetBackDestinationSetRouteDetail";
 
 const SetDestinationSetRoute = ({route}) =>{
+    // state ---------
+    const busNum = useSelector(selectbusNum);
+
+    const findBusNum = (busNum) => {
+      let nowBusNumArray = 100;
+      for(let i=0; i<5; i++){
+        if(BusRouteData[0].data[i].busNum === busNum ){
+          nowBusNumArray = i;
+        }
+      }
+
+      return(nowBusNumArray)
+    }
+
     const renderSectionHeader = ({ section }) => (
         <>
           {route === 1?(
@@ -53,7 +70,7 @@ const SetDestinationSetRoute = ({route}) =>{
         {route === 1?(
             <FlatList
               horizontal={false}
-              data={BusRouteData[0].data}
+              data={BusRouteData[0].data[findBusNum(busNum)].routes}
               renderItem={({ item }) => <SetBackDestinationSetRouteDetail busRoute={item} />}
               showsHorizontalScrollIndicator={false}
               keyExtractor={ item => item.title }
@@ -67,7 +84,7 @@ const SetDestinationSetRoute = ({route}) =>{
           ):(
             <FlatList
               horizontal={false}
-              data={BusRouteData[0].data}
+              data={BusRouteData[0].data[findBusNum(busNum)].routes}
               renderItem={({ item }) => <SetGoDestinationSetRouteDetail busRoute={item} />}
               showsHorizontalScrollIndicator={false}
               keyExtractor={ item => item.title }
@@ -79,6 +96,7 @@ const SetDestinationSetRoute = ({route}) =>{
             />
             //null
           )}
+          <Text>{BusRouteData[0].data[0].routes[0].busRoute}sdf</Text>
       </Center>
 
     );
