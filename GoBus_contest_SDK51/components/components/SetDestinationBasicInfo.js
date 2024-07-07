@@ -8,17 +8,20 @@ import SetDestinationSetRoute from "./SetDestinationSetRoute";
 import { Provider , useDispatch, useSelector } from "react-redux";
 // import { selectbusNum } from "../redux/Slice";
 // import { selectDestination } from "../redux/Slice";
-import { selectbusNum } from "../redux/Slice";
+import { selectbusNum, selectGoBack } from "../redux/Slice";
 import { selectDestination } from "../redux/Slice";
 // import { setbusInfoDestination } from "../redux/slice";
 
 const SetDestinationBasicInfo = (props) => {
-    const {data} = props.busDetail;
-    const [selectedIndex, setSelectedIndex] = useState(0);
-    const destination = useSelector(selectDestination);
-
     // state ---------
     const busNum = useSelector(selectbusNum);
+    const goBack = useSelector(selectGoBack);
+
+    const {data} = props.busDetail;
+    const [selectedIndex, setSelectedIndex] = useState(goBack);
+    const destination = useSelector(selectDestination);
+
+    
 
     const findBusNum = (busNum) => {
        let nowBusNumArray = 100;
@@ -57,7 +60,7 @@ const SetDestinationBasicInfo = (props) => {
     return(
         <Center>
             <Text style={styles.sectionHeader}>國立台北教育大學站</Text>
-            <Text>{data[0].busNum}sdfg</Text>
+            {/* <Text>{data[0].busNum}{goBack}sdfg</Text> */}
             <HStack style={styles.route}>
                 <Text style={styles.toText}>往</Text>
                 <Box flex={1} style={{borderWidth:0}}>

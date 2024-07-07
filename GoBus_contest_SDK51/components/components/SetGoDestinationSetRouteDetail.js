@@ -4,17 +4,19 @@ import { useNavigation } from '@react-navigation/native';
 import { HStack, VStack, Box, Center } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Provider , useDispatch, useSelector } from "react-redux";
-import { selectDestination } from "../redux/Slice";
+import { selectDestination, selectbusNum } from "../redux/Slice";
 import { setbusInfoDestination } from "../redux/Slice";
-
+import BusRouteData from "../json/BusRoute.json";
 
 const SetGoDestinationSetRouteDetail = props => {
     let { busRoute } = props;
+    //const {data} = props.busDetail;
     let thisBusStop = 100;
     let nowBusStop = 100;
 
     // state ---------
     const destination = useSelector(selectDestination);
+    const busNum = useSelector(selectbusNum);
     //const busNum = [bus.busNum];
     const dispatch = useDispatch();
     const [destinationState, setDestinationState] = useState(destination);
@@ -40,11 +42,23 @@ const SetGoDestinationSetRouteDetail = props => {
         }
         return (nowBusStop);
     }
+
+    const findBusNum = (busNum) => {
+        let nowBusNumArray = 100;
+        for(let i=0; i<5; i++){
+          if(BusRouteData[0].data[i].busNum === busNum ){
+            nowBusNumArray = i;
+          }
+        }
+   
+        return(nowBusNumArray)
+     }
+
     
-    if (true) {
+    if (busRoute.busRoute === BusRouteData[0].data[findBusNum(busNum)].routes[0].busRoute) {
         return (
             <Center>
-                <Text>{busRoute.busRoute}</Text>
+                {/* <Text>{busRoute.busRoute}/{BusRouteData[0].data[0].routes[0].busRoute}/{BusRouteData[0].data[1].busNum}/{busNum}</Text> */}
                 <VStack style={styles.setDestinationCard}>
                     {busRoute.data.map((item, index) => (
                         <>

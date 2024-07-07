@@ -3,8 +3,9 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 // Part1: Define Slice (including reducers and actions)
 const initialState = { 
   userName: "XIAN" ,
-  busNum:"" ,
-  destination: "（請選擇目的地）"
+  busNum:"18" ,
+  destination: "（請選擇目的地）",
+  goBack:100,
 };
 
 const counterSlice = createSlice({
@@ -20,6 +21,9 @@ const counterSlice = createSlice({
     },
     setbusInfoDestination:(state, action) => {
         state.destination = action.payload;
+    },
+    setgoBack:(state, action) => {
+      state.goBack = action.payload;
     }
   },
 });
@@ -30,6 +34,7 @@ export const { updateUserName } = counterSlice.actions;
 
 export const selectbusNum = (state) => state.counter.busNum;
 export const selectDestination = (state) => state.counter.destination;
-export const {setbusInfoBus, setbusInfoDestination} = counterSlice.actions;
+export const selectGoBack = (state) => state.counter.goBack;
+export const {setbusInfoBus, setbusInfoDestination, setgoBack} = counterSlice.actions;
 
 export default counterSlice.reducer;

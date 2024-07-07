@@ -96,7 +96,7 @@ const SetDestinationSetRoute = ({route}) =>{
             />
             //null
           )}
-          <Text>{BusRouteData[0].data[0].routes[0].busRoute}sdf</Text>
+          {/* <Text>{BusRouteData[0].data[0].routes[0].busRoute}sdf</Text> */}
       </Center>
 
     );

@@ -3,8 +3,9 @@ import { StyleSheet, View, Text, Image, Pressable, Linking } from "react-native"
 import { useNavigation } from '@react-navigation/native';
 import { HStack, VStack, Box, Center } from "@gluestack-ui/themed";
 import { Provider , useDispatch, useSelector } from "react-redux";
-import { selectDestination } from "../redux/Slice";
+import { selectDestination, selectbusNum } from "../redux/Slice";
 import { setbusInfoDestination } from "../redux/Slice";
+import BusRouteData from "../json/BusRoute.json";
 
 const SetBackDestinationSetRouteDetail = props => {
     let { busRoute } = props;
@@ -14,6 +15,7 @@ const SetBackDestinationSetRouteDetail = props => {
 
     // state ---------
     const destination = useSelector(selectDestination);
+    const busNum = useSelector(selectbusNum);
     //const busNum = [bus.busNum];
     const dispatch = useDispatch();
     const [destinationState, setDestinationState] = useState(destination);
@@ -43,10 +45,21 @@ const SetBackDestinationSetRouteDetail = props => {
         return (nowBusStop);
     }
 
-    if (busRoute.busRoute === busRoute.busRoute) {
+    const findBusNum = (busNum) => {
+        let nowBusNumArray = 100;
+        for(let i=0; i<5; i++){
+          if(BusRouteData[0].data[i].busNum === busNum ){
+            nowBusNumArray = i;
+          }
+        }
+   
+        return(nowBusNumArray)
+     }
+
+    if (busRoute.busRoute === BusRouteData[0].data[findBusNum(busNum)].routes[1].busRoute) {
         return (
             <Center>
-                <Text>{busRoute.busRoute}</Text>
+                {/* <Text>{busRoute.busRoute}</Text> */}
                 <VStack style={styles.setDestinationCard}>
                     {busRoute.data.map((item, index) => (
                         <>
@@ -82,7 +95,7 @@ const SetBackDestinationSetRouteDetail = props => {
                             )}
                         </>
                     ))}
-                    <Text>{busRoute.busRoute}kkj</Text>
+                    {/* <Text>{busRoute.busRoute}kkj</Text> */}
                 </VStack>
                 <Text style={{ paddingBottom: 10, backgroundColor: '#fff' }}></Text>
             </Center>

@@ -102,7 +102,7 @@
         "busNum": "52",
         "favoriteSotp": 0,
         "recordSotp": 0,
-        "arrivalBusNum": "471-FV",
+        
         "detail": [
             {
                 "startEndStation": "景明街口-聯合醫院中興院區(塔城)",
@@ -113,6 +113,7 @@
         "routes": [
             {
                 "busRoute": "景明街口",
+                "arrivalBusNum": "471-FV",
                 "stationNum":32,
                 "data": [
                     {"station": "後車站","arrivalTime":34},
@@ -151,6 +152,7 @@
             },
             {
                 "busRoute": "聯合醫院中興院區(塔城)",
+                "arrivalBusNum": "465-FW",
                 "stationNum":32,
                 "data": [
                     {"station": "景明街口","arrivalTime":43},
@@ -194,7 +196,7 @@
         "busNum": "284",
         "favoriteSotp": 0,
         "recordSotp": 1,
-        "arrivalBusNum": "EAA-209",
+        
         "detail": [
             {
                 "startEndStation": "汐止社后 - 景美",
@@ -205,6 +207,7 @@
         "routes": [
             {
                 "busRoute": "汐止社后",
+                "arrivalBusNum": "EAA-209",
                 "stationNum":71,
                 "data": [
                     {"station": "景華公園","arrivalTime":3},
@@ -283,6 +286,7 @@
             },
             {
                 "busRoute": "景美",
+                "arrivalBusNum": "EAA-220",
                 "stationNum":71,
                 "data": [
                     {"station": "福德二路","arrivalTime":"未發車"},
@@ -361,7 +365,7 @@
         "busNum": "和平幹線",
         "favoriteSotp": 1,
         "recordSotp": 1,
-        "arrivalBusNum": "EAL-0018",
+       
         "detail": [
             {
                 "startEndStation": "萬芳社區 - 衡陽路",
@@ -372,6 +376,7 @@
         "routes": [
             {
                 "busRoute": "萬芳社區",
+                "arrivalBusNum": "EAL-0018",
                 "stationNum":34,
                 "data": [
                     {"station": "博愛路","arrivalTime":10},
@@ -412,6 +417,7 @@
             },
             {
                 "busRoute": "衡陽路",
+                "arrivalBusNum": "EAL-0029",
                 "stationNum":34,
                 "data": [
                     {"station": "萬芳社區","arrivalTime":"未發車"},
@@ -456,7 +462,7 @@
         "busNum": "72",
         "favoriteSotp": 0,
         "recordSotp": 1,
-        "arrivalBusNum": "401-U3",
+        
         "detail": [
             {
                 "startEndStation": "麟光-大直",
@@ -467,6 +473,7 @@
         "routes": [
             {
                 "busRoute": "麟光",
+                "arrivalBusNum": "401-U3",
                 "stationNum":32,
                 "data": [
                     {"station": "後車站","arrivalTime":34},
@@ -505,6 +512,7 @@
             },
             {
                 "busRoute": "大直",
+                "arrivalBusNum": "791-FZc",
                 "stationNum":32,
                 "data": [
                     {"station": "大我新舍","arrivalTime":15},

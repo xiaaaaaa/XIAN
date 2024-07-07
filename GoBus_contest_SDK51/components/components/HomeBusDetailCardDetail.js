@@ -13,9 +13,17 @@ import Animated, {
     withRepeat,
     withTiming,
 } from "react-native-reanimated";
+import { Provider , useDispatch, useSelector } from "react-redux";
+import { selectbusNum } from "../redux/Slice";
+import { selectGoBack } from "../redux/Slice";
+import { setbusInfoBus, setgoBack } from "../redux/Slice";
+
+
+
 
 const HomeBusDetailCardDetail = (props) => {
     const { data } = props.busDetail;
+    // let {busRoute} = props;
     const [selectedIndex, setSelectedIndex] = useState(0);
     let station1 = data[0].routes[0].busRoute;
     let station2 = data[0].routes[1].busRoute;
@@ -24,6 +32,53 @@ const HomeBusDetailCardDetail = (props) => {
     const animatedStyles = useAnimatedStyle(() => ({
         transform: [{ translateX: translateX.value }],
     }));
+
+
+    // state ---------
+    const busNum = useSelector(selectbusNum);
+    const goBack = useSelector(selectGoBack);
+
+    const dispatch = useDispatch();
+    //const [goBackState, setGoBackState] = useState(selectedIndex);
+   
+    useEffect(()=>{
+        dispatch(setgoBack(selectedIndex))
+    }, [selectedIndex]);
+
+    // setBusNumState(selectedIndex);
+
+    // const dispatch = useDispatch();
+    //  const [busNumState, setBusNumState] = useState(busNum);
+ 
+    //  useEffect(()=>{
+    //      dispatch(setbusInfoBus(busNumState))
+    //  }, [busNumState]);
+
+    // const setSegmentedControlState = (index) => {
+    //     (index) => setSelectedIndex(index);
+    //     (index)=>setGoBackState(index);
+    // }
+
+    const findBusNum = (busNum) => {
+        let nowBusNumArray = 100;
+        for(let i=0; i<5; i++){
+          if(data[i].busNum === busNum ){
+            nowBusNumArray = i;
+          }
+        }
+   
+        return(nowBusNumArray)
+    }
+
+    const findStopNum = (goBackfuntion) => {
+        let num = 0;
+        for(let i=0; i<data[findBusNum(busNum)].routes[0].stationNum; i++){
+            if(data[findBusNum(busNum)].routes[goBackfuntion].data[i].station === '國立臺北教育大學'){
+                num = i;
+            }
+        }
+        return(data[findBusNum(busNum)].routes[goBackfuntion].data[num].arrivalTime);
+    }
 
     const shake = () => {
         translateX.value = withSequence(
@@ -52,12 +107,12 @@ const HomeBusDetailCardDetail = (props) => {
                                     <MaterialCommunityIcons name="bus-side" color={'#2D2F31'} size={49} style={styles.busIcon} />
                                 </Pressable>
                             </Animated.View>
-                            <Text style={styles.arrivalBusNum}>{data[0].routes[1].arrivalBusNum}</Text>
+                            <Text style={styles.arrivalBusNum}>{data[findBusNum(busNum)].routes[1].arrivalBusNum}</Text>
                         </Center>
                         <Center style={styles.arrivalTimeCard}>
                             <Text style={styles.SiteName}>國立台北教育大學</Text>
                             <HStack style={styles.arrivalTime}>
-                                <Text style={styles.arrivalTimeNum}>{data[0].routes[1].data[6].arrivalTime}</Text>
+                                <Text style={styles.arrivalTimeNum}>{findStopNum(1)}</Text>
                                 <Text style={styles.unit}>分</Text>
                             </HStack>
                         </Center>
@@ -81,12 +136,12 @@ const HomeBusDetailCardDetail = (props) => {
                                     <MaterialCommunityIcons name="bus-side" color={'#2D2F31'} size={49} style={styles.busIcon} />
                                 </Pressable>
                             </Animated.View>
-                            <Text style={styles.arrivalBusNum}>{data[0].routes[0].arrivalBusNum}</Text>
+                            <Text style={styles.arrivalBusNum}>{data[findBusNum(busNum)].routes[0].arrivalBusNum}</Text>
                         </Center>
                         <Center style={styles.arrivalTimeCard}>
                             <Text style={styles.SiteName}>國立臺北教育大學</Text>
                             <HStack style={styles.arrivalTime}>
-                                <Text style={styles.arrivalTimeNum}>{data[0].routes[0].data[6].arrivalTime}</Text>
+                                <Text style={styles.arrivalTimeNum}>{findStopNum(0)}</Text>
                                 <Text style={styles.unit}>分</Text>
                             </HStack>
                         </Center>
@@ -95,52 +150,68 @@ const HomeBusDetailCardDetail = (props) => {
             )
         }
     }
+    
+    
 
     return (
         <View style={styles.busDetailCard}>
-            <HStack style={styles.route}>
-                <Text style={styles.busNum}>{data[0].busNum}</Text>
-                <Text style={styles.toText}>往</Text>
-                <Box flex={1}>
-                    <SegmentedControlTab
-                        values={[station1, station2]}
-                        activeTabStyle={{
-                            width: 194,
-                            height: 53,
-                            backgroundColor: "#fff",
-                            borderColor: '#C4D7F3',
-                            shadowColor: '#000',
-                            shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
-                            shadowOpacity: 0.1,
-                            // Android Only
-                            elevation: 3,
-                        }}
-                        tabStyle={{
-                            width: 194,
-                            height: 53,
-                            backgroundColor: "#C4D7F3",
-                            borderColor: "#C4D7F3",
-                            borderWidth: 1,
-                        }}
-                        firstTabStyle={{ marginLeft: 10, borderTopLeftRadius: 9, borderBottomLeftRadius: 9, }}
-                        lastTabStyle={{ marginRight: 30, borderTopRightRadius: 9, borderBottomRightRadius: 9, }}
-                        textNumberOfLines={2}
-                        tabTextStyle={{
-                            fontSize: 16, color: "#354967", borderWidth: 0, fontWeight: '500',
-                            textAlign: 'center',
-                            lineHeight: 20,
-                            padding: 0,
-                            paddingVertical: 0,
-                        }}
-                        activeTabTextStyle={{ color: "#000", }}
-                        selectedIndex={selectedIndex}
-                        onTabPress={(index) => setSelectedIndex(index)}
+                {/* <Text>{selectedIndex}/{}/{goBack}jj{busNum}</Text> */}
+                <HStack style={styles.route}>
+                    {/* <Text>{selectedIndex}/{}/{goBack}sf{busNum}</Text> */}
+                    {busNum === "和平幹線"?(
+                        <Text style={[styles.busNum,{fontSize:30, marginRight:-20, marginLeft:-10}]}>{busNum}</Text>
+                    ):(
+                        <Text style={styles.busNum}>{busNum}</Text>
+                    )}
+                    {/* <Text style={styles.busNum}>{busNum}</Text> */}
+                    <Text style={styles.toText}>往</Text>
+                    {/* <Text style={styles.toText}>{data[findBusNum(busNum)].routes[0].busRoute}</Text> */}
+                    <Box flex={1}>
+                        {/* <Pressable onPress={() => setGoBackState(100)}style={{borderWidth:1}}> */}
+                        <SegmentedControlTab 
+                            values={[data[findBusNum(busNum)].routes[0].busRoute, data[findBusNum(busNum)].routes[1].busRoute]}
+                            activeTabStyle={{
+                                width: 194,
+                                height: 53,
+                                backgroundColor: "#fff",
+                                borderColor: '#C4D7F3',
+                                shadowColor: '#000',
+                                shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 5 } : { width: 0, height: 20 },
+                                shadowOpacity: 0.1,
+                                // Android Only
+                                elevation: 3,
+                            }}
+                            tabStyle={{
+                                width: 194,
+                                height: 53,
+                                backgroundColor: "#C4D7F3",
+                                borderColor: "#C4D7F3",
+                                borderWidth: 1,
+                            }}
+                            firstTabStyle={{ marginLeft: 10, borderTopLeftRadius: 9, borderBottomLeftRadius: 9, }}
+                            lastTabStyle={{ marginRight: 30, borderTopRightRadius: 9, borderBottomRightRadius: 9, }}
+                            textNumberOfLines={2}
+                            tabTextStyle={{
+                                fontSize: 16, color: "#354967", borderWidth: 0, fontWeight: '500',
+                                textAlign: 'center',
+                                lineHeight: 20,
+                                padding: 0,
+                                paddingVertical: 0,
+                            }}
+                            activeTabTextStyle={{ color: "#000", }}
+                            selectedIndex={selectedIndex}
+                            onTabPress={(index) => setSelectedIndex(index)}
+                            // onPress = {setGoBackState(selectedIndex)}
+                            // onTabPress={(index) => setSegmentedControlState(index)}
 
-                    />
-                </Box>
-            </HStack>
-            <SegmentedContent />
-        </View>
+                        />
+                        
+                        {/* </Pressable> */}
+                    </Box>
+                </HStack>
+                <SegmentedContent />
+            </View>
+        
     );
 }
 
